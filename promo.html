@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1400">
+<title>VKT Cart Lock — Chrome Web Store promotional tile</title>
+<style>
+  :root {
+    --accent: #6d28d9;
+    --accent-deep: #4c1d95;
+    --ink: #241735;
+    --body: #574b64;
+    --muted: #80758c;
+    --line: #e6dfee;
+    --cream: #fbf7ff;
+    --paper: #f6f2fa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1400px; height: 560px; overflow: hidden; }
+  body {
+    background: var(--paper);
+    color: var(--body);
+    font-family: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .tile {
+    position: relative; display: flex; align-items: center; gap: 46px;
+    width: 1400px; height: 560px; overflow: hidden; padding: 0 78px;
+    background:
+      radial-gradient(760px 420px at 98% -12%, rgba(109, 40, 217, .16), transparent 70%),
+      radial-gradient(620px 360px at 8% 118%, rgba(216, 168, 78, .08), transparent 70%),
+      linear-gradient(125deg, #fffcf9 0%, var(--paper) 58%, #ece3f3 100%);
+  }
+  .tile::before {
+    content: ""; position: absolute; right: -160px; top: -250px; width: 680px; height: 680px;
+    border-radius: 50%; border: 1px solid rgba(109, 40, 217, .14);
+    box-shadow: 0 0 0 70px rgba(109, 40, 217, .045), 0 0 0 140px rgba(109, 40, 217, .028);
+    pointer-events: none;
+  }
+  .tile::after {
+    content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--accent-deep), var(--accent), #c4b5fd);
+  }
+  .copy { position: relative; z-index: 2; flex: 1; min-width: 0; max-width: 860px; }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+  .brand img { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: #fff; box-shadow: 0 8px 18px rgba(40, 23, 61, .14); }
+  .brand b { color: var(--ink); font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+  .badge {
+    margin-left: 6px; padding: 5px 10px; border-radius: 999px;
+    border: 1px solid rgba(109, 40, 217, .26); background: rgba(255, 252, 249, .8);
+    color: var(--accent-deep); font-size: 10.5px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+  }
+  h1 { color: var(--ink); font-size: 57px; line-height: 1.02; letter-spacing: -.045em; font-weight: 820; margin-bottom: 15px; }
+  h1 em { display: block; color: var(--accent); font-style: normal; }
+  .sub { max-width: 770px; margin-bottom: 17px; color: var(--body); font-size: 17px; line-height: 1.5; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 19px; }
+  .chip {
+    padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px;
+    background: rgba(255, 252, 249, .82); color: var(--ink); font-size: 12px; font-weight: 650;
+  }
+  .plans { display: grid; gap: 8px; max-width: 800px; }
+  .plan { display: flex; align-items: flex-start; gap: 9px; color: var(--body); font-size: 13px; line-height: 1.45; }
+  .tag {
+    flex: none; margin-top: 1px; padding: 2px 8px; border-radius: 6px;
+    background: rgba(109, 40, 217, .1); color: var(--accent-deep);
+    font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .plan.pro .tag { background: var(--accent); color: #fff; }
+  .foot {
+    position: absolute; left: 78px; bottom: 20px; z-index: 2;
+    color: var(--muted); font-size: 11.5px; font-weight: 600; letter-spacing: .02em;
+  }
+  .visual { position: relative; z-index: 2; flex: none; width: 424px; height: 440px; display: grid; place-items: center; }
+  .glow {
+    position: absolute; width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, .22), transparent 68%);
+    filter: blur(10px);
+  }
+  .ring { position: absolute; border-radius: 50%; border: 1px solid rgba(109, 40, 217, .12); }
+  .ring.one { width: 340px; height: 340px; }
+  .ring.two { width: 420px; height: 420px; opacity: .55; }
+  .lock-card {
+    position: relative; width: 386px; padding: 20px 22px 18px;
+    border: 1px solid rgba(251, 247, 255, .1); border-radius: 24px;
+    background:
+      radial-gradient(380px 240px at 50% -10%, rgba(139, 92, 246, .3), transparent 70%),
+      var(--ink);
+    box-shadow: 0 34px 70px rgba(36, 23, 53, .35);
+    text-align: center; transform: rotate(-2.5deg);
+    color: #ddd0ea;
+  }
+  .lc-head { display: flex; align-items: center; justify-content: center; gap: 7px; color: var(--cream); font-size: 11px; font-weight: 750; }
+  .lc-head img { width: 19px; height: 19px; border-radius: 5px; }
+  .lc-site {
+    display: inline-block; margin-top: 4px; padding: 2px 8px; border: 1px solid rgba(251, 247, 255, .16);
+    border-radius: 999px; color: #ac9fbd; font-size: 9px; font-weight: 650;
+  }
+  .lc-label { display: block; margin-top: 24px; color: #ac9fbd; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .lc-clock {
+    display: block; margin-top: 4px; color: var(--cream); font-size: 48px; line-height: 1.1; font-weight: 750;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums; letter-spacing: .01em;
+  }
+  .lc-track { height: 5px; margin-top: 14px; border-radius: 999px; background: rgba(251, 247, 255, .13); overflow: hidden; }
+  .lc-track i { display: block; width: 99.8%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #c4b5fd, var(--accent)); }
+  .lc-quote {
+    margin: 18px auto 0; max-width: 290px; color: #eee6f7;
+    font-family: Georgia, "Times New Roman", serif; font-size: 17px; line-height: 1.5;
+  }
+  .lc-meta { margin-top: 9px; color: #ac9fbd; font-size: 10.5px; font-weight: 600; }
+  .lc-btn {
+    margin-top: 17px; padding: 10px 12px; border-radius: 9px;
+    background: var(--cream); color: var(--ink); font-size: 11.5px; font-weight: 750;
+  }
+  .lc-foot { margin-top: 9px; color: #a298ae; font-size: 9px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="tile">
+  <div class="copy">
+    <div class="brand">
+      <img src="icons/icon128.png" alt="" width="42" height="42">
+      <b>VKT Cart Lock</b>
+      <span class="badge">Chrome &amp; Edge</span>
+    </div>
+    <h1>Checkout can wait.<em>The impulse usually can't.</em></h1>
+    <p class="sub">A hard cooling-off lock for your cart. The first click starts the timer; checkout stays blocked until it ends, then opens on its own.</p>
+    <div class="chips">
+      <span class="chip">No skip button</span>
+      <span class="chip">Local-first</span>
+      <span class="chip">24 store presets</span>
+      <span class="chip">6 languages</span>
+    </div>
+    <div class="plans">
+      <div class="plan"><span class="tag">Free</span><span>1 / 6 / 24 / 72-hour cooldowns, 20 messages, allowlist, ledger and toolbar countdown</span></div>
+      <div class="plan pro"><span class="tag">Premium</span><span>10 minutes to 30 days, per-product timers, quiet hours, sync and 12-month reports</span></div>
+    </div>
+  </div>
+
+  <div class="visual" aria-hidden="true">
+    <span class="glow"></span><span class="ring two"></span><span class="ring one"></span>
+    <div class="lock-card">
+      <div class="lc-head"><img src="icons/icon128.png" alt="">VKT Cart Lock</div>
+      <span class="lc-site">shop.example</span>
+      <span class="lc-label">Time left</span>
+      <strong class="lc-clock">23:58:12</strong>
+      <div class="lc-track"><i></i></div>
+      <p class="lc-quote">“You are not saving money by deciding faster.”</p>
+      <div class="lc-meta">$129.99 · 3 items</div>
+      <div class="lc-btn">Back to the cart</div>
+      <div class="lc-foot">No skip. No snooze. Uninstall is the only way out.</div>
+    </div>
+  </div>
+
+  <div class="foot">Free + optional Premium · Chrome &amp; Edge · No account required · annmax1983.com</div>
+</div>
+</body>
+</html>

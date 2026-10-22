@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VKT Cart Lock — Privacy Policy</title>
+<meta name="description" content="VKT Cart Lock privacy policy: what stays on your device, what syncs with Premium, when the license server is contacted, and how to delete your data.">
+<link rel="icon" href="icons/icon128.png">
+<style>
+  :root {
+    --bg: #f6f2fa;
+    --surface: #fffcf9;
+    --ink: #241735;
+    --body: #574b64;
+    --muted: #80758c;
+    --line: #e6dfee;
+    --line-strong: #d2c6df;
+    --accent: #6d28d9;
+    --accent-deep: #4c1d95;
+    --tint: #f0e7fb;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(820px 420px at 104% -8%, rgba(109, 40, 217, .10), transparent 68%),
+      var(--bg);
+    color: var(--body);
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Microsoft YaHei", "Yu Gothic UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  ::selection { background: rgba(109, 40, 217, .22); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .wrap { width: min(860px, calc(100% - 40px)); margin: 0 auto; }
+  header { padding: 48px 0 34px; border-bottom: 1px solid var(--line); }
+  .head-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; font-weight: 700; letter-spacing: -.01em; }
+  .brand img { width: 40px; height: 40px; border-radius: 11px; border: 1px solid var(--line); background: #fff; }
+  .lang {
+    appearance: none; -webkit-appearance: none;
+    padding: 9px 32px 9px 12px;
+    border: 1px solid var(--line-strong); border-radius: 10px;
+    background-color: rgba(255, 252, 249, .85);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2380758c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center; background-size: 12px;
+    color: var(--ink); font-size: 12.5px; font-weight: 650; cursor: pointer;
+  }
+  .lang:hover { border-color: var(--accent); }
+  h1 { margin: 26px 0 10px; color: var(--ink); font-size: clamp(30px, 5vw, 44px); line-height: 1.12; letter-spacing: -.03em; }
+  .lede { max-width: 690px; margin: 0; font-size: 17px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 22px; color: var(--muted); font-size: 13px; }
+  .meta strong { color: var(--ink); font-weight: 650; }
+  .toc { margin: 30px 0 0; padding: 18px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+  .toc-title { margin: 0 0 8px; color: var(--ink); font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+  .toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 34px; font-size: 14px; }
+  .toc li { margin: 5px 0; break-inside: avoid; }
+  main { padding: 8px 0 50px; }
+  section { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  section:last-child { border-bottom: 0; }
+  h2 { margin: 0 0 12px; color: var(--ink); font-size: 22px; line-height: 1.3; letter-spacing: -.015em; }
+  p { margin: 0 0 13px; }
+  p:last-child { margin-bottom: 0; }
+  ul { margin: 0 0 13px; padding-left: 22px; }
+  li { margin: 7px 0; }
+  strong { color: var(--ink); font-weight: 680; }
+  code { padding: 1px 6px; border: 1px solid var(--line); border-radius: 6px; background: #f1eaf9; color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .86em; }
+  .callout { margin: 18px 0 0; padding: 18px 20px; background: var(--tint); border: 1px solid #d9c8ef; border-radius: 14px; }
+  .callout p:last-child { margin-bottom: 0; }
+  .table-wrap { overflow-x: auto; margin: 14px 0 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 11px 13px; text-align: left; vertical-align: top; border: 1px solid var(--line); }
+  th { background: var(--tint); color: var(--ink); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; }
+  td { background: var(--surface); }
+  footer { padding: 30px 0 46px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 8px; }
+  @media (max-width: 620px) {
+    .toc ol { columns: 1; }
+    section { padding: 24px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="head-top">
+      <a class="brand" href="https://www.annmax1983.com/">
+        <img src="icons/icon128.png" alt="">
+        <span>VKT Cart Lock</span>
+      </a>
+      <select class="lang" id="lang" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">简体中文</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
+    <h1 data-i18n="pageTitle">Privacy Policy</h1>
+    <p class="lede" data-i18n="lede">VKT Cart Lock puts a hard cooling-off lock on checkout. This page explains exactly what the extension stores, what it sends, and what it never touches.</p>
+    <div class="meta">
+      <span><strong data-i18n="metaEffectiveLabel">Effective:</strong> <span data-i18n="metaEffective">October 22, 2026</span></span>
+      <span><strong data-i18n="metaVersionLabel">Version:</strong> <span data-i18n="metaVersion">1.0.0</span></span>
+      <span><strong data-i18n="metaAppliesLabel">Applies to:</strong> <span data-i18n="metaApplies">VKT Cart Lock for Chromium browsers</span></span>
+    </div>
+    <nav class="toc" aria-label="Contents">
+      <p class="toc-title" data-i18n="tocTitle">On this page</p>
+      <ol>
+        <li><a href="#summary" data-i18n="toc1">Summary</a></li>
+        <li><a href="#local" data-i18n="toc2">Data kept on your device</a></li>
+        <li><a href="#sync" data-i18n="toc3">Cross-device sync (Premium)</a></li>
+        <li><a href="#license" data-i18n="toc4">License activation</a></li>
+        <li><a href="#never" data-i18n="toc5">What is never collected</a></li>
+        <li><a href="#use" data-i18n="toc6">How data is used</a></li>
+        <li><a href="#sharing" data-i18n="toc7">Sharing and selling</a></li>
+        <li><a href="#retention" data-i18n="toc8">Retention and deletion</a></li>
+        <li><a href="#security" data-i18n="toc9">Security</a></li>
+        <li><a href="#children" data-i18n="toc10">Children</a></li>
+        <li><a href="#changes" data-i18n="toc11">Policy changes</a></li>
+        <li><a href="#contact" data-i18n="toc12">Contact</a></li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+    <section id="summary">
+      <h2 data-i18n="s1t">1. Summary</h2>
+      <div class="callout">
+        <p><strong data-i18n="s1lead">The short version:</strong> <span data-i18n="s1body">the cart, the countdown, your messages and your statistics live in your browser. The extension has no analytics, no advertising and no tracking. The only network requests it makes are for optional Premium license activation, validation and deactivation.</span></p>
+      </div>
+      <p data-i18n="s1after">VKT Cart Lock has a single purpose: to prevent a checkout from being completed until a timer chosen by the user has ended. Everything the extension does serves that purpose.</p>
+    </section>
+
+    <section id="local">
+      <h2 data-i18n="s2t">2. Data kept on your device</h2>
+      <p><span data-i18n="s2leadA">The following records are stored locally through</span> <code data-i18n="s2leadCode">chrome.storage.local</code><span data-i18n="s2leadB">. They are not uploaded by the extension:</span></p>
+      <ul>
+        <li data-i18n="s2i1">Settings: cooldown length, scope, timer start, sound choice, quiet hours, message mode, custom messages, allowlist, force-lock sites, small-order exemption, password settings and display preferences.</li>
+        <li data-i18n="s2i2">Timers: the site or product key, start and expiry times, blocked-attempt count, cart total and currency, item count, and whether the hold was already recorded.</li>
+        <li data-i18n="s2i3">Statistics: site hostnames where a checkout was paused, held amounts grouped by currency, monthly totals, emotion tags chosen at the lock screen, outcomes (held or purchased) and timestamps.</li>
+        <li data-i18n="s2i4">Self-check notes: the hostname, time and reason when the extension checks whether its checkout detection still works on a site.</li>
+        <li data-i18n="s2i5">Settings PIN: a random salt and a salted SHA-256 hash. The PIN itself and the hash never leave the device and are never written to sync storage.</li>
+        <li data-i18n="s2i6">Premium license record: license key, a random installation ID, plan key, status, activation date and expiry date.</li>
+      </ul>
+      <p data-i18n="s2after">Cart totals and item counts are read from the shop page in your browser only when a checkout attempt is intercepted. They are used to show the held amount and the small-order exemption. Page content is not transmitted.</p>
+    </section>
+
+    <section id="sync">
+      <h2 data-i18n="s3t">3. Cross-device sync (Premium)</h2>
+      <p><span data-i18n="s3leadA">Cross-device sync is off by default. When a Premium user turns it on, the extension writes a slim copy of the following to</span> <code data-i18n="s3leadCode">chrome.storage.sync</code><span data-i18n="s3leadB">:</span></p>
+      <ul>
+        <li data-i18n="s3i1">settings and custom messages (the settings PIN is removed);</li>
+        <li data-i18n="s3i2">active timer records, without statistics or history.</li>
+      </ul>
+      <p data-i18n="s3after">This data is handled by your browser vendor's sync service and is subject to that provider's privacy policy. The extension does not operate the sync service and cannot read other extensions' or other users' synced data. Turning sync off clears the extension's sync records.</p>
+      <p data-i18n="s3after2">Local-only data such as held amounts, monthly totals, emotion statistics and history is not part of sync. It stays on the device where it was recorded.</p>
+    </section>
+
+    <section id="license">
+      <h2 data-i18n="s4t">4. License activation</h2>
+      <p><span data-i18n="s4leadA">Premium is optional. When you activate, validate or deactivate a license, the extension sends a request to</span> <code data-i18n="s4leadCode">https://api.annmax1983.com/api/license</code><span data-i18n="s4leadB">. The request contains:</span></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th data-i18n="thField">Field</th><th data-i18n="thPurpose">Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="r1c1">License key</td><td data-i18n="r1c2">Identify the purchased license</td></tr>
+            <tr><td data-i18n="r2c1">Random installation ID</td><td data-i18n="r2c2">Bind the license to a device; generated locally, not derived from hardware</td></tr>
+            <tr><td data-i18n="r3c1">Plugin ID (cartlock)</td><td data-i18n="r3c2">Confirm which product the license covers</td></tr>
+            <tr><td data-i18n="r4c1">Browser name and version</td><td data-i18n="r4c2">Troubleshoot activation failures</td></tr>
+            <tr><td data-i18n="r5c1">Browser language(s) and timezone</td><td data-i18n="r5c2">Troubleshoot activation failures and localize support</td></tr>
+            <tr><td data-i18n="r6c1">User agent string</td><td data-i18n="r6c2">Troubleshoot activation failures</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p data-i18n="s4after">The license server uses this information solely to activate, validate and deactivate licenses and to prevent license abuse. Validation happens at most every two hours while the browser is running; if the server is unreachable, an already-activated Premium license keeps working offline from the local record.</p>
+      <p data-i18n="s4after2">No browsing data, cart contents, messages or statistics are included in these requests.</p>
+    </section>
+
+    <section id="never">
+      <h2 data-i18n="s5t">5. What is never collected</h2>
+      <ul>
+        <li data-i18n="s5i1">No browsing history or list of visited pages.</li>
+        <li data-i18n="s5i2">No page content, form values, search terms or product details sent to a server.</li>
+        <li data-i18n="s5i3">No payment card numbers, CVV codes, billing addresses or payment-provider credentials. Payment-provider hosts and frames are explicitly excluded from the guard.</li>
+        <li data-i18n="s5i4">No keystroke logging, mouse tracking, screen recording or session replay.</li>
+        <li data-i18n="s5i5">No advertising identifiers, analytics events or crash reports.</li>
+        <li data-i18n="s5i6">No account, email address or profile is created by the extension.</li>
+      </ul>
+    </section>
+
+    <section id="use">
+      <h2 data-i18n="s6t">6. How data is used</h2>
+      <p data-i18n="s6p1">Local and synced data is used only to provide the features you can see: keeping a timer, showing the lock screen, applying site rules, producing the statistics dashboard and restoring settings on another device.</p>
+      <p data-i18n="s6p2">License data is used only to determine whether Premium features are enabled. The extension does not profile users, personalize ads, score creditworthiness or make automated decisions with legal effects.</p>
+    </section>
+
+    <section id="sharing">
+      <h2 data-i18n="s7t">7. Sharing and selling</h2>
+      <p data-i18n="s7p1">We do not sell, rent, trade or share personal data with advertisers, data brokers or unrelated third parties. Data is disclosed only:</p>
+      <ul>
+        <li data-i18n="s7i1">to the license API described above, when you choose to use Premium;</li>
+        <li data-i18n="s7i2">to your browser vendor's sync service, when you choose to enable sync;</li>
+        <li data-i18n="s7i3">if required by applicable law or a valid legal request.</li>
+      </ul>
+      <p data-i18n="s7p2">VKT Cart Lock's use of information received from Chrome APIs complies with the Chrome Web Store User Data Policy, including the Limited Use requirements.</p>
+    </section>
+
+    <section id="retention">
+      <h2 data-i18n="s8t">8. Retention and deletion</h2>
+      <p data-i18n="s8p1">Local records remain until the extension's storage is removed. To delete data:</p>
+      <ul>
+        <li data-i18n="s8i1">turn off Premium sync first, which clears the extension's synced records;</li>
+        <li data-i18n="s8i2">deactivate a Premium license to remove its device binding on the server;</li>
+        <li data-i18n="s8i3">uninstall the extension, which removes its local storage.</li>
+      </ul>
+      <p data-i18n="s8p2">Server-side license records are kept while the license is active and for a reasonable period afterward to handle renewals, refunds and abuse prevention. To request deletion of a license record, contact us through the website below and include the license key or installation ID.</p>
+    </section>
+
+    <section id="security">
+      <h2 data-i18n="s9t">9. Security</h2>
+      <p data-i18n="s9p1">License requests use HTTPS. The settings PIN is stored only as a salted hash, never in plain text. Access to extension storage is limited to the extension's own pages and service worker by the browser's extension security model. No system can be guaranteed completely secure, but the extension deliberately collects as little as possible so that a breach would expose as little as possible.</p>
+    </section>
+
+    <section id="children">
+      <h2 data-i18n="s10t">10. Children</h2>
+      <p data-i18n="s10p1">VKT Cart Lock is not directed at children under 13 and does not knowingly collect personal information from them. The extension does not require an account and does not ask for age or identity.</p>
+    </section>
+
+    <section id="changes">
+      <h2 data-i18n="s11t">11. Policy changes</h2>
+      <p data-i18n="s11p1">If a future version changes what the extension stores or transmits, this policy will be updated before that version is released, and the effective date above will change. Material changes will be noted on the product website or in the extension's store listing.</p>
+    </section>
+
+    <section id="contact">
+      <h2 data-i18n="s12t">12. Contact</h2>
+      <p><span data-i18n="s12p1">Questions about this policy or a data request:</span> <a href="https://www.annmax1983.com/">www.annmax1983.com</a></p>
+      <p data-i18n="s12p2">Product: VKT Cart Lock (冷静锁). Developer: annmax.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span data-i18n="footLine">VKT Cart Lock · Privacy Policy · Effective October 22, 2026</span>
+    <nav>
+      <a href="https://www.annmax1983.com/" data-i18n="footWebsite">Website</a>
+      <a href="#summary" data-i18n="footTop">Back to top</a>
+    </nav>
+  </footer>
+</div>
+<script>
+(function () {
+  "use strict";
+  const LANGS = ["en", "zh", "ja", "de", "es", "fr"];
+  const LANG_KEY = "vkt-cartlock-privacy-lang";
+  const select = document.getElementById("lang");
+  const meta = document.querySelector('meta[name="description"]');
+
+  const COPY = {
+    en: {
+      metaTitle: "VKT Cart Lock — Privacy Policy",
+      metaDesc: "VKT Cart Lock privacy policy: what stays on your device, what syncs with Premium, when the license server is contacted, and how to delete your data.",
+      pageTitle: "Privacy Policy",
+      lede: "VKT Cart Lock puts a hard cooling-off lock on checkout. This page explains exactly what the extension stores, what it sends, and what it never touches.",
+      metaEffectiveLabel: "Effective:", metaEffective: "October 22, 2026",
+      metaVersionLabel: "Version:", metaVersion: "1.0.0",
+      metaAppliesLabel: "Applies to:", metaApplies: "VKT Cart Lock for Chromium browsers",
+      tocTitle: "On this page",
+      toc1: "Summary", toc2: "Data kept on your device", toc3: "Cross-device sync (Premium)", toc4: "License activation",
+      toc5: "What is never collected", toc6: "How data is used", toc7: "Sharing and selling", toc8: "Retention and deletion",
+      toc9: "Security", toc10: "Children", toc11: "Policy changes", toc12: "Contact",
+      s1t: "1. Summary",
+      s1lead: "The short version:",
+      s1body: "the cart, the countdown, your messages and your statistics live in your browser. The extension has no analytics, no advertising and no tracking. The only network requests it makes are for optional Premium license activation, validation and deactivation.",
+      s1after: "VKT Cart Lock has a single purpose: to prevent a checkout from being completed until a timer chosen by the user has ended. Everything the extension does serves that purpose.",
+      s2t: "2. Data kept on your device",
+      s2leadA: "The following records are stored locally through", s2leadCode: "chrome.storage.local",
+      s2leadB: ". They are not uploaded by the extension:",
+      s2i1: "Settings: cooldown length, scope, timer start, sound choice, quiet hours, message mode, custom messages, allowlist, force-lock sites, small-order exemption, password settings and display preferences.",
+      s2i2: "Timers: the site or product key, start and expiry times, blocked-attempt count, cart total and currency, item count, and whether the hold was already recorded.",
+      s2i3: "Statistics: site hostnames where a checkout was paused, held amounts grouped by currency, monthly totals, emotion tags chosen at the lock screen, outcomes (held or purchased) and timestamps.",
+      s2i4: "Self-check notes: the hostname, time and reason when the extension checks whether its checkout detection still works on a site.",
+      s2i5: "Settings PIN: a random salt and a salted SHA-256 hash. The PIN itself and the hash never leave the device and are never written to sync storage.",
+      s2i6: "Premium license record: license key, a random installation ID, plan key, status, activation date and expiry date.",
+      s2after: "Cart totals and item counts are read from the shop page in your browser only when a checkout attempt is intercepted. They are used to show the held amount and the small-order exemption. Page content is not transmitted.",
+      s3t: "3. Cross-device sync (Premium)",
+      s3leadA: "Cross-device sync is off by default. When a Premium user turns it on, the extension writes a slim copy of the following to",
+      s3leadCode: "chrome.storage.sync", s3leadB: ":",
+      s3i1: "settings and custom messages (the settings PIN is removed);",
+      s3i2: "active timer records, without statistics or history.",
+      s3after: "This data is handled by your browser vendor's sync service and is subject to that provider's privacy policy. The extension does not operate the sync service and cannot read other extensions' or other users' synced data. Turning sync off clears the extension's sync records.",
+      s3after2: "Local-only data such as held amounts, monthly totals, emotion statistics and history is not part of sync. It stays on the device where it was recorded.",
+      s4t: "4. License activation",
+      s4leadA: "Premium is optional. When you activate, validate or deactivate a license, the extension sends a request to",
+      s4leadCode: "https://api.annmax1983.com/api/license", s4leadB: ". The request contains:",
+      thField: "Field", thPurpose: "Purpose",
+      r1c1: "License key", r1c2: "Identify the purchased license",
+      r2c1: "Random installation ID", r2c2: "Bind the license to a device; generated locally, not derived from hardware",
+      r3c1: "Plugin ID (cartlock)", r3c2: "Confirm which product the license covers",
+      r4c1: "Browser name and version", r4c2: "Troubleshoot activation failures",
+      r5c1: "Browser language(s) and timezone", r5c2: "Troubleshoot activation failures and localize support",
+      r6c1: "User agent string", r6c2: "Troubleshoot activation failures",
+      s4after: "The license server uses this information solely to activate, validate and deactivate licenses and to prevent license abuse. Validation happens at most every two hours while the browser is running; if the server is unreachable, an already-activated Premium license keeps working offline from the local record.",
+      s4after2: "No browsing data, cart contents, messages or statistics are included in these requests.",
+      s5t: "5. What is never collected",
+      s5i1: "No browsing history or list of visited pages.",
+      s5i2: "No page content, form values, search terms or product details sent to a server.",
+      s5i3: "No payment card numbers, CVV codes, billing addresses or payment-provider credentials. Payment-provider hosts and frames are explicitly excluded from the guard.",
+      s5i4: "No keystroke logging, mouse tracking, screen recording or session replay.",
+      s5i5: "No advertising identifiers, analytics events or crash reports.",
+      s5i6: "No account, email address or profile is created by the extension.",
+      s6t: "6. How data is used",
+      s6p1: "Local and synced data is used only to provide the features you can see: keeping a timer, showing the lock screen, applying site rules, producing the statistics dashboard and restoring settings on another device.",
+      s6p2: "License data is used only to determine whether Premium features are enabled. The extension does not profile users, personalize ads, score creditworthiness or make automated decisions with legal effects.",
+      s7t: "7. Sharing and selling",
+      s7p1: "We do not sell, rent, trade or share personal data with advertisers, data brokers or unrelated third parties. Data is disclosed only:",
+      s7i1: "to the license API described above, when you choose to use Premium;",
+      s7i2: "to your browser vendor's sync service, when you choose to enable sync;",
+      s7i3: "if required by applicable law or a valid legal request.",
+      s7p2: "VKT Cart Lock's use of information received from Chrome APIs complies with the Chrome Web Store User Data Policy, including the Limited Use requirements.",
+      s8t: "8. Retention and deletion",
+      s8p1: "Local records remain until the extension's storage is removed. To delete data:",
+      s8i1: "turn off Premium sync first, which clears the extension's synced records;",
+      s8i2: "deactivate a Premium license to remove its device binding on the server;",
+      s8i3: "uninstall the extension, which removes its local storage.",
+      s8p2: "Server-side license records are kept while the license is active and for a reasonable period afterward to handle renewals, refunds and abuse prevention. To request deletion of a license record, contact us through the website below and include the license key or installation ID.",
+      s9t: "9. Security",
+      s9p1: "License requests use HTTPS. The settings PIN is stored only as a salted hash, never in plain text. Access to extension storage is limited to the extension's own pages and service worker by the browser's extension security model. No system can be guaranteed completely secure, but the extension deliberately collects as little as possible so that a breach would expose as little as possible.",
+      s10t: "10. Children",
+      s10p1: "VKT Cart Lock is not directed at children under 13 and does not knowingly collect personal information from them. The extension does not require an account and does not ask for age or identity.",
+      s11t: "11. Policy changes",
+      s11p1: "If a future version changes what the extension stores or transmits, this policy will be updated before that version is released, and the effective date above will change. Material changes will be noted on the product website or in the extension's store listing.",
+      s12t: "12. Contact",
+      s12p1: "Questions about this policy or a data request:",
+      s12p2: "Product: VKT Cart Lock (冷静锁). Developer: annmax.",
+      footLine: "VKT Cart Lock · Privacy Policy · Effective October 22, 2026",
+      footWebsite: "Website",
+      footTop: "Back to top"
+    },
+    zh: {
+      metaTitle: "VKT Cart Lock — 隐私政策",
+      metaDesc: "VKT Cart Lock（冷静锁）隐私政策：哪些数据留在你的设备上，Premium 版同步什么，何时联系许可证服务器，以及如何删除数据。",
+      pageTitle: "隐私政策",
+      lede: "VKT Cart Lock（冷静锁）在结账上设置了一道硬性冷静期。本页准确说明插件保存什么、发送什么，以及绝不触碰什么。",
+      metaEffectiveLabel: "生效日期：", metaEffective: "2026年10月22日",
+      metaVersionLabel: "版本：", metaVersion: "1.0.0",
+      metaAppliesLabel: "适用对象：", metaApplies: "面向 Chromium 系浏览器的 VKT Cart Lock",
+      tocTitle: "本页目录",
+      toc1: "概要", toc2: "保存在你设备上的数据", toc3: "跨设备同步（Premium）", toc4: "许可证激活",
+      toc5: "绝不收集的内容", toc6: "数据如何使用", toc7: "共享与出售", toc8: "保留与删除",
+      toc9: "安全性", toc10: "儿童", toc11: "政策变更", toc12: "联系我们",
+      s1t: "1. 概要",
+      s1lead: "简短版：",
+      s1body: "购物车、倒计时、你的文案和统计数据都保存在你的浏览器里。插件没有分析、没有广告、没有任何追踪。它发出的唯一网络请求，是可选 Premium 许可证的激活、校验和停用。",
+      s1after: "VKT Cart Lock 只有一个目的：在用户设定的计时结束之前，阻止结账完成。插件所做的一切都服务于这一目的。",
+      s2t: "2. 保存在你设备上的数据",
+      s2leadA: "以下记录通过", s2leadCode: "chrome.storage.local", s2leadB: "保存在本地。插件不会上传它们：",
+      s2i1: "设置：冷却时长、作用范围、计时起点、提示音、免打扰时段、文案模式、自定义文案、允许列表、强制锁定站点、小额豁免、密码设置和显示偏好。",
+      s2i2: "计时器：站点或商品键、开始与到期时间、拦截次数、购物车金额与币种、商品数量，以及该次拦截是否已记录。",
+      s2i3: "统计：暂停结账的站点域名、按币种分组的拦截金额、月度合计、在锁屏选择的情绪标签、结果（拦截或已购买）和时间戳。",
+      s2i4: "自检记录：插件检查某站点结账检测是否仍有效时的域名、时间和原因。",
+      s2i5: "设置 PIN：随机盐和加盐的 SHA-256 哈希。PIN 本身与哈希绝不离开设备，也绝不写入同步存储。",
+      s2i6: "Premium 许可证记录：许可证密钥、随机安装 ID、套餐键、状态、激活日期和到期日期。",
+      s2after: "购物车金额和商品数量仅在拦截到结账尝试时从你浏览器中的商店页面读取，用于显示拦截金额和小额豁免。页面内容不会被传输。",
+      s3t: "3. 跨设备同步（Premium）",
+      s3leadA: "跨设备同步默认关闭。Premium 用户开启后，插件会把以下内容的精简副本写入", s3leadCode: "chrome.storage.sync", s3leadB: "：",
+      s3i1: "设置和自定义文案（设置 PIN 会被移除）；",
+      s3i2: "进行中的计时器记录，不含统计或历史。",
+      s3after: "这些数据由你的浏览器厂商的同步服务处理，受该服务商隐私政策的约束。插件不运营同步服务，也无法读取其他插件或其他用户的同步数据。关闭同步会清除插件的同步记录。",
+      s3after2: "拦截金额、月度合计、情绪统计和历史等仅存本地的数据不属于同步内容。它们保留在记录所在的设备上。",
+      s4t: "4. 许可证激活",
+      s4leadA: "Premium 是可选项。当你激活、校验或停用许可证时，插件会向", s4leadCode: "https://api.annmax1983.com/api/license", s4leadB: "发送请求。请求包含：",
+      thField: "字段", thPurpose: "用途",
+      r1c1: "许可证密钥", r1c2: "识别所购买的许可证",
+      r2c1: "随机安装 ID", r2c2: "将许可证绑定到设备；本地生成，并非源自硬件",
+      r3c1: "插件 ID（cartlock）", r3c2: "确认许可证对应的产品",
+      r4c1: "浏览器名称与版本", r4c2: "排查激活故障",
+      r5c1: "浏览器语言与时区", r5c2: "排查激活故障并本地化支持",
+      r6c1: "User-Agent 字符串", r6c2: "排查激活故障",
+      s4after: "许可证服务器仅将这些信息用于激活、校验和停用许可证，以及防止许可证滥用。浏览器运行期间校验至多每两小时进行一次；若服务器不可达，已激活的 Premium 许可证仍可凭本地记录离线使用。",
+      s4after2: "这些请求不包含任何浏览数据、购物车内容、文案或统计。",
+      s5t: "5. 绝不收集的内容",
+      s5i1: "不收集浏览历史或访问过的页面列表。",
+      s5i2: "不向服务器发送页面内容、表单值、搜索词或商品详情。",
+      s5i3: "不收集银行卡号、CVV 码、账单地址或支付服务商凭据。支付服务商的域名和框架被明确排除在拦截之外。",
+      s5i4: "不进行按键记录、鼠标追踪、屏幕录制或会话回放。",
+      s5i5: "不使用广告标识符、分析事件或崩溃报告。",
+      s5i6: "插件不创建任何账户、不收集邮箱地址或个人资料。",
+      s6t: "6. 数据如何使用",
+      s6p1: "本地与同步数据仅用于提供你能看到的功能：维持计时、显示锁屏、应用站点规则、生成统计仪表盘，以及在另一台设备上恢复设置。",
+      s6p2: "许可证数据仅用于判断 Premium 功能是否启用。插件不对用户画像、不投放个性化广告、不评估信用状况，也不做出具有法律效力的自动化决策。",
+      s7t: "7. 共享与出售",
+      s7p1: "我们不会向广告商、数据经纪人或无关第三方出售、出租、交换或共享个人数据。数据仅在以下情况下披露：",
+      s7i1: "当你选择使用 Premium 时，提供给上文所述的许可证 API；",
+      s7i2: "当你选择开启同步时，提供给浏览器厂商的同步服务；",
+      s7i3: "根据适用法律或有效的法律要求。",
+      s7p2: "VKT Cart Lock 对通过 Chrome API 获得的信息的使用，符合 Chrome 网上应用店用户数据政策，包括有限使用要求。",
+      s8t: "8. 保留与删除",
+      s8p1: "本地记录将一直保留，直到插件存储被移除。删除数据的步骤：",
+      s8i1: "先关闭 Premium 同步，这会清除插件的同步记录；",
+      s8i2: "停用 Premium 许可证，以移除其在服务器上的设备绑定；",
+      s8i3: "卸载插件，这会移除其本地存储。",
+      s8p2: "服务器端的许可证记录在许可证有效期内以及之后的一段合理时间内保留，用于处理续费、退款和防滥用。如需删除许可证记录，请通过下方网站联系我们，并提供许可证密钥或安装 ID。",
+      s9t: "9. 安全性",
+      s9p1: "许可证请求使用 HTTPS。设置 PIN 仅以加盐哈希形式存储，绝不使用明文。浏览器的扩展安全模型将扩展存储的访问权限限制在扩展自身的页面和后台脚本。没有任何系统能保证绝对安全，但插件刻意收集尽可能少的数据，以便即使发生泄露，暴露的数据也尽可能少。",
+      s10t: "10. 儿童",
+      s10p1: "VKT Cart Lock 不面向 13 岁以下儿童，也不会有意收集他们的个人信息。插件不需要账户，也不会询问年龄或身份。",
+      s11t: "11. 政策变更",
+      s11p1: "如果未来版本改变插件存储或传输的内容，本政策将在该版本发布之前更新，上方的生效日期也会相应变更。重大变更将在产品网站或插件的商店页面上注明。",
+      s12t: "12. 联系我们",
+      s12p1: "关于本政策的问题或数据请求：",
+      s12p2: "产品：VKT Cart Lock（冷静锁）。开发者：annmax。",
+      footLine: "VKT Cart Lock · 隐私政策 · 2026年10月22日生效",
+      footWebsite: "官网",
+      footTop: "返回顶部"
+    },
+    ja: {
+      metaTitle: "VKT Cart Lock — プライバシーポリシー",
+      metaDesc: "VKT Cart Lock のプライバシーポリシー：端末に残るデータ、Premium で同期される内容、ライセンスサーバーへの接続タイミング、データの削除方法。",
+      pageTitle: "プライバシーポリシー",
+      lede: "VKT Cart Lock はチェックアウトに厳格なクーリングオフをかけます。このページでは、拡張機能が保存するもの、送信するもの、一切触れないものを正確に説明します。",
+      metaEffectiveLabel: "発効日：", metaEffective: "2026年10月22日",
+      metaVersionLabel: "バージョン：", metaVersion: "1.0.0",
+      metaAppliesLabel: "適用対象：", metaApplies: "Chromium 系ブラウザ向け VKT Cart Lock",
+      tocTitle: "このページの内容",
+      toc1: "概要", toc2: "端末に保存されるデータ", toc3: "端末間同期（Premium）", toc4: "ライセンス認証",
+      toc5: "収集しないもの", toc6: "データの利用方法", toc7: "共有と販売", toc8: "保持と削除",
+      toc9: "セキュリティ", toc10: "子ども", toc11: "ポリシーの変更", toc12: "お問い合わせ",
+      s1t: "1. 概要",
+      s1lead: "簡潔に言うと：",
+      s1body: "カート、カウントダウン、メッセージ、統計はすべてブラウザ内に保存されます。この拡張機能には分析、広告、トラッキングは一切ありません。ネットワーク通信は、オプションの Premium ライセンスの認証・検証・停止のみです。",
+      s1after: "VKT Cart Lock の目的はただ一つ、ユーザーが設定したタイマーが終了するまでチェックアウトを完了させないことです。拡張機能のすべての動作はこの目的のためにあります。",
+      s2t: "2. 端末に保存されるデータ",
+      s2leadA: "以下の記録は", s2leadCode: "chrome.storage.local", s2leadB: "にローカル保存されます。拡張機能がアップロードすることはありません：",
+      s2i1: "設定：クールダウン時間、適用範囲、タイマー開始、通知音、静かな時間帯、メッセージモード、カスタムメッセージ、許可リスト、強制ロックサイト、少額免除、パスワード設定、表示設定。",
+      s2i2: "タイマー：サイトまたは商品キー、開始・終了時刻、ブロック回数、カート合計額と通貨、商品数、記録済みかどうか。",
+      s2i3: "統計：チェックアウトを一時停止したサイトのホスト名、通貨別の保留金額、月間合計、ロック画面で選んだ気分タグ、結果（保留または購入）、タイムスタンプ。",
+      s2i4: "セルフチェックの記録：サイトでチェックアウト検出が機能しているかを確認した際のホスト名、日時、理由。",
+      s2i5: "設定 PIN：ランダムなソルトとソルト付き SHA-256 ハッシュ。PIN 自体とハッシュは端末の外に出ることはなく、同期ストレージにも書き込まれません。",
+      s2i6: "Premium ライセンス記録：ライセンスキー、ランダムなインストール ID、プランキー、ステータス、有効化日、有効期限。",
+      s2after: "カート合計額と商品数は、チェックアウト操作を遮ったときにのみブラウザ内のショップページから読み取られ、保留金額と少額免除の表示に使われます。ページの内容は送信されません。",
+      s3t: "3. 端末間同期（Premium）",
+      s3leadA: "端末間同期はデフォルトでオフです。Premium ユーザーがオンにすると、拡張機能は以下を", s3leadCode: "chrome.storage.sync", s3leadB: "に書き込みます：",
+      s3i1: "設定とカスタムメッセージ（設定 PIN は除去されます）；",
+      s3i2: "進行中のタイマー記録（統計や履歴は含みません）。",
+      s3after: "このデータはブラウザベンダーの同期サービスによって処理され、そのプロバイダーのプライバシーポリシーが適用されます。拡張機能は同期サービスを運営しておらず、他の拡張機能や他のユーザーの同期データを読むことはできません。同期をオフにすると、拡張機能の同期記録は消去されます。",
+      s3after2: "保留金額、月間合計、気分統計、履歴など端末内のみのデータは同期の対象外で、記録された端末に残ります。",
+      s4t: "4. ライセンス認証",
+      s4leadA: "Premium はオプションです。ライセンスの認証・検証・停止を行うと、拡張機能は", s4leadCode: "https://api.annmax1983.com/api/license", s4leadB: "にリクエストを送信します。リクエストには以下が含まれます：",
+      thField: "項目", thPurpose: "目的",
+      r1c1: "ライセンスキー", r1c2: "購入されたライセンスの特定",
+      r2c1: "ランダムなインストール ID", r2c2: "ライセンスの端末への紐付け。ローカル生成で、ハードウェア由来ではありません",
+      r3c1: "プラグイン ID（cartlock）", r3c2: "ライセンスが対象とする製品の確認",
+      r4c1: "ブラウザ名とバージョン", r4c2: "認証失敗のトラブルシューティング",
+      r5c1: "ブラウザの言語とタイムゾーン", r5c2: "認証失敗のトラブルシューティングとサポートのローカライズ",
+      r6c1: "ユーザーエージェント文字列", r6c2: "認証失敗のトラブルシューティング",
+      s4after: "ライセンスサーバーはこの情報を、ライセンスの認証・検証・停止と悪用防止にのみ使用します。検証はブラウザの実行中、最大でも2時間に1回です。サーバーに接続できない場合、認証済みの Premium ライセンスはローカル記録によりオフラインで機能し続けます。",
+      s4after2: "これらのリクエストに閲覧データ、カートの内容、メッセージ、統計は含まれません。",
+      s5t: "5. 収集しないもの",
+      s5i1: "閲覧履歴や訪問したページの一覧は収集しません。",
+      s5i2: "ページの内容、フォームの値、検索語、商品詳細をサーバーに送信しません。",
+      s5i3: "カード番号、CVV、請求先住所、決済プロバイダーの認証情報は収集しません。決済プロバイダーのホストとフレームはガードの対象から明示的に除外されています。",
+      s5i4: "キー入力の記録、マウスの追跡、画面録画、セッションリプレイは行いません。",
+      s5i5: "広告識別子、分析イベント、クラッシュレポートは使用しません。",
+      s5i6: "拡張機能がアカウントを作成することはなく、メールアドレスやプロフィールを収集しません。",
+      s6t: "6. データの利用方法",
+      s6p1: "ローカルおよび同期データは、タイマーの維持、ロック画面の表示、サイトルールの適用、統計ダッシュボードの生成、別の端末での設定復元など、目に見える機能の提供にのみ使用されます。",
+      s6p2: "ライセンスデータは Premium 機能が有効かどうかの判断にのみ使用されます。拡張機能はユーザーのプロファイリング、広告のパーソナライズ、信用スコアリング、法的効果のある自動決定を行いません。",
+      s7t: "7. 共有と販売",
+      s7p1: "私たちは広告主、データブローカー、無関係な第三者に個人データを販売、貸与、交換、共有しません。データが開示されるのは以下の場合のみです：",
+      s7i1: "Premium の利用を選択した場合、上記のライセンス API に対して；",
+      s7i2: "同期を有効にした場合、ブラウザベンダーの同期サービスに対して；",
+      s7i3: "適用法または有効な法的要請により求められた場合。",
+      s7p2: "VKT Cart Lock の Chrome API から受け取った情報の使用は、限定使用の要件を含む Chrome ウェブストアのユーザーデータポリシーに準拠しています。",
+      s8t: "8. 保持と削除",
+      s8p1: "ローカル記録は拡張機能のストレージが削除されるまで残ります。データを削除するには：",
+      s8i1: "まず Premium 同期をオフにします。これにより拡張機能の同期記録が消去されます；",
+      s8i2: "Premium ライセンスを停止し、サーバー上の端末の紐付けを解除します；",
+      s8i3: "拡張機能をアンインストールします。これによりローカルストレージが削除されます。",
+      s8p2: "サーバー側のライセンス記録は、ライセンスの有効期間中と、その後の更新・返金・悪用防止のための合理的な期間保持されます。ライセンス記録の削除をご希望の場合は、下記のウェブサイトからライセンスキーまたはインストール ID を添えてご連絡ください。",
+      s9t: "9. セキュリティ",
+      s9p1: "ライセンスリクエストには HTTPS を使用します。設定 PIN はソルト付きハッシュとしてのみ保存され、平文では保存されません。拡張機能ストレージへのアクセスは、ブラウザの拡張機能セキュリティモデルにより、拡張機能自身のページと Service Worker に制限されています。完全に安全なシステムはありませんが、拡張機能は意図的に最小限のデータしか収集しないため、万一の漏えいでも露出は最小限に抑えられます。",
+      s10t: "10. 子ども",
+      s10p1: "VKT Cart Lock は 13 歳未満の子どもを対象としておらず、彼らの個人情報を意図的に収集することもありません。拡張機能はアカウントを必要とせず、年齢や身元を尋ねることもありません。",
+      s11t: "11. ポリシーの変更",
+      s11p1: "将来のバージョンで拡張機能が保存または送信する内容が変わる場合、このポリシーはそのバージョンのリリース前に更新され、上記の発効日も変更されます。重要な変更は製品ウェブサイトまたは拡張機能のストアページでお知らせします。",
+      s12t: "12. お問い合わせ",
+      s12p1: "本ポリシーに関するご質問やデータのご請求：",
+      s12p2: "製品：VKT Cart Lock（冷静鎖）。開発者：annmax。",
+      footLine: "VKT Cart Lock · プライバシーポリシー · 2026年10月22日発効",
+      footWebsite: "ウェブサイト",
+      footTop: "ページ上部へ"
+    },
+    de: {
+      metaTitle: "VKT Cart Lock — Datenschutzerklärung",
+      metaDesc: "Datenschutzerklärung von VKT Cart Lock: was auf deinem Gerät bleibt, was mit Premium synchronisiert wird, wann der Lizenzserver kontaktiert wird und wie du deine Daten löschst.",
+      pageTitle: "Datenschutzerklärung",
+      lede: "VKT Cart Lock legt eine harte Bedenkzeit-Sperre über den Checkout. Diese Seite erklärt genau, was die Erweiterung speichert, was sie sendet und was sie niemals anfasst.",
+      metaEffectiveLabel: "Gültig ab:", metaEffective: "22. Oktober 2026",
+      metaVersionLabel: "Version:", metaVersion: "1.0.0",
+      metaAppliesLabel: "Gilt für:", metaApplies: "VKT Cart Lock für Chromium-Browser",
+      tocTitle: "Auf dieser Seite",
+      toc1: "Zusammenfassung", toc2: "Auf deinem Gerät gespeicherte Daten", toc3: "Geräteübergreifende Synchronisierung (Premium)", toc4: "Lizenzaktivierung",
+      toc5: "Was niemals erfasst wird", toc6: "Verwendung der Daten", toc7: "Weitergabe und Verkauf", toc8: "Aufbewahrung und Löschung",
+      toc9: "Sicherheit", toc10: "Kinder", toc11: "Änderungen der Richtlinie", toc12: "Kontakt",
+      s1t: "1. Zusammenfassung",
+      s1lead: "Die Kurzfassung:",
+      s1body: "Warenkorb, Countdown, deine Nachrichten und deine Statistiken leben in deinem Browser. Die Erweiterung hat keine Analyse, keine Werbung und kein Tracking. Die einzigen Netzwerkanfragen betreffen die optionale Aktivierung, Validierung und Deaktivierung der Premium-Lizenz.",
+      s1after: "VKT Cart Lock hat einen einzigen Zweck: zu verhindern, dass ein Checkout abgeschlossen wird, bevor ein vom Nutzer gewählter Timer abgelaufen ist. Alles, was die Erweiterung tut, dient diesem Zweck.",
+      s2t: "2. Auf deinem Gerät gespeicherte Daten",
+      s2leadA: "Die folgenden Aufzeichnungen werden lokal über", s2leadCode: "chrome.storage.local", s2leadB: " gespeichert. Sie werden von der Erweiterung nicht hochgeladen:",
+      s2i1: "Einstellungen: Bedenkzeit, Umfang, Timerstart, Ton, Ruhezeiten, Nachrichtenmodus, eigene Nachrichten, Erlaubnisliste, Zwangssperren-Seiten, Kleinbetrags-Ausnahme, Passwort-Einstellungen und Anzeigepräferenzen.",
+      s2i2: "Timer: der Website- oder Produktschlüssel, Start- und Ablaufzeit, Anzahl blockierter Versuche, Warenkorbsumme und Währung, Artikelanzahl und ob die Sperre bereits erfasst wurde.",
+      s2i3: "Statistiken: Hostnamen von Websites, auf denen ein Checkout pausiert wurde, gesperrte Beträge nach Währung, Monatssummen, am Sperrbildschirm gewählte Gefühls-Tags, Ergebnisse (gesperrt oder gekauft) und Zeitstempel.",
+      s2i4: "Selbsttest-Notizen: Hostname, Zeit und Grund, wenn die Erweiterung prüft, ob ihre Checkout-Erkennung auf einer Website noch funktioniert.",
+      s2i5: "Einstellungs-PIN: ein zufälliges Salt und ein gesalzener SHA-256-Hash. Die PIN selbst und der Hash verlassen niemals das Gerät und werden nie in den Sync-Speicher geschrieben.",
+      s2i6: "Premium-Lizenzdatensatz: Lizenzschlüssel, eine zufällige Installations-ID, Planschlüssel, Status, Aktivierungsdatum und Ablaufdatum.",
+      s2after: "Warenkorbsummen und Artikelanzahlen werden nur dann von der Shop-Seite in deinem Browser gelesen, wenn ein Checkout-Versuch abgefangen wird. Sie dienen zur Anzeige des gesperrten Betrags und der Kleinbetrags-Ausnahme. Seiteninhalte werden nicht übertragen.",
+      s3t: "3. Geräteübergreifende Synchronisierung (Premium)",
+      s3leadA: "Die geräteübergreifende Synchronisierung ist standardmäßig ausgeschaltet. Wenn ein Premium-Nutzer sie aktiviert, schreibt die Erweiterung eine schlanke Kopie des Folgenden in", s3leadCode: "chrome.storage.sync", s3leadB: ":",
+      s3i1: "Einstellungen und eigene Nachrichten (die Einstellungs-PIN wird entfernt);",
+      s3i2: "aktive Timer-Datensätze, ohne Statistiken oder Verlauf.",
+      s3after: "Diese Daten werden vom Sync-Dienst deines Browser-Anbieters verarbeitet und unterliegen dessen Datenschutzrichtlinie. Die Erweiterung betreibt den Sync-Dienst nicht und kann keine synchronisierten Daten anderer Erweiterungen oder anderer Nutzer lesen. Wird die Synchronisierung ausgeschaltet, werden die Sync-Datensätze der Erweiterung gelöscht.",
+      s3after2: "Nur lokal vorhandene Daten wie gesperrte Beträge, Monatssummen, Gefühls-Statistiken und der Verlauf sind nicht Teil der Synchronisierung. Sie bleiben auf dem Gerät, auf dem sie erfasst wurden.",
+      s4t: "4. Lizenzaktivierung",
+      s4leadA: "Premium ist optional. Wenn du eine Lizenz aktivierst, validierst oder deaktivierst, sendet die Erweiterung eine Anfrage an", s4leadCode: "https://api.annmax1983.com/api/license", s4leadB: ". Die Anfrage enthält:",
+      thField: "Feld", thPurpose: "Zweck",
+      r1c1: "Lizenzschlüssel", r1c2: "Identifikation der erworbenen Lizenz",
+      r2c1: "Zufällige Installations-ID", r2c2: "Bindung der Lizenz an ein Gerät; lokal erzeugt, nicht aus Hardware abgeleitet",
+      r3c1: "Plugin-ID (cartlock)", r3c2: "Bestätigung, welches Produkt die Lizenz abdeckt",
+      r4c1: "Browsername und -version", r4c2: "Fehlersuche bei Aktivierungsproblemen",
+      r5c1: "Browsersprache(n) und Zeitzone", r5c2: "Fehlersuche bei Aktivierungsproblemen und Lokalisierung des Supports",
+      r6c1: "User-Agent-Zeichenfolge", r6c2: "Fehlersuche bei Aktivierungsproblemen",
+      s4after: "Der Lizenzserver verwendet diese Informationen ausschließlich zum Aktivieren, Validieren und Deaktivieren von Lizenzen sowie zur Verhinderung von Lizenzmissbrauch. Die Validierung erfolgt höchstens alle zwei Stunden, solange der Browser läuft; ist der Server nicht erreichbar, funktioniert eine bereits aktivierte Premium-Lizenz anhand des lokalen Datensatzes offline weiter.",
+      s4after2: "Diese Anfragen enthalten keine Browserdaten, Warenkorbinhalte, Nachrichten oder Statistiken.",
+      s5t: "5. Was niemals erfasst wird",
+      s5i1: "Kein Browserverlauf und keine Liste besuchter Seiten.",
+      s5i2: "Keine Seiteninhalte, Formularwerte, Suchbegriffe oder Produktdetails werden an einen Server gesendet.",
+      s5i3: "Keine Kartennummern, CVV-Codes, Rechnungsadressen oder Zugangsdaten von Zahlungsanbietern. Hosts und Frames von Zahlungsanbietern sind ausdrücklich vom Schutz ausgenommen.",
+      s5i4: "Keine Tastaturprotokollierung, Mausverfolgung, Bildschirmaufzeichnung oder Sitzungswiedergabe.",
+      s5i5: "Keine Werbe-IDs, Analyse-Ereignisse oder Absturzberichte.",
+      s5i6: "Die Erweiterung erstellt kein Konto und fragt weder nach Alter noch nach Identität.",
+      s6t: "6. Verwendung der Daten",
+      s6p1: "Lokale und synchronisierte Daten werden nur verwendet, um die sichtbaren Funktionen bereitzustellen: einen Timer halten, den Sperrbildschirm anzeigen, Website-Regeln anwenden, das Statistik-Dashboard erzeugen und Einstellungen auf einem anderen Gerät wiederherstellen.",
+      s6p2: "Lizenzdaten werden nur verwendet, um festzustellen, ob Premium-Funktionen aktiviert sind. Die Erweiterung erstellt keine Nutzerprofile, personalisiert keine Werbung, bewertet keine Kreditwürdigkeit und trifft keine automatisierten Entscheidungen mit Rechtswirkung.",
+      s7t: "7. Weitergabe und Verkauf",
+      s7p1: "Wir verkaufen, vermieten, tauschen oder teilen keine personenbezogenen Daten mit Werbetreibenden, Datenhändlern oder unverbundenen Dritten. Daten werden nur offengelegt:",
+      s7i1: "an die oben beschriebene Lizenz-API, wenn du Premium nutzt;",
+      s7i2: "an den Sync-Dienst deines Browser-Anbieters, wenn du die Synchronisierung aktivierst;",
+      s7i3: "wenn geltendes Recht oder eine gültige rechtliche Anforderung dies verlangt.",
+      s7p2: "Die Verwendung von Informationen aus Chrome-APIs durch VKT Cart Lock entspricht der Nutzerdaten-Richtlinie des Chrome Web Store, einschließlich der Anforderungen zur eingeschränkten Nutzung.",
+      s8t: "8. Aufbewahrung und Löschung",
+      s8p1: "Lokale Aufzeichnungen bleiben bestehen, bis der Speicher der Erweiterung entfernt wird. So löschst du Daten:",
+      s8i1: "Schalte zuerst die Premium-Synchronisierung aus; dadurch werden die Sync-Datensätze der Erweiterung gelöscht;",
+      s8i2: "deaktiviere die Premium-Lizenz, um ihre Gerätebindung auf dem Server zu entfernen;",
+      s8i3: "deinstalliere die Erweiterung; dadurch wird ihr lokaler Speicher entfernt.",
+      s8p2: "Serverseitige Lizenzdatensätze werden so lange aufbewahrt, wie die Lizenz aktiv ist, und danach für einen angemessenen Zeitraum, um Verlängerungen, Rückerstattungen und Missbrauchsprävention abzuwickeln. Um die Löschung eines Lizenzdatensatzes zu beantragen, kontaktiere uns über die unten stehende Website und gib den Lizenzschlüssel oder die Installations-ID an.",
+      s9t: "9. Sicherheit",
+      s9p1: "Lizenzanfragen verwenden HTTPS. Die Einstellungs-PIN wird nur als gesalzener Hash gespeichert, niemals im Klartext. Der Zugriff auf den Erweiterungsspeicher ist durch das Sicherheitsmodell des Browsers auf die eigenen Seiten und den Service Worker der Erweiterung beschränkt. Kein System kann vollständige Sicherheit garantieren, aber die Erweiterung erfasst bewusst so wenig wie möglich, sodass ein Vorfall so wenig wie möglich preisgeben würde.",
+      s10t: "10. Kinder",
+      s10p1: "VKT Cart Lock richtet sich nicht an Kinder unter 13 Jahren und erfasst wissentlich keine personenbezogenen Daten von ihnen. Die Erweiterung erfordert kein Konto und fragt weder nach Alter noch nach Identität.",
+      s11t: "11. Änderungen der Richtlinie",
+      s11p1: "Wenn eine künftige Version ändert, was die Erweiterung speichert oder überträgt, wird diese Richtlinie vor der Veröffentlichung dieser Version aktualisiert und das oben genannte Gültigkeitsdatum geändert. Wesentliche Änderungen werden auf der Produktwebsite oder im Store-Eintrag der Erweiterung bekannt gegeben.",
+      s12t: "12. Kontakt",
+      s12p1: "Fragen zu dieser Richtlinie oder eine Datenanfrage:",
+      s12p2: "Produkt: VKT Cart Lock (冷静锁). Entwickler: annmax.",
+      footLine: "VKT Cart Lock · Datenschutzerklärung · Gültig ab 22. Oktober 2026",
+      footWebsite: "Website",
+      footTop: "Nach oben"
+    },
+    es: {
+      metaTitle: "VKT Cart Lock — Política de privacidad",
+      metaDesc: "Política de privacidad de VKT Cart Lock: qué se queda en tu dispositivo, qué se sincroniza con Premium, cuándo se contacta con el servidor de licencias y cómo eliminar tus datos.",
+      pageTitle: "Política de privacidad",
+      lede: "VKT Cart Lock pone un candado de reflexión estricto en el pago. Esta página explica exactamente qué almacena la extensión, qué envía y qué no toca jamás.",
+      metaEffectiveLabel: "Vigencia:", metaEffective: "22 de octubre de 2026",
+      metaVersionLabel: "Versión:", metaVersion: "1.0.0",
+      metaAppliesLabel: "Se aplica a:", metaApplies: "VKT Cart Lock para navegadores Chromium",
+      tocTitle: "En esta página",
+      toc1: "Resumen", toc2: "Datos guardados en tu dispositivo", toc3: "Sincronización entre dispositivos (Premium)", toc4: "Activación de licencia",
+      toc5: "Lo que nunca se recopila", toc6: "Cómo se usan los datos", toc7: "Compartir y vender", toc8: "Conservación y eliminación",
+      toc9: "Seguridad", toc10: "Menores", toc11: "Cambios en la política", toc12: "Contacto",
+      s1t: "1. Resumen",
+      s1lead: "La versión corta:",
+      s1body: "el carrito, la cuenta atrás, tus mensajes y tus estadísticas viven en tu navegador. La extensión no tiene analíticas, ni publicidad, ni rastreo. Las únicas peticiones de red son para la activación, validación y desactivación opcionales de la licencia Premium.",
+      s1after: "VKT Cart Lock tiene un único propósito: impedir que se complete un pago hasta que termine un temporizador elegido por el usuario. Todo lo que hace la extensión sirve a ese propósito.",
+      s2t: "2. Datos guardados en tu dispositivo",
+      s2leadA: "Los siguientes registros se guardan localmente mediante", s2leadCode: "chrome.storage.local", s2leadB: ". La extensión no los sube:",
+      s2i1: "Ajustes: duración del enfriamiento, alcance, inicio del temporizador, sonido, horas de silencio, modo de mensaje, mensajes personalizados, lista de permitidos, sitios con bloqueo forzado, exención de pedidos pequeños, ajustes de contraseña y preferencias de visualización.",
+      s2i2: "Temporizadores: la clave del sitio o producto, horas de inicio y fin, recuento de intentos bloqueados, total y divisa del carrito, número de artículos y si la pausa ya quedó registrada.",
+      s2i3: "Estadísticas: nombres de host donde se pausó un pago, importes retenidos agrupados por divisa, totales mensuales, etiquetas de emoción elegidas en la pantalla de bloqueo, resultados (retenido o comprado) y marcas de tiempo.",
+      s2i4: "Notas de autocomprobación: el nombre de host, la hora y el motivo cuando la extensión comprueba si su detección de pagos sigue funcionando en un sitio.",
+      s2i5: "PIN de ajustes: una sal aleatoria y un hash SHA-256 con sal. El PIN y el hash nunca salen del dispositivo y nunca se escriben en el almacenamiento de sincronización.",
+      s2i6: "Registro de licencia Premium: clave de licencia, un ID de instalación aleatorio, clave de plan, estado, fecha de activación y fecha de vencimiento.",
+      s2after: "Los totales del carrito y el número de artículos se leen de la página de la tienda en tu navegador solo cuando se intercepta un intento de pago. Se usan para mostrar el importe retenido y la exención de pedidos pequeños. El contenido de la página no se transmite.",
+      s3t: "3. Sincronización entre dispositivos (Premium)",
+      s3leadA: "La sincronización entre dispositivos está desactivada por defecto. Cuando un usuario Premium la activa, la extensión escribe una copia ligera de lo siguiente en", s3leadCode: "chrome.storage.sync", s3leadB: ":",
+      s3i1: "ajustes y mensajes personalizados (el PIN de ajustes se elimina);",
+      s3i2: "registros de temporizadores activos, sin estadísticas ni historial.",
+      s3after: "Estos datos los gestiona el servicio de sincronización del proveedor de tu navegador y están sujetos a la política de privacidad de dicho proveedor. La extensión no opera el servicio de sincronización y no puede leer los datos sincronizados de otras extensiones ni de otros usuarios. Desactivar la sincronización borra los registros de sincronización de la extensión.",
+      s3after2: "Los datos solo locales, como importes retenidos, totales mensuales, estadísticas de emociones e historial, no forman parte de la sincronización. Permanecen en el dispositivo donde se registraron.",
+      s4t: "4. Activación de licencia",
+      s4leadA: "Premium es opcional. Al activar, validar o desactivar una licencia, la extensión envía una petición a", s4leadCode: "https://api.annmax1983.com/api/license", s4leadB: ". La petición contiene:",
+      thField: "Campo", thPurpose: "Propósito",
+      r1c1: "Clave de licencia", r1c2: "Identificar la licencia comprada",
+      r2c1: "ID de instalación aleatorio", r2c2: "Vincular la licencia a un dispositivo; se genera localmente, no deriva del hardware",
+      r3c1: "ID de plugin (cartlock)", r3c2: "Confirmar qué producto cubre la licencia",
+      r4c1: "Nombre y versión del navegador", r4c2: "Diagnosticar fallos de activación",
+      r5c1: "Idioma(s) del navegador y zona horaria", r5c2: "Diagnosticar fallos de activación y localizar el soporte",
+      r6c1: "Cadena de agente de usuario", r6c2: "Diagnosticar fallos de activación",
+      s4after: "El servidor de licencias usa esta información únicamente para activar, validar y desactivar licencias y para evitar el abuso de licencias. La validación ocurre como mucho cada dos horas mientras el navegador está en marcha; si el servidor no es accesible, una licencia Premium ya activada sigue funcionando sin conexión gracias al registro local.",
+      s4after2: "Estas peticiones no incluyen datos de navegación, contenido del carrito, mensajes ni estadísticas.",
+      s5t: "5. Lo que nunca se recopila",
+      s5i1: "Nada de historial de navegación ni lista de páginas visitadas.",
+      s5i2: "Ningún contenido de página, valor de formulario, término de búsqueda o detalle de producto se envía a un servidor.",
+      s5i3: "Nada de números de tarjeta, códigos CVV, direcciones de facturación ni credenciales de proveedores de pago. Los hosts y marcos de los proveedores de pago quedan explícitamente excluidos de la protección.",
+      s5i4: "Nada de registro de pulsaciones, seguimiento del ratón, grabación de pantalla ni reproducción de sesiones.",
+      s5i5: "Nada de identificadores publicitarios, eventos de analítica ni informes de fallos.",
+      s5i6: "La extensión no crea ninguna cuenta, ni pide edad ni identidad.",
+      s6t: "6. Cómo se usan los datos",
+      s6p1: "Los datos locales y sincronizados se usan solo para ofrecer las funciones visibles: mantener un temporizador, mostrar la pantalla de bloqueo, aplicar reglas de sitio, generar el panel de estadísticas y restaurar los ajustes en otro dispositivo.",
+      s6p2: "Los datos de licencia se usan solo para determinar si las funciones Premium están activadas. La extensión no perfila usuarios, no personaliza anuncios, no puntúa solvencia ni toma decisiones automatizadas con efectos legales.",
+      s7t: "7. Compartir y vender",
+      s7p1: "No vendemos, alquilamos, intercambiamos ni compartimos datos personales con anunciantes, intermediarios de datos ni terceros no relacionados. Los datos solo se revelan:",
+      s7i1: "a la API de licencias descrita arriba, cuando eliges usar Premium;",
+      s7i2: "al servicio de sincronización del proveedor de tu navegador, cuando eliges activar la sincronización;",
+      s7i3: "si lo exige la ley aplicable o una solicitud legal válida.",
+      s7p2: "El uso que VKT Cart Lock hace de la información recibida de las API de Chrome cumple la Política de Datos del Usuario de Chrome Web Store, incluidos los requisitos de uso limitado.",
+      s8t: "8. Conservación y eliminación",
+      s8p1: "Los registros locales permanecen hasta que se elimina el almacenamiento de la extensión. Para eliminar datos:",
+      s8i1: "desactiva primero la sincronización Premium, lo que borra los registros sincronizados de la extensión;",
+      s8i2: "desactiva la licencia Premium para eliminar su vínculo de dispositivo en el servidor;",
+      s8i3: "desinstala la extensión, lo que elimina su almacenamiento local.",
+      s8p2: "Los registros de licencia del lado del servidor se conservan mientras la licencia está activa y durante un periodo razonable después para gestionar renovaciones, reembolsos y prevención de abusos. Para solicitar la eliminación de un registro de licencia, contáctanos a través del sitio web de abajo e incluye la clave de licencia o el ID de instalación.",
+      s9t: "9. Seguridad",
+      s9p1: "Las peticiones de licencia usan HTTPS. El PIN de ajustes se guarda solo como hash con sal, nunca en texto plano. El acceso al almacenamiento de la extensión está limitado a las propias páginas y al service worker de la extensión según el modelo de seguridad del navegador. Ningún sistema puede ser completamente seguro, pero la extensión recopila deliberadamente lo mínimo para que una filtración exponga lo mínimo posible.",
+      s10t: "10. Menores",
+      s10p1: "VKT Cart Lock no está dirigido a menores de 13 años y no recopila a sabiendas información personal de ellos. La extensión no requiere una cuenta ni pregunta por la edad o la identidad.",
+      s11t: "11. Cambios en la política",
+      s11p1: "Si una versión futura cambia lo que la extensión almacena o transmite, esta política se actualizará antes del lanzamiento de esa versión y la fecha de vigencia de arriba cambiará. Los cambios importantes se indicarán en el sitio web del producto o en la ficha de la extensión en la tienda.",
+      s12t: "12. Contacto",
+      s12p1: "Preguntas sobre esta política o una solicitud de datos:",
+      s12p2: "Producto: VKT Cart Lock (冷静锁). Desarrollador: annmax.",
+      footLine: "VKT Cart Lock · Política de privacidad · Vigencia: 22 de octubre de 2026",
+      footWebsite: "Sitio web",
+      footTop: "Volver arriba"
+    },
+    fr: {
+      metaTitle: "VKT Cart Lock — Politique de confidentialité",
+      metaDesc: "Politique de confidentialité de VKT Cart Lock : ce qui reste sur votre appareil, ce qui se synchronise avec Premium, quand le serveur de licences est contacté et comment supprimer vos données.",
+      pageTitle: "Politique de confidentialité",
+      lede: "VKT Cart Lock impose un délai de réflexion strict au paiement. Cette page explique exactement ce que l'extension stocke, ce qu'elle envoie et ce qu'elle ne touche jamais.",
+      metaEffectiveLabel: "En vigueur :", metaEffective: "22 octobre 2026",
+      metaVersionLabel: "Version :", metaVersion: "1.0.0",
+      metaAppliesLabel: "S'applique à :", metaApplies: "VKT Cart Lock pour navigateurs Chromium",
+      tocTitle: "Sur cette page",
+      toc1: "Résumé", toc2: "Données conservées sur votre appareil", toc3: "Synchronisation entre appareils (Premium)", toc4: "Activation de la licence",
+      toc5: "Ce qui n'est jamais collecté", toc6: "Utilisation des données", toc7: "Partage et vente", toc8: "Conservation et suppression",
+      toc9: "Sécurité", toc10: "Enfants", toc11: "Modifications de la politique", toc12: "Contact",
+      s1t: "1. Résumé",
+      s1lead: "En bref :",
+      s1body: "le panier, le compte à rebours, vos messages et vos statistiques vivent dans votre navigateur. L'extension n'a ni analyse, ni publicité, ni suivi. Les seules requêtes réseau concernent l'activation, la validation et la désactivation facultatives de la licence Premium.",
+      s1after: "VKT Cart Lock n'a qu'un seul but : empêcher qu'un paiement soit finalisé avant la fin d'un minuteur choisi par l'utilisateur. Tout ce que fait l'extension sert ce but.",
+      s2t: "2. Données conservées sur votre appareil",
+      s2leadA: "Les enregistrements suivants sont stockés localement via", s2leadCode: "chrome.storage.local", s2leadB: ". Ils ne sont pas envoyés par l'extension :",
+      s2i1: "Réglages : durée du délai de réflexion, portée, départ du minuteur, son, heures de silence, mode de message, messages personnalisés, liste autorisée, sites à verrouillage forcé, exemption des petites commandes, réglages de mot de passe et préférences d'affichage.",
+      s2i2: "Minuteurs : la clé du site ou du produit, les heures de début et d'expiration, le nombre de tentatives bloquées, le total et la devise du panier, le nombre d'articles et si la retenue a déjà été enregistrée.",
+      s2i3: "Statistiques : noms d'hôte où un paiement a été interrompu, montants retenus groupés par devise, totaux mensuels, étiquettes d'émotion choisies sur l'écran de verrouillage, résultats (retenu ou acheté) et horodatages.",
+      s2i4: "Notes d'auto-vérification : le nom d'hôte, l'heure et la raison lorsque l'extension vérifie si sa détection de paiement fonctionne toujours sur un site.",
+      s2i5: "PIN des réglages : un sel aléatoire et un hachage SHA-256 salé. Le PIN lui-même et le hachage ne quittent jamais l'appareil et ne sont jamais écrits dans le stockage de synchronisation.",
+      s2i6: "Enregistrement de licence Premium : clé de licence, un identifiant d'installation aléatoire, clé de plan, statut, date d'activation et date d'expiration.",
+      s2after: "Les totaux du panier et le nombre d'articles ne sont lus sur la page de la boutique dans votre navigateur que lorsqu'une tentative de paiement est interceptée. Ils servent à afficher le montant retenu et l'exemption des petites commandes. Le contenu de la page n'est pas transmis.",
+      s3t: "3. Synchronisation entre appareils (Premium)",
+      s3leadA: "La synchronisation entre appareils est désactivée par défaut. Lorsqu'un utilisateur Premium l'active, l'extension écrit une copie légère des éléments suivants dans", s3leadCode: "chrome.storage.sync", s3leadB: " :",
+      s3i1: "réglages et messages personnalisés (le PIN des réglages est retiré) ;",
+      s3i2: "enregistrements de minuteurs actifs, sans statistiques ni historique.",
+      s3after: "Ces données sont traitées par le service de synchronisation de l'éditeur de votre navigateur et sont soumises à la politique de confidentialité de ce fournisseur. L'extension n'exploite pas le service de synchronisation et ne peut pas lire les données synchronisées d'autres extensions ou d'autres utilisateurs. Désactiver la synchronisation efface les enregistrements de synchronisation de l'extension.",
+      s3after2: "Les données uniquement locales telles que les montants retenus, les totaux mensuels, les statistiques d'émotions et l'historique ne font pas partie de la synchronisation. Elles restent sur l'appareil où elles ont été enregistrées.",
+      s4t: "4. Activation de la licence",
+      s4leadA: "Premium est facultatif. Lorsque vous activez, validez ou désactivez une licence, l'extension envoie une requête à", s4leadCode: "https://api.annmax1983.com/api/license", s4leadB: ". La requête contient :",
+      thField: "Champ", thPurpose: "Objectif",
+      r1c1: "Clé de licence", r1c2: "Identifier la licence achetée",
+      r2c1: "Identifiant d'installation aléatoire", r2c2: "Lier la licence à un appareil ; généré localement, non dérivé du matériel",
+      r3c1: "ID de plugin (cartlock)", r3c2: "Confirmer le produit couvert par la licence",
+      r4c1: "Nom et version du navigateur", r4c2: "Diagnostiquer les échecs d'activation",
+      r5c1: "Langue(s) du navigateur et fuseau horaire", r5c2: "Diagnostiquer les échecs d'activation et localiser l'assistance",
+      r6c1: "Chaîne d'agent utilisateur", r6c2: "Diagnostiquer les échecs d'activation",
+      s4after: "Le serveur de licences utilise ces informations uniquement pour activer, valider et désactiver des licences et pour prévenir les abus de licence. La validation a lieu au plus toutes les deux heures pendant que le navigateur fonctionne ; si le serveur est injoignable, une licence Premium déjà activée continue de fonctionner hors ligne grâce à l'enregistrement local.",
+      s4after2: "Aucune donnée de navigation, contenu de panier, message ou statistique n'est inclus dans ces requêtes.",
+      s5t: "5. Ce qui n'est jamais collecté",
+      s5i1: "Aucun historique de navigation ni liste de pages visitées.",
+      s5i2: "Aucun contenu de page, valeur de formulaire, terme de recherche ou détail de produit envoyé à un serveur.",
+      s5i3: "Aucun numéro de carte, code CVV, adresse de facturation ni identifiant de fournisseur de paiement. Les hôtes et cadres des fournisseurs de paiement sont explicitement exclus de la protection.",
+      s5i4: "Aucun enregistrement de frappe, suivi de souris, enregistrement d'écran ni relecture de session.",
+      s5i5: "Aucun identifiant publicitaire, événement d'analyse ni rapport de plantage.",
+      s5i6: "L'extension ne crée aucun compte et ne demande ni âge ni identité.",
+      s6t: "6. Utilisation des données",
+      s6p1: "Les données locales et synchronisées ne servent qu'à fournir les fonctions visibles : tenir un minuteur, afficher l'écran de verrouillage, appliquer les règles de site, produire le tableau de bord de statistiques et restaurer les réglages sur un autre appareil.",
+      s6p2: "Les données de licence ne servent qu'à déterminer si les fonctions Premium sont activées. L'extension n'établit pas de profils d'utilisateurs, ne personnalise pas de publicités, n'évalue pas la solvabilité et ne prend pas de décisions automatisées ayant des effets juridiques.",
+      s7t: "7. Partage et vente",
+      s7p1: "Nous ne vendons, ne louons, n'échangeons ni ne partageons de données personnelles avec des annonceurs, des courtiers en données ou des tiers sans lien. Les données ne sont divulguées que :",
+      s7i1: "à l'API de licence décrite ci-dessus, lorsque vous choisissez d'utiliser Premium ;",
+      s7i2: "au service de synchronisation de l'éditeur de votre navigateur, lorsque vous choisissez d'activer la synchronisation ;",
+      s7i3: "si la loi applicable ou une demande légale valide l'exige.",
+      s7p2: "L'utilisation par VKT Cart Lock des informations reçues des API Chrome est conforme à la Politique des données utilisateur du Chrome Web Store, y compris aux exigences d'utilisation limitée.",
+      s8t: "8. Conservation et suppression",
+      s8p1: "Les enregistrements locaux subsistent jusqu'à la suppression du stockage de l'extension. Pour supprimer des données :",
+      s8i1: "désactivez d'abord la synchronisation Premium, ce qui efface les enregistrements synchronisés de l'extension ;",
+      s8i2: "désactivez la licence Premium pour supprimer sa liaison d'appareil sur le serveur ;",
+      s8i3: "désinstallez l'extension, ce qui supprime son stockage local.",
+      s8p2: "Les enregistrements de licence côté serveur sont conservés tant que la licence est active, puis pendant une période raisonnable pour gérer les renouvellements, les remboursements et la prévention des abus. Pour demander la suppression d'un enregistrement de licence, contactez-nous via le site web ci-dessous en indiquant la clé de licence ou l'identifiant d'installation.",
+      s9t: "9. Sécurité",
+      s9p1: "Les requêtes de licence utilisent HTTPS. Le PIN des réglages n'est stocké que sous forme de hachage salé, jamais en clair. L'accès au stockage de l'extension est limité aux propres pages et au service worker de l'extension par le modèle de sécurité du navigateur. Aucun système ne peut être garanti totalement sûr, mais l'extension collecte délibérément le moins possible afin qu'une violation expose le moins possible.",
+      s10t: "10. Enfants",
+      s10p1: "VKT Cart Lock ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment de données personnelles les concernant. L'extension ne nécessite aucun compte et ne demande ni âge ni identité.",
+      s11t: "11. Modifications de la politique",
+      s11p1: "Si une future version modifie ce que l'extension stocke ou transmet, cette politique sera mise à jour avant la sortie de cette version et la date d'entrée en vigueur ci-dessus changera. Les changements importants seront signalés sur le site web du produit ou dans la fiche de l'extension sur la boutique.",
+      s12t: "12. Contact",
+      s12p1: "Questions sur cette politique ou demande de données :",
+      s12p2: "Produit : VKT Cart Lock (冷静锁). Développeur : annmax.",
+      footLine: "VKT Cart Lock · Politique de confidentialité · En vigueur le 22 octobre 2026",
+      footWebsite: "Site web",
+      footTop: "Haut de page"
+    }
+  };
+
+  function detect() {
+    const list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (const raw of list) {
+      const code = String(raw || "").toLowerCase();
+      if (code.indexOf("zh") === 0) return "zh";
+      for (const lang of LANGS) {
+        if (code.indexOf(lang) === 0) return lang;
+      }
+    }
+    return "en";
+  }
+
+  function apply(lang) {
+    const dict = COPY[lang] || COPY.en;
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      const key = node.getAttribute("data-i18n");
+      if (dict[key] != null) node.textContent = dict[key];
+    });
+    document.title = dict.metaTitle;
+    if (meta) meta.setAttribute("content", dict.metaDesc);
+    select.value = lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage may be blocked */ }
+  }
+
+  let saved = "";
+  try { saved = localStorage.getItem(LANG_KEY) || ""; } catch (e) { /* ignore */ }
+  const initial = LANGS.indexOf(saved) !== -1 ? saved : detect();
+  apply(initial);
+
+  select.addEventListener("change", () => apply(select.value));
+})();
+</script>
+</body>
+</html>
