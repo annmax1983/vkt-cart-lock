@@ -37,7 +37,7 @@ Most "impulse buying" tools leave the door open: snooze, skip, unlock early. VKT
 | Small-order exemption | Let essentials under a chosen amount pass |
 | Allowlist and force-lock sites | Skip a trusted shop, or force the guard onto a small independent store |
 | Sale quiet period | Black Friday, Prime Day and Double 11 automatically extend the cooldown to 72 hours |
-| Password-protected settings | A 4–8 character PIN gates the settings page |
+| Password-protected settings | A 4–8 character PIN gates the settings page and site-rule changes |
 | Emotion tags | Tag the moment — late night, sale, angry, bored, just want it |
 | Misblock feedback | Mark a false positive and exclude that element next time |
 | Badge countdown | The toolbar icon shows hours or minutes left |
@@ -74,14 +74,14 @@ The guard works only in the page. It never hooks network requests and never touc
 
 ---
 
-## Install
+## Installation
 
-1. Open `chrome://extensions/` in Chrome or `edge://extensions/` in Edge.
-2. Turn on **Developer mode**.
-3. Click **Load unpacked** and select this folder.
-4. Pin the extension to the toolbar.
+| Store | Link |
+|---|---|
+| Chrome Web Store | Coming soon 🚧 |
+| Microsoft Edge Add-ons | Coming soon 🚧 |
 
-For a packaged build, use the zip in `publish/` or load the folder manually during development.
+> Store listings are on the way — check back soon.
 
 ---
 

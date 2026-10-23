@@ -37,7 +37,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 | Exención de pedidos pequeños | Deja pasar lo esencial por debajo de un importe elegido |
 | Lista de permitidos y sitios con bloqueo forzado | Omite una tienda de confianza o fuerza la protección en una pequeña tienda independiente |
 | Periodo de calma en rebajas | Black Friday, Prime Day y el Doble 11 extienden automáticamente el enfriamiento a 72 horas |
-| Ajustes protegidos por contraseña | Un PIN de 4 a 8 caracteres protege la página de ajustes |
+| Ajustes protegidos por contraseña | Un PIN de 4 a 8 caracteres protege los ajustes y las reglas de sitios |
 | Etiquetas de emoción | Etiqueta el momento: de madrugada, rebajas, enfadado, aburrido, solo lo quiero |
 | Comentarios de bloqueos erróneos | Marca un falso positivo y excluye ese elemento la próxima vez |
 | Cuenta atrás en el icono | El icono de la barra muestra las horas o los minutos restantes |
@@ -76,12 +76,12 @@ La protección solo funciona en la página. Nunca engancha peticiones de red y n
 
 ## Instalación
 
-1. Abre `chrome://extensions/` en Chrome o `edge://extensions/` en Edge.
-2. Activa el **modo de desarrollador**.
-3. Haz clic en **Cargar descomprimida** y selecciona esta carpeta.
-4. Ancla la extensión a la barra de herramientas.
+| Tienda | Enlace |
+|---|---|
+| Chrome Web Store | Próximamente 🚧 |
+| Complementos de Microsoft Edge | Próximamente 🚧 |
 
-Para una compilación empaquetada, usa el zip de `publish/` o carga la carpeta manualmente durante el desarrollo.
+> Las fichas de las tiendas están en camino.
 
 ---
 

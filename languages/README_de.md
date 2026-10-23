@@ -37,7 +37,7 @@ Die meisten „Impulskauf"-Tools lassen eine Tür offen: Schlummern, Überspring
 | Kleinbetrags-Ausnahme | Lass das Nötigste unter einem gewählten Betrag passieren |
 | Erlaubnisliste und Zwangssperren | Überspringe einen vertrauenswürdigen Shop oder zwinge den Schutz auf einen kleinen unabhängigen Laden |
 | Ruhezeit bei Sales | Black Friday, Prime Day und Double 11 verlängern die Bedenkzeit automatisch auf 72 Stunden |
-| Passwortgeschützte Einstellungen | Eine 4–8-stellige PIN schützt die Einstellungsseite |
+| Passwortgeschützte Einstellungen | Eine 4–8-stellige PIN schützt Einstellungsseite und Seitenregeln |
 | Gefühls-Tags | Markiere den Moment — spät in der Nacht, Sale, wütend, gelangweilt, einfach nur haben wollen |
 | Fehlblockaden-Feedback | Markiere einen Fehlalarm und schließe dieses Element beim nächsten Mal aus |
 | Badge-Countdown | Das Toolbar-Symbol zeigt verbleibende Stunden oder Minuten |
@@ -76,12 +76,12 @@ Der Schutz arbeitet nur in der Seite. Er hängt sich nie in Netzwerkanfragen und
 
 ## Installation
 
-1. Öffne `chrome://extensions/` in Chrome oder `edge://extensions/` in Edge.
-2. Aktiviere den **Entwicklermodus**.
-3. Klicke auf **Entpackte Erweiterung laden** und wähle diesen Ordner.
-4. Hefte die Erweiterung an die Toolbar.
+| Store | Link |
+|---|---|
+| Chrome Web Store | Demnächst verfügbar 🚧 |
+| Microsoft Edge Add-ons | Demnächst verfügbar 🚧 |
 
-Für einen paketierten Build nutze die Zip in `publish/` oder lade während der Entwicklung den Ordner manuell.
+> Die Store-Einträge kommen in Kürze.
 
 ---
 

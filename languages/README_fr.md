@@ -37,7 +37,7 @@ La plupart des outils contre les « achats impulsifs » laissent une porte ouver
 | Exemption des petites commandes | Laissez passer l'essentiel sous un montant choisi |
 | Liste autorisée et sites à verrouillage forcé | Ignorez une boutique de confiance, ou forcez la protection sur une petite boutique indépendante |
 | Période calme des soldes | Black Friday, Prime Day et le Double 11 prolongent automatiquement la réflexion à 72 heures |
-| Réglages protégés par mot de passe | Un code PIN de 4 à 8 caractères protège la page des réglages |
+| Réglages protégés par mot de passe | Un code PIN de 4 à 8 caractères protège les réglages et les règles de sites |
 | Étiquettes d'émotion | Étiquetez le moment — tard la nuit, soldes, en colère, ennuyé, je le veux c'est tout |
 | Signalement des blocages erronés | Marquez un faux positif et excluez cet élément la prochaine fois |
 | Compte à rebours sur l'icône | L'icône de la barre d'outils affiche les heures ou minutes restantes |
@@ -76,12 +76,12 @@ La protection n'agit que dans la page. Elle n'accroche jamais de requêtes rése
 
 ## Installation
 
-1. Ouvrez `chrome://extensions/` dans Chrome ou `edge://extensions/` dans Edge.
-2. Activez le **mode développeur**.
-3. Cliquez sur **Charger l'extension non empaquetée** et sélectionnez ce dossier.
-4. Épinglez l'extension à la barre d'outils.
+| Store | Lien |
+|---|---|
+| Chrome Web Store | Bientôt disponible 🚧 |
+| Microsoft Edge Add-ons | Bientôt disponible 🚧 |
 
-Pour une version empaquetée, utilisez le zip dans `publish/` ou chargez le dossier manuellement pendant le développement.
+> Les fiches boutique arrivent bientôt.
 
 ---
 
