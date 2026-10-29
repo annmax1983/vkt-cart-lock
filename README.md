@@ -6,7 +6,7 @@ English | [中文](languages/README_zh.md) | [Deutsch](languages/README_de.md) |
 
 Also known as **冷静锁** in Chinese.
 
-> Chromium · Manifest V3 · 6 languages · No tracking · Local-first
+> Chrome · Edge · Firefox · Manifest V3 · 6 languages · No tracking · Local-first
 
 ---
 
@@ -53,7 +53,7 @@ Most "impulse buying" tools leave the door open: snooze, skip, unlock early. VKT
 | Unlimited messages | Bounded only by the cross-device sync budget (roughly 60 lines) |
 | Quiet hours | No sound during chosen hours; the lock still works |
 | Confirm after expiry | One final "I still want it" click after the timer ends |
-| Cross-device sync | Settings and timers follow your Chrome / Edge account |
+| Cross-device sync | Settings and timers follow your browser account — Chrome, Edge or Firefox Sync |
 | 12-month reports | Monthly trend, site ranking and emotion breakdown |
 | CSV export | Take the history into a spreadsheet |
 | JSON backup | Full export and import of settings, messages, timers and statistics |
@@ -80,6 +80,7 @@ The guard works only in the page. It never hooks network requests and never touc
 |---|---|
 | Chrome Web Store | Coming soon 🚧 |
 | Microsoft Edge Add-ons | Coming soon 🚧 |
+| Firefox Add-ons (AMO) | Coming soon 🚧 |
 
 > Store listings are on the way — check back soon.
 
@@ -112,14 +113,17 @@ Any other store is covered by generic checkout-button text and selector matching
 |---------|--------|
 | Google Chrome | Fully supported |
 | Microsoft Edge | Fully supported |
+| Mozilla Firefox | Fully supported (Firefox 140+ desktop) |
 | Other Chromium-based browsers | Should work |
+
+The same permissions are declared on Firefox (`storage`, `alarms`, `notifications`, `<all_urls>`, plus the licence host), and Premium sync uses Firefox Sync there instead of Chrome / Edge Sync.
 
 ---
 
 ## Data and Privacy
 
 - **Stored locally:** settings, timers, statistics, self-check notes, the optional settings PIN (salted SHA-256 hash only) and the Premium license record.
-- **Synced (Premium, opt-in):** settings, custom messages and slim timer records through `chrome.storage.sync`. The settings PIN is never synced.
+- **Synced (Premium, opt-in):** settings, custom messages and slim timer records through the browser's own sync storage (`storage.sync` — Chrome Sync, Edge Sync or Firefox Sync). The settings PIN is never synced.
 - **Sent to the license server:** only when activating, validating or deactivating Premium — the license key, a random installation ID, the plugin ID and basic browser metadata (browser version, language, timezone, user agent).
 - **Not collected:** page content, browsing history, cart contents, payment details, keystrokes or analytics.
 

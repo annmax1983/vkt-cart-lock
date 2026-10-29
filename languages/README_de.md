@@ -6,7 +6,7 @@
 
 Auf Chinesisch auch als **冷静锁** bekannt.
 
-> Chromium · Manifest V3 · 6 Sprachen · Kein Tracking · Local-first
+> Chrome / Edge / Firefox · Manifest V3 · 6 Sprachen · Kein Tracking · Local-first
 
 ---
 
@@ -53,7 +53,7 @@ Die meisten „Impulskauf"-Tools lassen eine Tür offen: Schlummern, Überspring
 | Unbegrenzte Nachrichten | Nur begrenzt durch das Sync-Budget über Geräte hinweg (ca. 60 Zeilen) |
 | Ruhezeiten | Kein Sound während gewählter Stunden; die Sperre funktioniert trotzdem |
 | Bestätigung nach Ablauf | Ein letzter „Ich will es immer noch"-Klick nach dem Timerende |
-| Geräteübergreifende Synchronisierung | Einstellungen und Timer folgen deinem Chrome-/Edge-Konto |
+| Geräteübergreifende Synchronisierung | Einstellungen und Timer folgen deinem Chrome-/Edge-/Firefox-Konto |
 | 12-Monats-Berichte | Monatlicher Trend, Website-Ranking und Gefühls-Aufschlüsselung |
 | CSV-Export | Nimm den Verlauf in eine Tabelle mit |
 | JSON-Backup | Vollständiger Export und Import von Einstellungen, Nachrichten, Timern und Statistiken |
@@ -80,6 +80,7 @@ Der Schutz arbeitet nur in der Seite. Er hängt sich nie in Netzwerkanfragen und
 |---|---|
 | Chrome Web Store | Demnächst verfügbar 🚧 |
 | Microsoft Edge Add-ons | Demnächst verfügbar 🚧 |
+| Firefox-Add-ons (AMO) | Demnächst verfügbar 🚧 |
 
 > Die Store-Einträge kommen in Kürze.
 
@@ -112,14 +113,17 @@ Jeder andere Shop wird durch generisches Abgleichen von Checkout-Button-Text und
 |---------|--------|
 | Google Chrome | Vollständig unterstützt |
 | Microsoft Edge | Vollständig unterstützt |
+| Mozilla Firefox | ✅ Vollständig unterstützt |
 | Andere Chromium-basierte Browser | Sollte funktionieren |
+
+> **Firefox-Hinweis:** Die geräteübergreifende Synchronisierung läuft über Firefox Sync (Mozilla-Konto). Die übrigen Funktionen verhalten sich wie unter Chrome / Edge.
 
 ---
 
 ## Daten und Datenschutz
 
 - **Lokal gespeichert:** Einstellungen, Timer, Statistiken, Selbsttest-Notizen, die optionale Einstellungs-PIN (nur gesalzener SHA-256-Hash) und der Premium-Lizenzdatensatz.
-- **Synchronisiert (Premium, Opt-in):** Einstellungen, eigene Nachrichten und schlanke Timer-Datensätze über `chrome.storage.sync`. Die Einstellungs-PIN wird nie synchronisiert.
+- **Synchronisiert (Premium, Opt-in):** Einstellungen, eigene Nachrichten und schlanke Timer-Datensätze über `storage.sync`. Die Einstellungs-PIN wird nie synchronisiert.
 - **An den Lizenzserver gesendet:** nur beim Aktivieren, Validieren oder Deaktivieren von Premium — Lizenzschlüssel, eine zufällige Installations-ID, die Plugin-ID und grundlegende Browser-Metadaten (Browser-Version, Sprache, Zeitzone, User-Agent).
 - **Nicht erfasst:** Seiteninhalte, Browserverlauf, Warenkorbinhalte, Zahlungsdaten, Tastatureingaben oder Analysedaten.
 

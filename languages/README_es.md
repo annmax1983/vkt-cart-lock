@@ -6,7 +6,7 @@
 
 También conocido como **冷静锁** en chino.
 
-> Chromium · Manifest V3 · 6 idiomas · Sin rastreo · Primero local
+> Chrome / Edge / Firefox · Manifest V3 · 6 idiomas · Sin rastreo · Primero local
 
 ---
 
@@ -80,6 +80,7 @@ La protección solo funciona en la página. Nunca engancha peticiones de red y n
 |---|---|
 | Chrome Web Store | Próximamente 🚧 |
 | Complementos de Microsoft Edge | Próximamente 🚧 |
+| Complementos de Firefox (AMO) | Próximamente 🚧 |
 
 > Las fichas de las tiendas están en camino.
 
@@ -112,14 +113,17 @@ Cualquier otra tienda queda cubierta por la coincidencia genérica de textos y s
 |---------|--------|
 | Google Chrome | Totalmente compatible |
 | Microsoft Edge | Totalmente compatible |
+| Mozilla Firefox | ✅ Totalmente compatible |
 | Otros navegadores basados en Chromium | Debería funcionar |
+
+> **Nota sobre Firefox:** La sincronización entre dispositivos usa Firefox Sync (cuenta de Mozilla). El resto de funciones se comporta igual que en Chrome / Edge.
 
 ---
 
 ## Datos y privacidad
 
 - **Almacenado localmente:** ajustes, temporizadores, estadísticas, notas de autocomprobación, el PIN opcional de ajustes (solo hash SHA-256 con sal) y el registro de licencia Premium.
-- **Sincronizado (Premium, opcional):** ajustes, mensajes personalizados y registros ligeros de temporizadores mediante `chrome.storage.sync`. El PIN de ajustes nunca se sincroniza.
+- **Sincronizado (Premium, opcional):** ajustes, mensajes personalizados y registros ligeros de temporizadores mediante `storage.sync`. El PIN de ajustes nunca se sincroniza.
 - **Enviado al servidor de licencias:** solo al activar, validar o desactivar Premium: la clave de licencia, un ID de instalación aleatorio, el ID del plugin y metadatos básicos del navegador (versión, idioma, zona horaria, agente de usuario).
 - **No se recopila:** contenido de páginas, historial de navegación, contenido del carrito, datos de pago, pulsaciones ni analíticas.
 

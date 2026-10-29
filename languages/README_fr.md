@@ -6,7 +6,7 @@
 
 Également connu sous le nom de **冷静锁** en chinois.
 
-> Chromium · Manifest V3 · 6 langues · Aucun suivi · Local d'abord
+> Chrome / Edge / Firefox · Manifest V3 · 6 langues · Aucun suivi · Local d'abord
 
 ---
 
@@ -80,6 +80,7 @@ La protection n'agit que dans la page. Elle n'accroche jamais de requêtes rése
 |---|---|
 | Chrome Web Store | Bientôt disponible 🚧 |
 | Microsoft Edge Add-ons | Bientôt disponible 🚧 |
+| Modules complémentaires Firefox (AMO) | Bientôt disponible 🚧 |
 
 > Les fiches boutique arrivent bientôt.
 
@@ -112,14 +113,17 @@ Toute autre boutique est couverte par la correspondance générique des textes e
 |---------|--------|
 | Google Chrome | Entièrement pris en charge |
 | Microsoft Edge | Entièrement pris en charge |
+| Mozilla Firefox | ✅ Entièrement pris en charge |
 | Autres navigateurs basés sur Chromium | Devrait fonctionner |
+
+> **Note Firefox :** La synchronisation entre appareils passe par Firefox Sync (compte Mozilla). Le reste des fonctions se comporte comme sous Chrome / Edge.
 
 ---
 
 ## Données et confidentialité
 
 - **Stocké localement :** réglages, minuteurs, statistiques, notes d'auto-vérification, le PIN facultatif des réglages (hachage SHA-256 salé uniquement) et l'enregistrement de licence Premium.
-- **Synchronisé (Premium, sur adhésion) :** réglages, messages personnalisés et enregistrements légers de minuteurs via `chrome.storage.sync`. Le PIN des réglages n'est jamais synchronisé.
+- **Synchronisé (Premium, sur adhésion) :** réglages, messages personnalisés et enregistrements légers de minuteurs via `storage.sync`. Le PIN des réglages n'est jamais synchronisé.
 - **Envoyé au serveur de licences :** uniquement lors de l'activation, de la validation ou de la désactivation de Premium — la clé de licence, un identifiant d'installation aléatoire, l'ID du plugin et des métadonnées de base du navigateur (version du navigateur, langue, fuseau horaire, agent utilisateur).
 - **Non collecté :** contenu des pages, historique de navigation, contenu du panier, informations de paiement, frappes ou analyses.
 
