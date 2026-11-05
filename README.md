@@ -16,7 +16,7 @@ Most "impulse buying" tools leave the door open: snooze, skip, unlock early. VKT
 
 - **No skip, no snooze, no early unlock.** Uninstalling the extension is the only way around it.
 - **The timer keeps running off the page.** Close the tab, restart the browser, come back tomorrow: the lock is still there.
-- **Expiry is silent by default.** Checkout simply opens again. Premium can add one final confirmation.
+- **Expiry is silent by default.** Checkout simply opens again. Premium can add one final confirmation. With notifications on, the end of a lock also asks one question: did you buy it?
 - **A completed purchase starts a new lock.** Buying does not reset the habit.
 - **Local first.** Timers, settings, messages and statistics stay in your browser. No analytics, no ads, no browsing history leaves the device.
 
@@ -42,6 +42,7 @@ Most "impulse buying" tools leave the door open: snooze, skip, unlock early. VKT
 | Misblock feedback | Mark a false positive and exclude that element next time |
 | Badge countdown | The toolbar icon shows hours or minutes left |
 | Ledger basics | Total checkouts blocked and the amount held, including the current month |
+| End-of-lock check-in | With notifications on, one question when a lock ends — bought or let go — and the answer lands in your history |
 
 ### Premium
 
@@ -50,7 +51,7 @@ Most "impulse buying" tools leave the door open: snooze, skip, unlock early. VKT
 | Custom cooldowns | Anywhere from 10 minutes to 30 days |
 | Item-scoped timers | One lock per product instead of per site |
 | Add-to-cart start | Start the timer when an item enters the cart |
-| Unlimited messages | Bounded only by the cross-device sync budget (roughly 60 lines) |
+| Higher message cap | Bounded only by the cross-device sync budget (roughly 60 lines) |
 | Quiet hours | No sound during chosen hours; the lock still works |
 | Confirm after expiry | One final "I still want it" click after the timer ends |
 | Cross-device sync | Settings and timers follow your browser account — Chrome, Edge or Firefox Sync |
@@ -68,7 +69,8 @@ Premium activation is optional. Everything above the Premium line works without 
 2. **Every attempt after that.** The checkout stays blocked, and the overlay counts down the remaining time.
 3. **The timer is authoritative.** It lives in extension storage, not in the tab. Closing the page, reopening the shop or restarting the browser does not shorten it.
 4. **When time is up.** The lock releases silently and checkout is allowed again. Premium users can require one confirmation click first.
-5. **After a purchase.** A completed order starts a fresh cooldown, so the next purchase goes through the same pause.
+5. **The check-in.** If system notifications are on, a notice arrives when the lock ends and asks whether you actually bought it. One click records bought or let go.
+6. **After a purchase.** A completed order starts a fresh cooldown, so the next purchase goes through the same pause.
 
 The guard works only in the page. It never hooks network requests and never touches payment iframes or payment-provider pages (Stripe, PayPal, Adyen, checkout.com, Braintree and similar hosts are excluded).
 
@@ -78,11 +80,11 @@ The guard works only in the page. It never hooks network requests and never touc
 
 | Store | Link |
 |---|---|
-| Chrome Web Store | Coming soon 🚧 |
-| Microsoft Edge Add-ons | Coming soon 🚧 |
-| Firefox Add-ons (AMO) | Coming soon 🚧 |
+| Chrome Web Store | — not published yet (use Edge or Firefox) |
+| Microsoft Edge Add-ons | [Install for Edge](https://microsoftedge.microsoft.com/addons/detail/eekagenecfhgaonmaohdhiopiofibljh) |
+| Firefox Add-ons (AMO) | [Install for Firefox](https://addons.mozilla.org/firefox/addon/vkt-cart-lock/) |
 
-> Store listings are on the way — check back soon.
+> Install only from the official stores above — avoid third-party download sites.
 
 ---
 
@@ -93,6 +95,7 @@ The guard works only in the page. It never hooks network requests and never touc
 - **Add rules.** Allowlist a grocery site, force the lock on a small shop, or exempt orders below a set amount.
 - **Watch the badge.** The toolbar countdown is the quiet reminder that the lock is still on.
 - **Review the ledger.** The dashboard shows what was blocked, what it would have cost, which sites and moods trigger the most checkouts, and a 12-month trend.
+- **Answer the check-in.** When a lock ends and notifications are on, the notice asks if you bought it; your answers split the history into bought and let go.
 - **Back up (Premium).** Use JSON export before changing machines. Sync restores settings and timers, but local statistics do not travel.
 
 Uninstalling the extension clears its local data. If Premium sync is enabled, messages and settings return after reinstalling; statistics and local history do not.
@@ -122,7 +125,7 @@ The same permissions are declared on Firefox (`storage`, `alarms`, `notification
 
 ## Data and Privacy
 
-- **Stored locally:** settings, timers, statistics, self-check notes, the optional settings PIN (salted SHA-256 hash only) and the Premium license record.
+- **Stored locally:** settings, timers, statistics, self-check notes, end-of-lock check-in answers, the optional settings PIN (salted SHA-256 hash only) and the Premium license record.
 - **Synced (Premium, opt-in):** settings, custom messages and slim timer records through the browser's own sync storage (`storage.sync` — Chrome Sync, Edge Sync or Firefox Sync). The settings PIN is never synced.
 - **Sent to the license server:** only when activating, validating or deactivating Premium — the license key, a random installation ID, the plugin ID and basic browser metadata (browser version, language, timezone, user agent).
 - **Not collected:** page content, browsing history, cart contents, payment details, keystrokes or analytics.
@@ -139,7 +142,7 @@ See [privacy-policy.html](privacy-policy.html) for the full policy.
 |------------|------------------|
 | `storage` | Save settings, timers and statistics locally; sync them for Premium |
 | `alarms` | Keep the countdown accurate and release locks on time |
-| `notifications` | Show a local desktop notice when a new lock starts |
+| `notifications` | Show a local desktop notice when a lock starts, and ask one question when it ends |
 | `host_permissions: <all_urls>` | Detect a checkout button on any shop, since stores use arbitrary domains |
 | `host_permissions: api.annmax1983.com` | Activate and validate an optional Premium license |
 
@@ -156,3 +159,13 @@ English, 简体中文, 日本語, Deutsch, Español and Français. The interface
 ## License
 
 VKT Cart Lock is a commercial extension. The Free tier is usable without a license. Premium features require an active license key from [annmax1983.com](https://www.annmax1983.com/).
+
+---
+
+## Links
+
+- **Official website:** https://annmax1983.com/
+- **This extension:** https://annmax1983.com/extensions/vkt-cart-lock
+- **Privacy policy:** https://annmax1983.com/privacy
+- **Contact:** support@annmax1983.com
+- **☕ Support this project (Ko-fi):** https://ko-fi.com/annmax?ref=vkt-cart-lock

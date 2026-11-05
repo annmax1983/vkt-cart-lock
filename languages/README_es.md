@@ -16,7 +16,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 
 - **Sin saltar, sin posponer, sin desbloqueo anticipado.** Desinstalar la extensión es la única forma de evitarlo.
 - **El temporizador sigue corriendo fuera de la página.** Cierra la pestaña, reinicia el navegador, vuelve mañana: el candado sigue ahí.
-- **El vencimiento es silencioso por defecto.** El pago simplemente vuelve a abrirse. Premium puede añadir una confirmación final.
+- **El vencimiento es silencioso por defecto.** El pago simplemente vuelve a abrirse. Premium puede añadir una confirmación final. Con las notificaciones activadas, el final del bloqueo también hace una pregunta: ¿lo compraste?
 - **Una compra completada inicia un nuevo candado.** Comprar no reinicia el hábito.
 - **Primero local.** Temporizadores, ajustes, mensajes y estadísticas se quedan en tu navegador. Sin analíticas, sin anuncios, el historial de navegación no sale del dispositivo.
 
@@ -42,6 +42,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 | Comentarios de bloqueos erróneos | Marca un falso positivo y excluye ese elemento la próxima vez |
 | Cuenta atrás en el icono | El icono de la barra muestra las horas o los minutos restantes |
 | Libro básico | Total de pagos bloqueados e importe retenido, incluido el mes actual |
+| Consulta al terminar | Con las notificaciones activadas, un aviso pregunta al acabar el bloqueo: ¿comprado o soltado? La respuesta queda en el historial |
 
 ### Premium
 
@@ -50,7 +51,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 | Enfriamientos personalizados | De 10 minutos a 30 días |
 | Temporizadores por artículo | Un candado por producto en lugar de por sitio |
 | Inicio al añadir al carrito | El temporizador empieza cuando un artículo entra en el carrito |
-| Mensajes ilimitados | Limitados solo por el presupuesto de sincronización entre dispositivos (unas 60 líneas) |
+| Más líneas de mensajes | Limitados solo por el presupuesto de sincronización entre dispositivos (unas 60 líneas) |
 | Horas de silencio | Sin sonido durante las horas elegidas; el candado sigue funcionando |
 | Confirmar tras el vencimiento | Un último clic de "todavía lo quiero" tras el fin del temporizador |
 | Sincronización entre dispositivos | Ajustes y temporizadores siguen tu cuenta de Chrome / Edge |
@@ -68,7 +69,8 @@ La activación de Premium es opcional. Todo lo que está por encima de la línea
 2. **Cada intento posterior.** El pago permanece bloqueado y la superposición cuenta atrás el tiempo restante.
 3. **El temporizador manda.** Vive en el almacenamiento de la extensión, no en la pestaña. Cerrar la página, reabrir la tienda o reiniciar el navegador no lo acorta.
 4. **Cuando se acaba el tiempo.** El candado se libera en silencio y el pago vuelve a estar permitido. Los usuarios Premium pueden exigir antes un clic de confirmación.
-5. **Después de una compra.** Un pedido completado inicia un nuevo enfriamiento, de modo que la siguiente compra pasa por la misma pausa.
+5. **Pregunta al final.** Si las notificaciones del sistema están activadas, al terminar el bloqueo llega un aviso que pregunta si al final lo compraste. Un clic registra comprado o soltado.
+6. **Después de una compra.** Un pedido completado inicia un nuevo enfriamiento, de modo que la siguiente compra pasa por la misma pausa.
 
 La protección solo funciona en la página. Nunca engancha peticiones de red y nunca toca iframes de pago ni páginas de proveedores de pago (Stripe, PayPal, Adyen, checkout.com, Braintree y hosts similares están excluidos).
 
@@ -80,7 +82,7 @@ La protección solo funciona en la página. Nunca engancha peticiones de red y n
 |---|---|
 | Chrome Web Store | Próximamente 🚧 |
 | Complementos de Microsoft Edge | Próximamente 🚧 |
-| Complementos de Firefox (AMO) | Próximamente 🚧 |
+| Complementos de Firefox (AMO) | [Instalar para Firefox](https://addons.mozilla.org/firefox/addon/vkt-cart-lock/) |
 
 > Las fichas de las tiendas están en camino.
 
@@ -93,6 +95,7 @@ La protección solo funciona en la página. Nunca engancha peticiones de red y n
 - **Añade reglas.** Pon un supermercado en la lista de permitidos, fuerza el candado en una tienda pequeña o exime pedidos por debajo de un importe.
 - **Mira el icono.** La cuenta atrás de la barra es el recordatorio silencioso de que el candado sigue activo.
 - **Revisa el libro.** El panel muestra qué se bloqueó, cuánto habría costado, qué sitios y estados de ánimo provocan más pagos, y una tendencia de 12 meses.
+- **Responde a la consulta.** Cuando el bloqueo termina con las notificaciones activadas, el aviso pregunta si lo compraste; la respuesta divide el historial entre comprado y soltado.
 - **Haz copia de seguridad (Premium).** Usa la exportación JSON antes de cambiar de equipo. La sincronización restaura ajustes y temporizadores, pero las estadísticas locales no viajan.
 
 Desinstalar la extensión borra sus datos locales. Si la sincronización Premium está activada, los mensajes y los ajustes vuelven tras reinstalar; las estadísticas y el historial local, no.
@@ -122,7 +125,7 @@ Cualquier otra tienda queda cubierta por la coincidencia genérica de textos y s
 
 ## Datos y privacidad
 
-- **Almacenado localmente:** ajustes, temporizadores, estadísticas, notas de autocomprobación, el PIN opcional de ajustes (solo hash SHA-256 con sal) y el registro de licencia Premium.
+- **Almacenado localmente:** ajustes, temporizadores, estadísticas, notas de autocomprobación, las respuestas de la consulta al terminar, el PIN opcional de ajustes (solo hash SHA-256 con sal) y el registro de licencia Premium.
 - **Sincronizado (Premium, opcional):** ajustes, mensajes personalizados y registros ligeros de temporizadores mediante `storage.sync`. El PIN de ajustes nunca se sincroniza.
 - **Enviado al servidor de licencias:** solo al activar, validar o desactivar Premium: la clave de licencia, un ID de instalación aleatorio, el ID del plugin y metadatos básicos del navegador (versión, idioma, zona horaria, agente de usuario).
 - **No se recopila:** contenido de páginas, historial de navegación, contenido del carrito, datos de pago, pulsaciones ni analíticas.
@@ -139,7 +142,7 @@ Consulta la política completa en [privacy-policy.html](../privacy-policy.html).
 |------------|------------------|
 | `storage` | Guardar ajustes, temporizadores y estadísticas localmente; sincronizarlos para Premium |
 | `alarms` | Mantener precisa la cuenta atrás y liberar los candados a tiempo |
-| `notifications` | Mostrar un aviso local de escritorio cuando empieza un candado nuevo |
+| `notifications` | Mostrar un aviso local de escritorio al empezar un bloqueo y una pregunta al terminar |
 | `host_permissions: <all_urls>` | Detectar un botón de pago en cualquier tienda, ya que usan dominios arbitrarios |
 | `host_permissions: api.annmax1983.com` | Activar y validar una licencia Premium opcional |
 
@@ -156,3 +159,9 @@ English, 简体中文, 日本語, Deutsch, Español y Français. La interfaz, la
 ## Licencia
 
 VKT Cart Lock es una extensión comercial. El nivel Gratis se puede usar sin licencia. Las funciones Premium requieren una clave de licencia activa de [annmax1983.com](https://www.annmax1983.com/).
+
+---
+
+## Enlaces
+
+- **☕ Apoya el proyecto (Ko-fi):** https://ko-fi.com/annmax?ref=vkt-cart-lock

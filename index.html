@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VKT Cart Lock — Buy it later. Or not at all.</title>
+<meta name="description" content="A hard cooling-off timer for checkout. Chrome, Edge and Firefox. No skip, no snooze, no early unlock. Local-first and private by design.">
+<link rel="icon" href="icons/icon128.png">
+<style>
+:root{
+  --accent:#5b21b6;
+  --accent-2:#d8a84e;
+  --bg:#f5f8fc;
+  --surface:#ffffff;
+  --ink:#20304a;
+  --body:#4b5870;
+  --muted:#64718a;
+  --line:#e2e8f2;
+  --tint:#eef3fb;
+  --tint:color-mix(in srgb, var(--accent) 8%, #ffffff);
+  --tint-strong:#e5edfa;
+  --tint-strong:color-mix(in srgb, var(--accent) 14%, #ffffff);
+  --shadow:0 18px 45px rgba(32,48,74,.10);
+  --shadow-soft:0 8px 24px rgba(32,48,74,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  margin:0;
+  color:var(--body);
+  background:radial-gradient(900px 420px at 100% -8%, color-mix(in srgb, var(--accent-2) 12%, #ffffff) 0%, rgba(255,255,255,0) 70%), var(--bg);
+  font-family:"Segoe UI Variable Text","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button,select{font:inherit}
+[hidden]{display:none !important}
+::selection{background:color-mix(in srgb, var(--accent) 22%, #ffffff);color:var(--ink)}
+:focus-visible{outline:2px solid color-mix(in srgb, var(--accent) 55%, #ffffff);outline-offset:3px}
+.wrap{width:min(1120px, calc(100% - 40px));margin:0 auto}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.topbar-inner{display:flex;align-items:center;gap:18px;height:70px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--ink);font-size:16px;font-weight:750;letter-spacing:-.015em;white-space:nowrap}
+.brand:hover{text-decoration:none}
+.brand img{width:32px;height:32px;border-radius:9px;background:#fff;border:1px solid var(--line)}
+.nav-links{display:flex;align-items:center;gap:20px;margin-left:auto;font-size:13.5px;font-weight:650}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:var(--accent);text-decoration:none}
+.top-actions{display:flex;align-items:center;gap:9px;margin-left:auto}
+.nav-links + .top-actions{margin-left:0}
+.icon-btn{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted)}
+.icon-btn:hover{color:var(--accent);border-color:color-mix(in srgb, var(--accent) 26%, var(--line));text-decoration:none}
+.lang{
+  appearance:none;-webkit-appearance:none;
+  border:1px solid var(--line);
+  background-color:#fff;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364718a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 10px center;
+  background-size:12px;
+  color:var(--ink);
+  border-radius:10px;
+  padding:9px 32px 9px 11px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  max-width:150px;
+}
+.lang:hover{border-color:color-mix(in srgb, var(--accent) 26%, var(--line))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid transparent;font-weight:700;font-size:14.5px;line-height:1.2;transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 26px color-mix(in srgb, var(--accent) 26%, transparent)}
+.btn-primary:hover{background:color-mix(in srgb, var(--accent) 90%, var(--ink));box-shadow:0 15px 30px color-mix(in srgb, var(--accent) 30%, transparent)}
+.btn-secondary{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-secondary:hover{border-color:color-mix(in srgb, var(--accent) 28%, var(--line))}
+.btn-quiet{background:transparent;color:var(--muted);padding:0 8px}
+.btn-quiet:hover{color:var(--accent)}
+.site-footer{margin-top:48px;border-top:1px solid var(--line);background:rgba(255,255,255,.8);padding:32px 0}
+.footer-inner{display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between}
+.footer-brand{display:flex;align-items:center;gap:11px;color:var(--ink);font-size:14px;font-weight:700}
+.footer-brand img{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.footer-brand .copy{display:block;color:var(--muted);font-size:12px;font-weight:500;line-height:1.4;margin-top:1px}
+.footer-links{display:flex;flex-wrap:wrap;gap:9px 18px;align-items:center;font-size:13px;font-weight:600}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--accent);text-decoration:none}
+@media (max-width:900px){
+  .nav-links{display:none}
+  .topbar-inner{height:62px}
+  .wrap{width:calc(100% - 32px)}
+}
+@media (max-width:560px){
+  .brand span{display:none}
+  .lang{max-width:124px}
+  .site-footer{padding:26px 0}
+  .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+
+.hero{position:relative;overflow:hidden;padding:66px 0 44px}
+.hero::before{content:"";position:absolute;right:-160px;top:-220px;width:780px;height:780px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, var(--accent-2) 20%, rgba(255,255,255,0)) 0%, rgba(255,255,255,0) 68%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);gap:54px;align-items:center}
+.hero-copy{min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;border:1px solid color-mix(in srgb, var(--accent) 22%, var(--line));background:color-mix(in srgb, var(--accent) 7%, #ffffff);color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.hero h1{margin:16px 0 14px;color:var(--ink);font-size:clamp(36px,4.9vw,58px);line-height:1.04;letter-spacing:-.04em;font-weight:800;overflow-wrap:anywhere}
+.tagline{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}
+.tagline span{padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.8);color:var(--muted);font-size:12.5px;font-weight:650}
+.lead{max-width:680px;margin:0 0 22px;color:var(--body);font-size:17px;line-height:1.72}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:12.5px;font-weight:650}
+.badge svg{color:var(--accent)}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.micro{margin:16px 0 0;color:var(--muted);font-size:12.5px;font-weight:550}
+.app-card{position:relative;overflow:hidden;padding:32px 28px 24px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,#ffffff 0%, color-mix(in srgb, var(--accent) 7%, #ffffff) 100%);box-shadow:var(--shadow);text-align:center}
+.app-card-glow{position:absolute;width:220px;height:220px;left:50%;top:-120px;transform:translateX(-50%);border-radius:50%;background:color-mix(in srgb, var(--accent-2) 20%, rgba(255,255,255,0));filter:blur(8px)}
+.app-icon{position:relative;width:108px;height:108px;margin:6px auto 18px;padding:11px;border-radius:26px;background:#fff;border:1px solid var(--line);box-shadow:0 16px 30px rgba(32,48,74,.14)}
+.app-icon img{width:100%;height:100%;object-fit:contain;border-radius:18px}
+.app-name{position:relative;color:var(--ink);font-size:23px;font-weight:800;letter-spacing:-.02em}
+.app-sub{position:relative;margin:4px 0 20px;color:var(--muted);font-size:12.5px;font-weight:600}
+.app-points{position:relative;display:grid;gap:8px;text-align:left}
+.app-points div{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.72);color:var(--body);font-size:13px;line-height:1.45}
+.app-points svg{flex:none;margin-top:2px;color:var(--accent)}
+.app-footer{position:relative;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:650}
+.app-footer svg{color:var(--accent)}
+.block{padding:56px 0}
+.section-head{max-width:720px;margin:0 0 26px}
+.kicker{margin:0 0 9px;color:var(--accent);font-size:11.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.section-head h2,.support-copy h2{margin:0 0 10px;color:var(--ink);font-size:clamp(27px,3.2vw,37px);line-height:1.15;letter-spacing:-.025em;font-weight:800}
+.section-head p{margin:0;color:var(--muted);font-size:15.5px;line-height:1.65}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.feature{padding:21px 21px 23px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-soft);transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease}
+.feature:hover{transform:translateY(-2px);border-color:color-mix(in srgb, var(--accent) 22%, var(--line));box-shadow:0 14px 32px rgba(32,48,74,.09)}
+.feature .num{display:inline-flex;align-items:center;justify-content:center;width:33px;height:33px;margin-bottom:13px;border-radius:10px;background:var(--tint);color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.04em}
+.feature p{margin:0;color:var(--body);font-size:14px;line-height:1.66}
+.more-panel{margin-top:15px;padding:22px 24px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-soft)}
+.more-panel h3{margin:0 0 13px;color:var(--ink);font-size:13.5px;font-weight:750}
+.more-list{display:grid;grid-template-columns:1fr 1fr;gap:9px 28px;margin:0;padding:0;list-style:none}
+.more-list li{position:relative;padding-left:19px;color:var(--body);font-size:13.5px;line-height:1.55}
+.more-list li::before{content:"";position:absolute;left:1px;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--accent-2)}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plan{padding:26px 27px;border:1px solid var(--line);border-radius:21px;background:#fff;box-shadow:var(--shadow-soft)}
+.plan.premium{border-color:color-mix(in srgb, var(--accent) 25%, var(--line));background:linear-gradient(160deg,#ffffff 0%, color-mix(in srgb, var(--accent) 8%, #ffffff) 100%);box-shadow:var(--shadow)}
+.plan-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.plan-top h3{margin:0;color:var(--ink);font-size:20px;font-weight:780;letter-spacing:-.02em}
+.plan-mark{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:9px}
+.plan-mark.free{background:var(--tint);color:var(--accent)}
+.plan-mark.premium{background:var(--accent);color:#fff}
+.plan p{margin:0;color:var(--body);font-size:14.5px;line-height:1.72}
+.plan-note{margin-top:15px;padding:14px 17px;border:1px solid color-mix(in srgb, var(--accent) 16%, var(--line));border-radius:13px;background:var(--tint);color:var(--body);font-size:13px;line-height:1.65}
+.privacy-panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:34px;align-items:center;padding:42px 44px;border:1px solid color-mix(in srgb, var(--accent) 16%, var(--line));border-radius:28px;background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, #ffffff) 0%, #ffffff 62%, color-mix(in srgb, var(--accent-2) 12%, #ffffff) 100%);box-shadow:var(--shadow)}
+.panel-icon{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;margin-bottom:15px;border-radius:14px;background:#fff;border:1px solid var(--line);color:var(--accent);box-shadow:var(--shadow-soft)}
+.privacy-panel h2{margin:0 0 10px;color:var(--ink);font-size:clamp(26px,3vw,35px);line-height:1.15;letter-spacing:-.025em;font-weight:800}
+.panel-lead{max-width:620px;margin:0 0 18px;color:var(--body);font-size:15px;line-height:1.7}
+.points{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.point{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.78);color:var(--ink);font-size:12.5px;font-weight:650}
+.point svg{color:var(--accent)}
+.text-link{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-size:13.5px;font-weight:750}
+.text-link:hover{text-decoration:none;gap:10px}
+.privacy-visual{position:relative;min-height:250px;display:grid;place-items:center}
+.ring{position:absolute;border-radius:50%;border:1px solid color-mix(in srgb, var(--accent) 20%, #ffffff)}
+.ring.one{width:190px;height:190px}
+.ring.two{width:260px;height:260px;opacity:.58}
+.ring.three{width:320px;height:320px;opacity:.32}
+.lock-badge{position:relative;display:grid;place-items:center;width:88px;height:88px;border-radius:26px;background:#fff;border:1px solid var(--line);color:var(--accent);box-shadow:var(--shadow)}
+.lock-badge svg{width:36px;height:36px}
+.support-card{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:34px;align-items:center;padding:40px 44px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow-soft)}
+.support-copy .kicker{margin-bottom:10px}
+.support-copy p{max-width:640px;margin:0 0 12px;color:var(--body);font-size:14.5px;line-height:1.75}
+.support-copy p:last-of-type{margin-bottom:16px}
+.disclaimer{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.kofi{display:flex;flex-direction:column;align-items:center;gap:12px;padding:26px 22px;border:1px solid color-mix(in srgb, var(--accent) 16%, var(--line));border-radius:20px;background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 7%, #ffffff) 0%, #ffffff 100%);text-align:center}
+.kofi-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#fff;border:1px solid var(--line);color:var(--accent);box-shadow:var(--shadow-soft)}
+.kofi p{margin:0;color:var(--body);font-size:13px;line-height:1.6}
+.kofi-btn{width:100%}
+.kofi-note{margin:0;color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .app-card{max-width:460px;margin:0 auto;width:100%}
+  .feature-grid{grid-template-columns:1fr 1fr}
+  .privacy-panel,.support-card{grid-template-columns:1fr;gap:26px}
+  .privacy-visual{min-height:210px}
+}
+@media (max-width:760px){
+  .hero{padding:44px 0 30px}
+  .hero h1{font-size:clamp(33px,9vw,46px)}
+  .lead{font-size:16px}
+  .block{padding:42px 0}
+  .feature-grid{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr}
+  .more-list{grid-template-columns:1fr}
+  .privacy-panel,.support-card{padding:28px 22px;border-radius:22px}
+  .privacy-visual{display:none}
+  .cta-row .btn{flex:1 1 auto}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><img src="icons/icon128.png" alt="" width="32" height="32"><span>VKT Cart Lock</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#features" id="i-nav-features">Features</a>
+      <a href="#plans" id="i-nav-plans">Free &amp; Premium</a>
+      <a href="#privacy" id="i-nav-privacy">Privacy</a>
+      <a href="#support" id="i-nav-support">Support</a>
+    </nav>
+    <div class="top-actions">
+      <select class="lang" id="i-lang" aria-label="Language"><option value="en">English</option><option value="zh">简体中文</option><option value="ja">日本語</option><option value="de">Deutsch</option><option value="es">Español</option><option value="fr">Français</option></select>
+      <a class="icon-btn" href="https://github.com/annmax1983/vkt-cart-lock" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 5.96c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></a>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow" id="i-eyebrow">Chrome, Edge &amp; Firefox extension</span>
+        <h1 id="i-h1">Buy it later. Or not at all.</h1>
+        <div class="tagline" id="i-tagline"><span>No skip button</span><span>Runs locally</span><span>6 languages</span></div>
+        <p class="lead" id="i-intro">VKT Cart Lock puts a hard cooling-off timer on checkout. The first click starts it; every retry meets a full-screen countdown. When time is up, checkout opens by itself. No skip, no snooze, no early unlock.</p>
+        <div class="badges" id="i-badges"><span class="badge"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg>Runs locally</span><span class="badge"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c5 0 9 4.5 9 7a11.7 11.7 0 0 1-2.3 3.6"/><path d="M6.2 6.2C4.2 7.7 3 9.7 3 12c0 2.5 4 7 9 7a11 11 0 0 0 4.2-.8"/></svg>No tracking</span><span class="badge"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>Chrome, Edge &amp; Firefox</span></div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://annmax1983.com/extensions/vkt-cart-lock" target="_blank" rel="noopener"><span id="i-get-label">Get the extension</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-secondary" href="privacy-policy.html"><span id="i-privacy-label">Privacy policy</span></a>
+          <a class="btn btn-quiet" href="https://github.com/annmax1983/vkt-cart-lock" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 5.96c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg><span id="i-source-label">View source</span></a>
+        </div>
+        <p class="micro" id="i-micro">Free + Premium · Chrome, Edge &amp; Firefox</p>
+      </div>
+      <aside class="app-card" aria-label="VKT Cart Lock">
+        <div class="app-card-glow" aria-hidden="true"></div>
+        <div class="app-icon"><img src="icons/icon128.png" alt="VKT Cart Lock icon" width="108" height="108"></div>
+        <div class="app-name" id="i-app-name">VKT Cart Lock</div>
+        <div class="app-sub" id="i-app-sub">Free + Premium</div>
+        <div class="app-points" id="i-app-points"><div><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>No analytics, ads or tracking</span></div><div><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Payment-provider pages and frames are excluded</span></div><div><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>The only network call is optional Premium license validation</span></div></div>
+        <div class="app-footer"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg><span id="i-app-browsers">Chrome, Edge &amp; Firefox</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">01</p>
+        <h2 id="i-feat-title">A pause that actually holds</h2>
+        <p id="i-feat-lead">Most impulse-buying tools leave the door open: snooze, skip, unlock early. VKT Cart Lock does not.</p>
+      </div>
+      <div class="feature-grid" id="i-features"><article class="feature"><span class="num">01</span><p>Hard checkout lock: Clicks, checkout links, form submissions and checkout pages are intercepted before the order goes through.</p></article>
+<article class="feature"><span class="num">02</span><p>The timer lives outside the tab: Close the page, restart the browser, come back tomorrow. Storage and alarms keep the lock running to the second.</p></article>
+<article class="feature"><span class="num">03</span><p>Your words, not ours: Write up to 20 lines on Free, or 60 with Premium. Show them in fixed, rotating or random order.</p></article>
+<article class="feature"><span class="num">04</span><p>Sound or silence: Pick a thud, a chime or a soft cue — or turn sound off and let the countdown do the talking.</p></article>
+<article class="feature"><span class="num">05</span><p>Rules for real life: Allowlist a grocery shop, force the lock on a small store, exempt essentials under a set amount, and extend waiting during major sales.</p></article>
+<article class="feature"><span class="num">06</span><p>See what the pause held: A local ledger counts every blocked checkout, the money held back and the mood you tagged at the moment.</p></article>
+<article class="feature"><span class="num">07</span><p>End-of-lock check-in: With notifications on, one notice asks whether you bought it or let it go, and the answer lands in the ledger.</p></article></div>
+      <div class="more-panel" id="i-more-panel">
+        <h3 id="i-more-title">Also included</h3>
+        <ul class="more-list" id="i-more"><li>Optional settings PIN</li>
+<li>Toolbar badge countdown, even when you are on another site</li>
+<li>24 store presets plus generic matching everywhere else</li>
+<li>Payment-provider hosts and frames explicitly excluded</li>
+<li>Automatic 72-hour cooldown during major sale periods</li>
+<li>CSV export and full JSON backup with Premium</li>
+<li>A purchase starts a new cooldown</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="plans">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">02</p>
+        <h2 id="i-plan-title">The free tier is a complete lock</h2>
+        <p id="i-plan-lead">Not a trial. Premium adds longer waits, finer control and deeper reporting for people who want them.</p>
+      </div>
+      <div class="plans" id="i-plans"><article class="plan"><div class="plan-top"><span class="plan-mark free"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h3>Free</h3></div><p>24 store presets + generic matching, 1, 6, 24 or 72-hour cooldowns, 20 custom messages, three sounds, Allowlist, force-lock sites and small-order exemption, Emotion tags, ledger, toolbar countdown and the end-of-lock check-in.</p></article>
+        <article class="plan premium"><div class="plan-top"><span class="plan-mark premium"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h3>Premium</h3></div><p>Custom cooldowns from 10 minutes to 30 days, Per-product timers, or start when an item enters the cart, Up to 60 messages, quiet hours and confirm after expiry, Settings and timers sync through your browser account, 12-month trend, site ranking and emotion reports (your bought / let-go answers stay in the free ledger and in the CSV export), CSV export and full JSON backup.</p></article></div>
+      <div class="plan-note" id="i-plan-note">The waiting rules stay the same on both plans: no skip, no snooze, no early unlock. Uninstalling the extension remains the only escape. No account is required for the Free tier. Uninstalling removes local data.</div>
+    </div>
+  </section>
+
+  <section class="block" id="privacy">
+    <div class="wrap">
+      <div class="privacy-panel">
+        <div>
+          <span class="panel-icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 15v2"/></svg></span>
+          <h2 id="i-priv-title">Your cart is nobody else's data</h2>
+          <p class="panel-lead" id="i-priv-lead">Timers, messages and statistics stay in your browser. The guard reads checkout controls and cart totals locally to decide whether to block. It never transmits page content and never hooks network requests.</p>
+          <div class="points" id="i-priv-points"><span class="point"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No analytics, ads or tracking</span><span class="point"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Payment-provider pages and frames are excluded</span><span class="point"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>The only network call is optional Premium license validation</span></div>
+          <a class="text-link" href="privacy-policy.html"><span id="i-priv-cta">Read the privacy policy</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="privacy-visual" aria-hidden="true">
+          <span class="ring one"></span><span class="ring two"></span><span class="ring three"></span>
+          <span class="lock-badge"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 15v2"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="support">
+    <div class="wrap">
+      <div class="support-card">
+        <div class="support-copy">
+          <p class="kicker" id="i-support-eyebrow">Support the developer</p>
+          <h2 id="i-support-title">💌 A Note to You</h2>
+          <div id="i-support-copy"><p>Thank you for using VKT Cart Lock. I built it because every impulse-buying blocker I tried came with a skip button, and at midnight that button always wins.</p><p>If the pause saved you from one order you would have regretted, the extension has already done its job.</p><p>Of course, if you would like to <span class="heart">☕</span> buy me a coffee, it helps me keep the lock honest: no ads, no trackers, nothing to sell.</p></div>
+          <p class="disclaimer" id="i-support-disclaimer">Ko-fi donations are completely voluntary and do not affect any features. Sponsorship is not tied to extension functionality — purely user-driven support.</p>
+        </div>
+        <div class="kofi">
+          <div class="kofi-icon"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"/><path d="M16 10h2a3 3 0 0 1 0 6h-2"/><path d="M7 4v2M11 4v2"/></svg></div>
+          <p id="i-support-hint">Click the button below to visit the support page</p>
+          <a class="btn btn-primary kofi-btn" href="https://ko-fi.com/annmax?ref=vkt-cart-lock" target="_blank" rel="noopener"><span id="i-support-btn-label">Support My Work</span></a>
+          <p class="kofi-note">Ko-fi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="icons/icon128.png" alt="" width="30" height="30">
+      <div>VKT Cart Lock<span class="copy" id="i-footer-copy">© 2026 VKT Cart Lock</span></div>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="https://annmax1983.com/extensions.html" target="_blank" rel="noopener" id="i-footer-more">More extensions</a>
+      <a href="privacy-policy.html" id="i-footer-privacy">Privacy</a>
+      <a href="https://github.com/annmax1983/vkt-cart-lock" target="_blank" rel="noopener" id="i-footer-github">GitHub</a>
+      <a href="https://annmax1983.com/extensions/vkt-cart-lock" target="_blank" rel="noopener" id="i-footer-site">Website</a>
+      <a href="mailto:support@annmax1983.com">support@annmax1983.com</a>
+    </nav>
+  </div>
+</footer><script>
+const MODEL = {"name":"VKT Cart Lock","icon":"icons/icon128.png","github":"https://github.com/annmax1983/vkt-cart-lock","site":"https://annmax1983.com/extensions/vkt-cart-lock","support":"https://ko-fi.com/annmax?ref=vkt-cart-lock","slug":"cartlock","langs":{"en":{"tagline":"Buy it later. Or not at all. · No skip button · Runs locally · 6 languages","intro":"VKT Cart Lock puts a hard cooling-off timer on checkout. The first click starts it; every retry meets a full-screen countdown. When time is up, checkout opens by itself. No skip, no snooze, no early unlock.","why":["Hard checkout lock: Clicks, checkout links, form submissions and checkout pages are intercepted before the order goes through.","The timer lives outside the tab: Close the page, restart the browser, come back tomorrow. Storage and alarms keep the lock running to the second.","Your words, not ours: Write up to 20 lines on Free, or 60 with Premium. Show them in fixed, rotating or random order.","Sound or silence: Pick a thud, a chime or a soft cue — or turn sound off and let the countdown do the talking.","Rules for real life: Allowlist a grocery shop, force the lock on a small store, exempt essentials under a set amount, and extend waiting during major sales.","See what the pause held: A local ledger counts every blocked checkout, the money held back and the mood you tagged at the moment.","End-of-lock check-in: With notifications on, one notice asks whether you bought it or let it go, and the answer lands in the ledger.","Optional settings PIN","Toolbar badge countdown, even when you are on another site","24 store presets plus generic matching everywhere else","Payment-provider hosts and frames explicitly excluded","Automatic 72-hour cooldown during major sale periods","CSV export and full JSON backup with Premium","A purchase starts a new cooldown"],"plan":{"free":"Free: 24 store presets + generic matching, 1, 6, 24 or 72-hour cooldowns, 20 custom messages, three sounds, Allowlist, force-lock sites and small-order exemption, Emotion tags, ledger, toolbar countdown and the end-of-lock check-in.","premium":"Premium: Custom cooldowns from 10 minutes to 30 days, Per-product timers, or start when an item enters the cart, Up to 60 messages, quiet hours and confirm after expiry, Settings and timers sync through your browser account, 12-month trend, site ranking and emotion reports (your bought / let-go answers stay in the free ledger and in the CSV export), CSV export and full JSON backup.","note":"The waiting rules stay the same on both plans: no skip, no snooze, no early unlock. Uninstalling the extension remains the only escape. No account is required for the Free tier. Uninstalling removes local data."},"thankTitle":"💌 A Note to You","thank":["Thank you for using VKT Cart Lock. I built it because every impulse-buying blocker I tried came with a skip button, and at midnight that button always wins.","If the pause saved you from one order you would have regretted, the extension has already done its job.","Of course, if you would like to <span class=\"heart\">☕</span> buy me a coffee, it helps me keep the lock honest: no ads, no trackers, nothing to sell."],"disclaimer":"Ko-fi donations are completely voluntary and do not affect any features. Sponsorship is not tied to extension functionality — purely user-driven support.","ctaHint":"Click the button below to visit the support page","btnText":"Support My Work","ui":{"navFeatures":"Features","navPlans":"Free & Premium","navPrivacy":"Privacy","navSupport":"Support","eyebrow":"Chrome, Edge & Firefox extension","badgeFree":"Free + Premium","badgeLocal":"Runs locally","badgeNoTrack":"No tracking","badgeBrowsers":"Chrome, Edge & Firefox","ctaGet":"Get the extension","ctaPrivacy":"Privacy policy","ctaSource":"View source","featuresTitle":"A pause that actually holds","featuresLead":"Most impulse-buying tools leave the door open: snooze, skip, unlock early. VKT Cart Lock does not.","moreTitle":"Also included","proLabel":"Premium","freeLabel":"Free","premiumLabel":"Premium","planTitle":"The free tier is a complete lock","planLead":"Not a trial. Premium adds longer waits, finer control and deeper reporting for people who want them.","privacyTitle":"Your cart is nobody else's data","privacyLead":"Timers, messages and statistics stay in your browser. The guard reads checkout controls and cart totals locally to decide whether to block. It never transmits page content and never hooks network requests.","privacyPoints":["No analytics, ads or tracking","Payment-provider pages and frames are excluded","The only network call is optional Premium license validation"],"privacyCta":"Read the privacy policy","supportEyebrow":"Support the developer","supportHint":"If this extension helps you, you can buy me a coffee.","footerMore":"More extensions","footerPrivacy":"Privacy","footerGithub":"GitHub","footerSite":"Website"}},"zh":{"tagline":"晚点再买。或者不买。 · 没有跳过按钮 · 本地运行 · 6 种语言","intro":"冷静锁给结账加一道硬性冷静期。第一次点结账，计时开始；之后每次重试，都会看到整屏倒计时。时间到了，结账自己放行。没有跳过，没有稍后，没有提前解锁。","why":["硬性结账拦截：点击、结账链接、表单提交和结账页面，都会在订单提交前被拦下。","计时器不在标签页里：关页面、重启浏览器、明天再来。存储和闹钟会让这把锁精确走到最后一秒。","用你的话：免费版最多 20 条，Premium 最多 60 条，支持固定、轮换、随机展示。","有声音，或安静：闷响、清音、轻提示，任选其一；也可以关掉声音，让倒计时自己说话。","为真实生活准备：超市可以白名单，小店可以强制拦截，小额必需品可以豁免，大促期间自动延长等待。","看见停顿守住了什么：本地账本记录每次被拦的结账、守住的金额，以及你当时贴上的情绪标签。","到期回访：开启通知后，冷静期结束会弹出一条「买了还是放弃」的询问，答案直接写入账本。","可选的设置密码","工具栏倒计时，逛别的网站也看得见","24 个商店预设，其他网站通用识别","明确排除支付服务商域名与 iframe","大促期间自动延长到 72 小时","Premium 支持 CSV 导出和完整 JSON 备份","完成购买，开始新的冷静期"],"plan":{"free":"免费：24 个商店预设 + 通用识别、1 / 6 / 24 / 72 小时冷静期、20 条自定义文案，三种提示音、白名单、强制拦截、小额豁免、情绪标签、账本、工具栏倒计时与到期回访。","premium":"Premium：10 分钟到 30 天的自定义冷静期、按商品计时，或加入购物车即开始、最多 60 条文案、静音时段、到期二次确认、通过浏览器账号同步设置和计时器、12 个月趋势、站点排名和情绪报表（「买了还是放弃」的回答记在免费账本和 CSV 导出里）、CSV 导出与完整 JSON 备份。","note":"两个版本的等待规则完全一样：没有跳过，没有稍后，没有提前解锁。卸载插件仍然是唯一的出口。免费版无需账号。卸载会清除本地数据。"},"thankTitle":"💌 想对你说","thank":["谢谢你使用冷静锁。做它是因为我试过的防冲动工具都带一个「跳过」按钮，而到了半夜，那个按钮总会赢。","如果这道停顿帮你挡住过一次事后后悔的订单，它就已经完成了自己的任务。","当然，如果你愿意请我喝一杯 <span class=\"heart\">☕</span>，这会帮助我把这把锁继续做下去：没有广告，没有追踪，也没有可以出售的数据。"],"disclaimer":"Ko-fi 仅为自愿赞助，不会影响任何功能使用。赞助与扩展功能无任何绑定，仅为用户自发支持。","ctaHint":"点击下方按钮，跳转到支持页面","btnText":"Support My Work","ui":{"navFeatures":"功能","navPlans":"免费与 Premium","navPrivacy":"隐私","navSupport":"支持","eyebrow":"Chrome、Edge 与 Firefox 扩展","badgeFree":"免费 + 高级版","badgeLocal":"本地运行","badgeNoTrack":"无追踪","badgeBrowsers":"Chrome、Edge 与 Firefox","ctaGet":"获取插件","ctaPrivacy":"隐私政策","ctaSource":"查看源码","featuresTitle":"一道真的拦得住的停顿","featuresLead":"大多数「防冲动」工具都留着后门：稍后、跳过、提前解锁。冷静锁没有。","moreTitle":"还包括","proLabel":"Premium","freeLabel":"免费","premiumLabel":"Premium","planTitle":"免费版就是一把完整的锁","planLead":"不是试用版。Premium 只是为需要更长等待、更细控制和更多报表的人加的选项。","privacyTitle":"你的购物车，不是别人的数据","privacyLead":"计时、文案和统计都留在浏览器里。守卫只在本地读取结账按钮和购物车金额，判断要不要拦截。它不发送页面内容，也不拦截网络请求。","privacyPoints":["没有统计代码、广告或追踪","支付服务商页面与 iframe 被明确排除","唯一的联网请求是可选的 Premium 授权校验"],"privacyCta":"阅读隐私政策","supportEyebrow":"支持开发者","supportHint":"如果这个扩展对你有帮助，可以请我喝杯咖啡。","footerMore":"更多扩展","footerPrivacy":"隐私","footerGithub":"GitHub","footerSite":"官网"}},"ja":{"tagline":"あとで買う。それとも、買わない。 · スキップボタンなし · 端末上で動作 · 6 言語対応","intro":"VKT Cart Lock は会計に硬いクールダウンをかけます。最初のクリックでタイマーが始まり、その後のクリックは毎回全画面カウントダウンに。時間が来れば会計はひとりでに開きます。スキップも、あとで通知も、早期解除もありません。","why":["硬い会計ロック：クリック、会計リンク、フォーム送信、会計ページを、注文が確定する前に止めます。","タイマーはタブの外に：ページを閉じても、ブラウザを再起動しても、明日戻っても。ストレージとアラームが最後の一秒までロックを保ちます。","あなたの言葉で：無料版は 20 行、Premium は 60 行まで。固定・ローテーション・ランダムで表示できます。","音あり、静けさあり：重い音、チャイム、やわらかい音から選択。消音にしてカウントダウンに任せることもできます。","現実の買い物に合わせて：スーパーは許可、小さな店は強制ロック、少額の必需品は免除、大型セール中は待ち時間を自動延長。","止めたものを可視化：ローカルの台帳が、止めた会計、守った金額、その瞬間の気分タグを記録します。","クールダウン終了時の確認：通知をオンにすると「買ったか見送ったか」を一度たずね、答えが台帳に記録されます。","任意の設定用 PIN","別のサイトにいても見えるツールバー countdown","24 店舗プリセット + その他のサイトは汎用判定","決済プロバイダーのホストと iframe を明示的に除外","大型セール期間は自動で 72 時間に延長","Premium で CSV 書き出しと完全な JSON バックアップ","購入すると次のクールダウン"],"plan":{"free":"無料：24 店舗プリセット + 汎用判定、1 / 6 / 24 / 72 時間のクールダウン、20 行のカスタムメッセージ、3 種類の音、許可リスト、強制ロック、少額免除、気分タグ、台帳、ツールバー countdown、クールダウン終了時の確認。","premium":"Premium：10 分から 30 日までのカスタムクールダウン、商品ごとのタイマー、カート追加で開始、最大 60 行、静かな時間帯、期限後の確認、ブラウザアカウントで設定とタイマーを同期、12 か月の推移、サイトランキング、気分レポート（「買った／見送った」の答えは無料の台帳と CSV 書き出しに記録）、CSV 書き出しと完全な JSON バックアップ。","note":"待ちのルールは両プランで同じです。スキップなし、あとで通知なし、早期解除なし。アンインストールだけが唯一の出口です。無料版にアカウントは不要です。アンインストールするとローカルデータは削除されます。"},"thankTitle":"💌 ご利用ありがとうございます","thank":["VKT Cart Lock をご利用いただきありがとうございます。衝動買いを防ぐツールは軒並み「スキップ」付きで、深夜にはそのボタンが必ず勝つ、ということで作りました。","この「間」が一つの後悔のない買い物を止めたなら、この拡張機能はもう仕事を果たしています。","もしよろしければ、コーヒーを <span class=\"heart\">☕</span> 一杯おごっていただけると、広告もトラッキングもない状態のまま作り続けられます。"],"disclaimer":"Ko-fiは完全な任意の寄付であり、機能には一切影響しません。支援と拡張機能は一切紐付いておらず、純粋にユーザーの自発的なサポートです。","ctaHint":"下のボタンをクリックするとサポートページに移動します","btnText":"Support My Work","ui":{"navFeatures":"機能","navPlans":"無料と Premium","navPrivacy":"プライバシー","navSupport":"サポート","eyebrow":"Chrome、Edge & Firefox 拡張機能","badgeFree":"無料 + Premium","badgeLocal":"端末上で動作","badgeNoTrack":"トラッキングなし","badgeBrowsers":"Chrome, Edge & Firefox","ctaGet":"拡張機能を入手","ctaPrivacy":"プライバシーポリシー","ctaSource":"ソースを見る","featuresTitle":"本当に止まる「間」","featuresLead":"多くの衝動買い対策ツールは、あとで・スキップ・早期解除という出口を残します。VKT Cart Lock は残しません。","moreTitle":"そのほか","proLabel":"Premium","freeLabel":"無料","premiumLabel":"Premium","planTitle":"無料版は完全なロック","planLead":"試用版ではありません。Premium は、より長い待ち時間、細かな制御、詳しいレポートを求める人向けの任意機能です。","privacyTitle":"あなたのカートは、誰かのデータではない","privacyLead":"タイマー、メッセージ、統計はブラウザ内に残ります。ガードは会計ボタンとカート金額をローカルで読み取り、止めるかどうかを判断します。ページ内容を送信せず、ネットワークリクエストにもフックしません。","privacyPoints":["分析、広告、トラッキングなし","決済プロバイダーのページと iframe は除外","通信は任意の Premium ライセンス確認のみ"],"privacyCta":"プライバシーポリシーを読む","supportEyebrow":"開発者を支援","supportHint":"この拡張機能が役に立ったら、コーヒーをごちそうしてください。","footerMore":"他の拡張機能","footerPrivacy":"プライバシー","footerGithub":"GitHub","footerSite":"公式サイト"}},"de":{"tagline":"Später kaufen. Oder gar nicht. · Kein Überspringen · Läuft lokal · 6 Sprachen","intro":"VKT Cart Lock legt eine harte Abklingzeit auf den Checkout. Der erste Klick startet sie; jeder weitere Versuch trifft auf einen Vollbild-Countdown. Wenn die Zeit um ist, öffnet sich der Checkout von selbst. Kein Überspringen, kein Später, kein vorzeitiges Entsperren.","why":["Harter Checkout-Stopp: Klicks, Checkout-Links, Formularübermittlungen und Checkout-Seiten werden gestoppt, bevor die Bestellung rausgeht.","Der Timer lebt außerhalb des Tabs: Tab schließen, Browser neu starten, morgen wiederkommen. Speicher und Alarme halten die Sperre bis zur letzten Sekunde.","Deine Worte: Bis zu 20 Zeilen in Free, 60 mit Premium. Fest, rotierend oder zufällig angezeigt.","Ton oder Stille: Wähle einen dumpfen Ton, ein Glocken-Signal oder einen leisen Hinweis – oder schalte den Ton ab.","Regeln für den Alltag: Supermarkt auf die Allowlist, kleinen Shop zwangssperren, Kleinbeträge ausnehmen und in Sale-Zeiten länger warten.","Sieh, was die Pause gehalten hat: Ein lokales Journal zählt jeden blockierten Checkout, das zurückgehaltene Geld und die Stimmung in dem Moment.","Rückfrage am Ende der Sperre: Mit aktivierten Benachrichtigungen fragt eine Meldung, ob du gekauft oder losgelassen hast, und die Antwort wandert ins Journal.","Optionale Einstellungs-PIN","Countdown im Toolbar-Symbol, auch auf anderen Seiten","24 Shop-Voreinstellungen plus generische Erkennung","Zahlungsanbieter-Hosts und Frames ausdrücklich ausgeschlossen","Automatisch 72 Stunden während großer Sale-Zeiträume","CSV-Export und vollständiges JSON-Backup mit Premium","Ein Kauf startet eine neue Abklingzeit"],"plan":{"free":"Free: 24 Shop-Voreinstellungen + generische Erkennung, Abklingzeiten von 1, 6, 24 oder 72 Stunden, 20 eigene Nachrichten, drei Töne, Allowlist, Zwangssperre und Kleinbetrag-Ausnahme, Stimmungs-Tags, Journal, Toolbar-Countdown und Rückfrage am Ende der Sperre.","premium":"Premium: Eigene Abklingzeiten von 10 Minuten bis 30 Tagen, Timer pro Produkt oder Start beim Warenkorb, Bis zu 60 Nachrichten, Ruhezeiten und Bestätigung nach Ablauf, Einstellungen und Timer über das Browserkonto synchronisieren, 12-Monats-Trend, Shop-Ranking und Stimmungsberichte (gekauft/losgelassen bleibt im kostenlosen Journal und im CSV-Export), CSV-Export und vollständiges JSON-Backup.","note":"Die Warte-Regeln bleiben in beiden Plänen gleich: kein Überspringen, kein Später, kein vorzeitiges Entsperren. Deinstallieren bleibt der einzige Ausweg. Für die Free-Version ist kein Konto nötig. Deinstallieren löscht lokale Daten."},"thankTitle":"💌 Ein paar Worte an Sie","thank":["Danke, dass du VKT Cart Lock nutzt. Ich habe sie gebaut, weil jeder Impulsblocker, den ich probiert habe, einen Überspringen-Knopf hatte — und nachts gewinnt immer dieser Knopf.","Wenn die Pause dich vor einer Bestellung bewahrt hat, die du später bereut hättest, hat die Erweiterung ihren Job schon erfüllt.","Wenn du mir gerne einen <span class=\"heart\">☕</span> Kaffee ausgeben möchtest: Das hilft mir, die Sperre werbefrei und ohne Tracking weiterzuentwickeln."],"disclaimer":"Ko-fi-Spenden sind rein freiwillig und beeinflussen keine Funktionen. Sponsoring ist nicht an Erweiterungsfunktionen gebunden — es handelt sich ausschließlich um freiwillige Unterstützung durch Nutzer.","ctaHint":"Klicken Sie auf die Schaltfläche unten, um zur Support-Seite zu gelangen","btnText":"Support My Work","ui":{"navFeatures":"Funktionen","navPlans":"Free & Premium","navPrivacy":"Datenschutz","navSupport":"Support","eyebrow":"Erweiterung für Chrome, Edge und Firefox","badgeFree":"Free + Premium","badgeLocal":"Läuft lokal","badgeNoTrack":"Kein Tracking","badgeBrowsers":"Chrome, Edge & Firefox","ctaGet":"Erweiterung holen","ctaPrivacy":"Datenschutzerklärung","ctaSource":"Quellcode ansehen","featuresTitle":"Eine Pause, die wirklich hält","featuresLead":"Die meisten Impulsschutz-Tools lassen die Tür offen: später, überspringen, vorzeitig entsperren. VKT Cart Lock nicht.","moreTitle":"Außerdem","proLabel":"Premium","freeLabel":"Free","premiumLabel":"Premium","planTitle":"Die Free-Version ist eine vollständige Sperre","planLead":"Keine Testversion. Premium ergänzt längere Wartezeiten, feinere Kontrolle und tiefere Berichte.","privacyTitle":"Dein Warenkorb ist nicht die Daten anderer","privacyLead":"Timer, Nachrichten und Statistiken bleiben im Browser. Der Guard liest Checkout-Steuerelemente und Warenkorbsummen lokal, um zu entscheiden, ob er blockiert. Er überträgt keine Seiteninhalte und hängt sich nicht in Netzwerk-Anfragen.","privacyPoints":["Keine Analyse, Werbung oder Tracking","Zahlungsanbieter-Seiten und Frames sind ausgeschlossen","Der einzige Netzwerkaufruf ist die optionale Premium-Lizenzprüfung"],"privacyCta":"Datenschutzerklärung lesen","supportEyebrow":"Unterstütze die Entwicklung","supportHint":"Wenn dir die Erweiterung hilft, spendier mir einen Kaffee.","footerMore":"Weitere Erweiterungen","footerPrivacy":"Datenschutz","footerGithub":"GitHub","footerSite":"Website"}},"es":{"tagline":"Cómpralo más tarde. O no lo compres. · Sin botón de saltar · Se ejecuta en local · 6 idiomas","intro":"VKT Cart Lock pone un cierre de reflexión duro en el pago. El primer clic inicia el temporizador; cada nuevo intento se encuentra con una cuenta atrás a pantalla completa. Cuando termina el tiempo, el pago se abre solo. Sin saltar, sin posponer, sin desbloqueo anticipado.","why":["Bloqueo duro del pago: Clics, enlaces de pago, envíos de formulario y páginas de pago se interceptan antes de que salga el pedido.","El temporizador vive fuera de la pestaña: Cierra la página, reinicia el navegador, vuelve mañana. El almacenamiento y las alarmas mantienen el cierre hasta el último segundo.","Tus palabras: Hasta 20 líneas en Gratis, o 60 con Premium. En orden fijo, rotativo o aleatorio.","Sonido o silencio: Elige un golpe, una campana o un aviso suave, o apaga el sonido y deja que la cuenta atrás hable.","Reglas para la vida real: Permite el supermercado, fuerza el cierre en una tienda pequeña, exime compras pequeñas y espera más en grandes rebajas.","Mira lo que retuvo la pausa: Un registro local cuenta cada pago bloqueado, el dinero retenido y la emoción que etiquetaste en ese momento.","Check-in al terminar: con las notificaciones activadas, un aviso pregunta si lo compraste o lo dejaste pasar, y la respuesta se anota en el registro.","PIN opcional para los ajustes","Cuenta atrás en el icono de la barra, incluso en otros sitios","24 preajustes de tiendas y detección genérica en el resto","Dominios y marcos de proveedores de pago excluidos","Espera automática de 72 horas en grandes rebajas","Exportación CSV y copia JSON completa con Premium","Una compra inicia otra espera"],"plan":{"free":"Gratis: 24 preajustes de tiendas + detección genérica, Esperas de 1, 6, 24 o 72 horas, 20 mensajes propios y tres sonidos, Lista de permitidos, cierre forzado y exención de importe, Etiquetas de emoción, registro, cuenta atrás en la barra y check-in al terminar.","premium":"Premium: Esperas personalizadas de 10 minutos a 30 días, Temporizadores por producto o al añadir a la cesta, Hasta 60 mensajes, horas silenciosas y confirmación al caducar, Sincroniza ajustes y temporizadores con tu cuenta del navegador, Tendencia de 12 meses, ranking de sitios e informes de emoción (tus respuestas de comprado o dejado quedan en el registro gratis y en la exportación CSV), Exportación CSV y copia JSON completa.","note":"Las reglas de espera son iguales en ambos planes: sin saltar, sin posponer, sin desbloqueo anticipado. Desinstalar sigue siendo la única salida. La versión gratis no requiere cuenta. Desinstalar borra los datos locales."},"thankTitle":"💌 Unas palabras para ti","thank":["Gracias por usar VKT Cart Lock. La construí porque cada bloqueador de impulsos que probé traía un botón de saltar, y a medianoche ese botón siempre gana.","Si la pausa te ahorró un pedido que te habría arrepentido, la extensión ya ha hecho su trabajo.","Y si quieres invitarme a un <span class=\"heart\">☕</span> café, me ayuda a seguir manteniendo el cierre sin anuncios ni rastreo."],"disclaimer":"Las donaciones de Ko-fi son completamente voluntarias y no afectan a ninguna función. El patrocinio no está vinculado a las funciones de la extensión — es únicamente el apoyo voluntario de los usuarios.","ctaHint":"Haz clic en el botón de abajo para visitar la página de soporte","btnText":"Support My Work","ui":{"navFeatures":"Funciones","navPlans":"Gratis y Premium","navPrivacy":"Privacidad","navSupport":"Apoyo","eyebrow":"Extensión para Chrome, Edge y Firefox","badgeFree":"Gratis + Premium","badgeLocal":"Se ejecuta en local","badgeNoTrack":"Sin rastreo","badgeBrowsers":"Chrome, Edge y Firefox","ctaGet":"Obtener la extensión","ctaPrivacy":"Política de privacidad","ctaSource":"Ver el código","featuresTitle":"Una pausa que de verdad se mantiene","featuresLead":"La mayoría de las herramientas antimpulso dejan la puerta abierta: posponer, saltar, desbloquear antes. VKT Cart Lock no.","moreTitle":"También incluye","proLabel":"Premium","freeLabel":"Gratis","premiumLabel":"Premium","planTitle":"La versión gratis es un cierre completo","planLead":"No es una prueba. Premium añade esperas más largas, más control y mejores informes para quien los quiera.","privacyTitle":"Tu carrito no son los datos de nadie más","privacyLead":"Los temporizadores, mensajes y estadísticas se quedan en tu navegador. El guardián lee los controles de pago y los totales del carrito en local para decidir si bloquea. Nunca transmite contenido de la página ni intercepta peticiones de red.","privacyPoints":["Sin analíticas, anuncios ni rastreo","Páginas y marcos de proveedores de pago excluidos","La única conexión es la validación opcional de la licencia Premium"],"privacyCta":"Leer la política de privacidad","supportEyebrow":"Apoya al desarrollador","supportHint":"Si la extensión te resulta útil, invítame a un café.","footerMore":"Más extensiones","footerPrivacy":"Privacidad","footerGithub":"GitHub","footerSite":"Sitio web"}},"fr":{"tagline":"Achète-le plus tard. Ou pas du tout. · Aucun bouton pour sauter · Fonctionne en local · 6 langues","intro":"VKT Cart Lock impose un verrou de réflexion strict au paiement. Le premier clic lance le minuteur ; chaque nouvelle tentative affiche un compte à rebours plein écran. Quand le temps est écoulé, le paiement se rouvre tout seul. Pas de saut, pas de report, pas de déverrouillage anticipé.","why":["Verrou strict du paiement : Les clics, liens de paiement, envois de formulaire et pages de paiement sont interceptés avant que la commande passe.","Le minuteur vit hors de l’onglet : Ferme la page, redémarre le navigateur, reviens demain. Le stockage et les alarmes maintiennent le verrou jusqu’à la dernière seconde.","Tes mots : Jusqu’à 20 lignes en gratuit, 60 avec Premium. Affichage fixe, rotatif ou aléatoire.","Du son ou du silence : Choisis un son grave, un carillon ou un signal doux, ou coupe le son et laisse le compte à rebours parler.","Des règles pour la vraie vie : Autorise le supermarché, force le verrou sur une petite boutique, exempte les petits achats et allonge l’attente pendant les soldes.","Vois ce que la pause a retenu : Un registre local compte chaque paiement bloqué, l’argent retenu et l’émotion que tu as étiquetée sur le moment.","Question de fin de verrou : si les notifications sont activées, une alerte demande si vous avez acheté ou laissé tomber, et la réponse est consignée dans le registre.","Code PIN facultatif pour les réglages","Compte à rebours dans la barre d’outils, même sur un autre site","24 préréglages de boutiques et une détection générique ailleurs","Domaines et cadres des prestataires de paiement exclus","Attente automatique de 72 heures pendant les grandes soldes","Export CSV et sauvegarde JSON complète avec Premium","Un achat lance une nouvelle attente"],"plan":{"free":"Gratuit : 24 préréglages de boutiques + détection générique, Attentes de 1, 6, 24 ou 72 heures, 20 messages personnels et trois sons, Liste d’autorisation, verrou forcé et exemption de petit montant, Étiquettes d’émotion, registre, compte à rebours dans la barre et question de fin de verrou.","premium":"Premium : Attentes personnalisées de 10 minutes à 30 jours, Minuteurs par produit ou au moment de l’ajout au panier, Jusqu’à 60 messages, heures silencieuses et confirmation après expiration, Synchronise réglages et minuteurs via ton compte navigateur, Tendance sur 12 mois, classement des sites et rapports d’émotion (vos réponses acheté / laissé restent dans le registre gratuit et dans l’export CSV), Export CSV et sauvegarde JSON complète.","note":"Les règles d’attente sont les mêmes dans les deux offres : pas de saut, pas de report, pas de déverrouillage anticipé. Désinstaller reste la seule sortie. La version gratuite ne demande aucun compte. Désinstaller efface les données locales."},"thankTitle":"💌 Un petit mot pour vous","thank":["Merci d’utiliser VKT Cart Lock. Je l’ai construit parce que chaque bloqueur d’impulsions que j’ai essayé avait un bouton « sauter », et à minuit ce bouton gagne toujours.","Si la pause t’a évité une commande dont tu aurais eu honte, l’extension a déjà fait son travail.","Et si tu veux m’offrir un <span class=\"heart\">☕</span> café, cela m’aide à continuer sans publicité ni traçage."],"disclaimer":"Les dons Ko-fi sont entièrement volontaires et n'affectent aucune fonctionnalité. Le parrainage n'est lié à aucune fonction de l'extension — il s'agit uniquement d'un soutien volontaire des utilisateurs.","ctaHint":"Cliquez sur le bouton ci-dessous pour accéder à la page de soutien","btnText":"Support My Work","ui":{"navFeatures":"Fonctionnalités","navPlans":"Gratuit et Premium","navPrivacy":"Confidentialité","navSupport":"Soutien","eyebrow":"Extension Chrome, Edge et Firefox","badgeFree":"Gratuit + Premium","badgeLocal":"Fonctionne en local","badgeNoTrack":"Aucun suivi","badgeBrowsers":"Chrome, Edge et Firefox","ctaGet":"Obtenir l’extension","ctaPrivacy":"Politique de confidentialité","ctaSource":"Voir le code","featuresTitle":"Une pause qui tient vraiment","featuresLead":"La plupart des outils anti-impulsion laissent la porte ouverte : reporter, sauter, déverrouiller avant. VKT Cart Lock non.","moreTitle":"Également inclus","proLabel":"Premium","freeLabel":"Gratuit","premiumLabel":"Premium","planTitle":"La version gratuite est un verrou complet","planLead":"Pas un essai. Premium ajoute des attentes plus longues, un contrôle plus fin et des rapports plus profonds.","privacyTitle":"Ton panier n’est pas la donnée des autres","privacyLead":"Les minuteurs, messages et statistiques restent dans ton navigateur. Le garde lit localement les contrôles de paiement et les totaux du panier pour décider de bloquer. Il ne transmet jamais le contenu de la page et ne s’accroche pas aux requêtes réseau.","privacyPoints":["Aucune analytique, publicité ou traque","Pages et cadres des prestataires de paiement exclus","Le seul appel réseau est la validation facultative de la licence Premium"],"privacyCta":"Lire la politique de confidentialité","supportEyebrow":"Soutenir le développeur","supportHint":"Si l'extension vous aide, offrez-moi un café.","footerMore":"Plus d'extensions","footerPrivacy":"Confidentialité","footerGithub":"GitHub","footerSite":"Site web"}}}};
+const LANG_KEY = "vkt-cartlock-lang";
+(function () {
+  "use strict";
+
+  var select = document.getElementById("i-lang");
+
+  function esc(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function setText(id, value) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = value == null ? "" : value;
+  }
+
+  function detect() {
+    var codes = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (var i = 0; i < codes.length; i++) {
+      var code = String(codes[i] || "").toLowerCase();
+      if (code.indexOf("zh") === 0) return "zh";
+      if (code.indexOf("ja") === 0) return "ja";
+      if (code.indexOf("de") === 0) return "de";
+      if (code.indexOf("es") === 0) return "es";
+      if (code.indexOf("fr") === 0) return "fr";
+      if (code.indexOf("en") === 0) return "en";
+    }
+    return "en";
+  }
+
+  function stripLead(value) {
+    var text = String(value == null ? "" : value);
+    var match = text.match(/^([^:：]{1,70})[:：]\s*/);
+    if (match && /(free|gratis|kostenlos|gratuit|無料|免费|免費|premium|pro\b|payant|kostenpflichtig|プレミアム|有料|高级|高級|付费|付費|licen|lizenz|licencia|licence|授权|授權|ライセンス)/i.test(match[1])) {
+      return text.slice(match[0].length);
+    }
+    return text;
+  }
+
+  function sentence(value) {
+    var text = String(value == null ? "" : value);
+    return /^[a-z]/.test(text) ? text.charAt(0).toUpperCase() + text.slice(1) : text;
+  }
+
+  function cleanNote(value) {
+    var text = String(value == null ? "" : value).trim();
+    if (/^(HOW IT WORKS|SO FUNKTIONIERT ES|CÓMO FUNCIONA|COMMENT ÇA MARCHE|使用方法|使い方)$/i.test(text)) return "";
+    return text;
+  }
+
+  var iconCheck = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+  var iconLocal = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg>';
+  var iconEye = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c5 0 9 4.5 9 7a11.7 11.7 0 0 1-2.3 3.6"/><path d="M6.2 6.2C4.2 7.7 3 9.7 3 12c0 2.5 4 7 9 7a11 11 0 0 0 4.2-.8"/></svg>';
+  var iconGlobe = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>';
+  var iconCoffee = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"/><path d="M16 10h2a3 3 0 0 1 0 6h-2"/><path d="M7 4v2M11 4v2"/></svg>';
+
+  function render(lang) {
+    var data = MODEL.langs[lang];
+    if (!data) return;
+    var u = data.ui;
+
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+
+    var parts = String(data.tagline || "").split("·").map(function (part) { return part.trim(); }).filter(Boolean);
+    var headline = parts.length ? parts.shift() : MODEL.name;
+
+    document.title = MODEL.name + " — " + headline;
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", data.intro.slice(0, 158));
+
+    setText("i-nav-features", u.navFeatures);
+    setText("i-nav-plans", u.navPlans);
+    setText("i-nav-privacy", u.navPrivacy);
+    setText("i-nav-support", u.navSupport);
+    setText("i-eyebrow", u.eyebrow);
+    setText("i-h1", headline);
+    setText("i-intro", data.intro);
+    setText("i-get-label", u.ctaGet);
+    setText("i-privacy-label", u.ctaPrivacy);
+    setText("i-source-label", u.ctaSource);
+    setText("i-micro", u.badgeFree + " · " + u.badgeBrowsers);
+
+    var tagline = document.getElementById("i-tagline");
+    if (tagline) {
+      tagline.innerHTML = parts.map(function (part) { return "<span>" + esc(part) + "</span>"; }).join("");
+    }
+
+    var badges = document.getElementById("i-badges");
+    if (badges) {
+      badges.innerHTML = [
+        [iconLocal, u.badgeLocal],
+        [iconEye, u.badgeNoTrack],
+        [iconGlobe, u.badgeBrowsers]
+      ].map(function (item) {
+        return '<span class="badge">' + item[0] + esc(item[1]) + "</span>";
+      }).join("");
+    }
+
+    setText("i-app-name", MODEL.name);
+    setText("i-app-sub", u.badgeFree);
+    setText("i-app-browsers", u.badgeBrowsers);
+    var appPoints = document.getElementById("i-app-points");
+    if (appPoints) {
+      appPoints.innerHTML = u.privacyPoints.map(function (point) {
+        return "<div>" + iconCheck + "<span>" + esc(point) + "</span></div>";
+      }).join("");
+    }
+
+    setText("i-feat-title", u.featuresTitle);
+    setText("i-feat-lead", u.featuresLead);
+    setText("i-more-title", u.moreTitle);
+
+    var primary = data.why.slice(0, 6);
+    var extra = data.why.slice(6);
+    var featureGrid = document.getElementById("i-features");
+    if (featureGrid) {
+      featureGrid.innerHTML = primary.map(function (text, index) {
+        return '<article class="feature"><span class="num">' + String(index + 1).padStart(2, "0") + "</span><p>" + esc(text) + "</p></article>";
+      }).join("");
+    }
+
+    var morePanel = document.getElementById("i-more-panel");
+    var moreList = document.getElementById("i-more");
+    if (morePanel && moreList) {
+      if (extra.length) {
+        morePanel.hidden = false;
+        moreList.innerHTML = extra.map(function (text) { return "<li>" + esc(text) + "</li>"; }).join("");
+      } else {
+        morePanel.hidden = true;
+      }
+    }
+
+    setText("i-plan-title", u.planTitle);
+    setText("i-plan-lead", u.planLead);
+    var plans = document.getElementById("i-plans");
+    if (plans) {
+      plans.innerHTML =
+        '<article class="plan"><div class="plan-top"><span class="plan-mark free">' + iconCheck + "</span><h3>" + esc(u.freeLabel) + "</h3></div><p>" + esc(sentence(stripLead(data.plan.free))) + "</p></article>" +
+        '<article class="plan premium"><div class="plan-top"><span class="plan-mark premium">' + iconCheck + "</span><h3>" + esc(u.premiumLabel) + "</h3></div><p>" + esc(sentence(stripLead(data.plan.premium))) + "</p></article>";
+    }
+
+    var note = cleanNote(data.plan.note);
+    var planNote = document.getElementById("i-plan-note");
+    if (planNote) {
+      planNote.hidden = !note;
+      planNote.textContent = note;
+    }
+
+    setText("i-priv-title", u.privacyTitle);
+    setText("i-priv-lead", u.privacyLead);
+    setText("i-priv-cta", u.privacyCta);
+    var points = document.getElementById("i-priv-points");
+    if (points) {
+      points.innerHTML = u.privacyPoints.map(function (point) {
+        return '<span class="point">' + iconCheck + esc(point) + "</span>";
+      }).join("");
+    }
+
+    setText("i-support-eyebrow", u.supportEyebrow);
+    setText("i-support-title", data.thankTitle);
+    var copy = document.getElementById("i-support-copy");
+    if (copy) {
+      copy.innerHTML = data.thank.map(function (paragraph) { return "<p>" + paragraph + "</p>"; }).join("");
+    }
+    var hint = document.getElementById("i-support-hint");
+    if (hint) {
+      hint.hidden = !data.ctaHint;
+      hint.textContent = data.ctaHint || "";
+    }
+    setText("i-support-btn-label", data.btnText || "Buy Me a Coffee");
+    var disclaimer = document.getElementById("i-support-disclaimer");
+    if (disclaimer) {
+      disclaimer.hidden = !data.disclaimer;
+      disclaimer.textContent = data.disclaimer || "";
+    }
+
+    setText("i-footer-more", u.footerMore);
+    setText("i-footer-privacy", u.footerPrivacy);
+    setText("i-footer-github", u.footerGithub);
+    setText("i-footer-site", u.footerSite);
+    setText("i-footer-copy", "© 2026 " + MODEL.name);
+  }
+
+  function storedLang() {
+    try { return localStorage.getItem(LANG_KEY); } catch (error) { return null; }
+  }
+
+  function remember(lang) {
+    try { localStorage.setItem(LANG_KEY, lang); } catch (error) { /* storage can be blocked */ }
+  }
+
+  if (select) {
+    var saved = storedLang();
+    var initial = saved && MODEL.langs[saved] ? saved : detect();
+    if (!MODEL.langs[initial]) initial = "en";
+    select.value = initial;
+    if (initial !== "en") render(initial);
+    select.addEventListener("change", function () {
+      remember(select.value);
+      render(select.value);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

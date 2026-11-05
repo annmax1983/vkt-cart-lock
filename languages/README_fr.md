@@ -16,7 +16,7 @@ La plupart des outils contre les « achats impulsifs » laissent une porte ouver
 
 - **Pas de répétition, pas d'ignorance, pas de déverrouillage anticipé.** Désinstaller l'extension est le seul moyen de contourner.
 - **Le minuteur continue hors de la page.** Fermez l'onglet, redémarrez le navigateur, revenez demain : le verrou est toujours là.
-- **L'expiration est silencieuse par défaut.** Le paiement se rouvre simplement. Premium peut ajouter une dernière confirmation.
+- **L'expiration est silencieuse par défaut.** Le paiement se rouvre simplement. Premium peut ajouter une dernière confirmation. Avec les notifications activées, la fin du verrou pose aussi une question : tu l'as acheté ?
 - **Un achat terminé démarre un nouveau verrou.** Acheter ne remet pas l'habitude à zéro.
 - **Local d'abord.** Minuteurs, réglages, messages et statistiques restent dans votre navigateur. Pas d'analyse, pas de publicité, l'historique de navigation ne quitte pas l'appareil.
 
@@ -42,6 +42,7 @@ La plupart des outils contre les « achats impulsifs » laissent une porte ouver
 | Signalement des blocages erronés | Marquez un faux positif et excluez cet élément la prochaine fois |
 | Compte à rebours sur l'icône | L'icône de la barre d'outils affiche les heures ou minutes restantes |
 | Registre de base | Total des paiements bloqués et montant retenu, mois en cours inclus |
+| Question de fin | Avec les notifications activées, une question arrive à la fin du verrou — acheté ou laissé — et la réponse est enregistrée dans l'historique |
 
 ### Premium
 
@@ -50,7 +51,7 @@ La plupart des outils contre les « achats impulsifs » laissent une porte ouver
 | Réflexions personnalisées | De 10 minutes à 30 jours |
 | Minuteurs par article | Un verrou par produit au lieu d'un par site |
 | Démarrage à l'ajout au panier | Le minuteur démarre quand un article entre dans le panier |
-| Messages illimités | Limités uniquement par le budget de synchronisation entre appareils (environ 60 lignes) |
+| Limite de messages plus élevée | Limités uniquement par le budget de synchronisation entre appareils (environ 60 lignes) |
 | Heures de silence | Aucun son pendant les heures choisies ; le verrou fonctionne toujours |
 | Confirmation après expiration | Un dernier clic « je le veux toujours » après la fin du minuteur |
 | Synchronisation entre appareils | Réglages et minuteurs suivent votre compte Chrome / Edge |
@@ -68,7 +69,8 @@ L'activation Premium est facultative. Tout ce qui est au-dessus de la ligne Prem
 2. **Chaque tentative suivante.** Le paiement reste bloqué et la superposition décompte le temps restant.
 3. **Le minuteur fait foi.** Il vit dans le stockage de l'extension, pas dans l'onglet. Fermer la page, rouvrir la boutique ou redémarrer le navigateur ne le raccourcit pas.
 4. **Quand le temps est écoulé.** Le verrou se libère en silence et le paiement est à nouveau autorisé. Les utilisateurs Premium peuvent exiger d'abord un clic de confirmation.
-5. **Après un achat.** Une commande terminée démarre une nouvelle réflexion, si bien que l'achat suivant passe par la même pause.
+5. **La question de fin.** Si les notifications système sont activées, une question arrive à la fin du verrou pour savoir si tu l'as vraiment acheté ; un clic enregistre acheté ou laissé.
+6. **Après un achat.** Une commande terminée démarre une nouvelle réflexion, si bien que l'achat suivant passe par la même pause.
 
 La protection n'agit que dans la page. Elle n'accroche jamais de requêtes réseau et ne touche jamais aux iframes de paiement ni aux pages des prestataires de paiement (Stripe, PayPal, Adyen, checkout.com, Braintree et hôtes similaires sont exclus).
 
@@ -80,7 +82,7 @@ La protection n'agit que dans la page. Elle n'accroche jamais de requêtes rése
 |---|---|
 | Chrome Web Store | Bientôt disponible 🚧 |
 | Microsoft Edge Add-ons | Bientôt disponible 🚧 |
-| Modules complémentaires Firefox (AMO) | Bientôt disponible 🚧 |
+| Modules complémentaires Firefox (AMO) | [Installer pour Firefox](https://addons.mozilla.org/firefox/addon/vkt-cart-lock/) |
 
 > Les fiches boutique arrivent bientôt.
 
@@ -93,6 +95,7 @@ La protection n'agit que dans la page. Elle n'accroche jamais de requêtes rése
 - **Ajoutez des règles.** Autorisez un site d'épicerie, forcez le verrou sur une petite boutique ou exemptez les commandes sous un montant donné.
 - **Regardez l'icône.** Le compte à rebours de la barre d'outils est le rappel silencieux que le verrou est toujours actif.
 - **Consultez le registre.** Le tableau de bord montre ce qui a été bloqué, ce que cela aurait coûté, quels sites et humeurs déclenchent le plus de paiements, et une tendance sur 12 mois.
+- **Réponds à la question.** Quand le verrou se termine avec les notifications activées, la notification te demande si tu l'as acheté ; la réponse sépare l'historique entre acheté et laissé.
 - **Sauvegardez (Premium).** Utilisez l'export JSON avant de changer de machine. La synchronisation restaure les réglages et les minuteurs, mais les statistiques locales ne voyagent pas.
 
 Désinstaller l'extension efface ses données locales. Si la synchronisation Premium est activée, les messages et réglages reviennent après réinstallation ; les statistiques et l'historique local, non.
@@ -122,7 +125,7 @@ Toute autre boutique est couverte par la correspondance générique des textes e
 
 ## Données et confidentialité
 
-- **Stocké localement :** réglages, minuteurs, statistiques, notes d'auto-vérification, le PIN facultatif des réglages (hachage SHA-256 salé uniquement) et l'enregistrement de licence Premium.
+- **Stocké localement :** réglages, minuteurs, statistiques, notes d'auto-vérification, les réponses à la question de fin, le PIN facultatif des réglages (hachage SHA-256 salé uniquement) et l'enregistrement de licence Premium.
 - **Synchronisé (Premium, sur adhésion) :** réglages, messages personnalisés et enregistrements légers de minuteurs via `storage.sync`. Le PIN des réglages n'est jamais synchronisé.
 - **Envoyé au serveur de licences :** uniquement lors de l'activation, de la validation ou de la désactivation de Premium — la clé de licence, un identifiant d'installation aléatoire, l'ID du plugin et des métadonnées de base du navigateur (version du navigateur, langue, fuseau horaire, agent utilisateur).
 - **Non collecté :** contenu des pages, historique de navigation, contenu du panier, informations de paiement, frappes ou analyses.
@@ -139,7 +142,7 @@ Consultez [privacy-policy.html](../privacy-policy.html) pour la politique compl�
 |------------|------------------|
 | `storage` | Enregistrer réglages, minuteurs et statistiques localement ; les synchroniser pour Premium |
 | `alarms` | Garder le compte à rebours précis et libérer les verrous à temps |
-| `notifications` | Afficher une notification locale de bureau quand un nouveau verrou démarre |
+| `notifications` | Afficher une notification locale de bureau au démarrage d'un verrou et une question à la fin |
 | `host_permissions: <all_urls>` | Détecter un bouton de paiement sur n'importe quelle boutique, car les boutiques utilisent des domaines arbitraires |
 | `host_permissions: api.annmax1983.com` | Activer et valider une licence Premium facultative |
 
@@ -156,3 +159,9 @@ English, 简体中文, 日本語, Deutsch, Español et Français. L'interface, l
 ## Licence
 
 VKT Cart Lock est une extension commerciale. Le niveau Gratuit est utilisable sans licence. Les fonctionnalités Premium nécessitent une clé de licence active de [annmax1983.com](https://www.annmax1983.com/).
+
+---
+
+## Liens
+
+- **☕ Soutenir le projet (Ko-fi):** https://ko-fi.com/annmax?ref=vkt-cart-lock

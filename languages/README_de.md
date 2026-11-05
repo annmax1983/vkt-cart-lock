@@ -16,7 +16,7 @@ Die meisten „Impulskauf"-Tools lassen eine Tür offen: Schlummern, Überspring
 
 - **Kein Überspringen, kein Schlummern, kein vorzeitiges Entsperren.** Die Deinstallation der Erweiterung ist der einzige Weg daran vorbei.
 - **Der Timer läuft auch außerhalb der Seite weiter.** Tab schließen, Browser neu starten, morgen wiederkommen: Die Sperre ist immer noch da.
-- **Ablauf ist standardmäßig still.** Der Checkout öffnet sich einfach wieder. Premium kann eine letzte Bestätigung hinzufügen.
+- **Ablauf ist standardmäßig still.** Der Checkout öffnet sich einfach wieder. Premium kann eine letzte Bestätigung hinzufügen. Mit aktiven Benachrichtigungen fragt auch das Ende der Sperre: Hast du es gekauft?
 - **Ein abgeschlossener Kauf startet eine neue Sperre.** Kaufen ändert die Gewohnheit nicht.
 - **Local first.** Timer, Einstellungen, Nachrichten und Statistiken bleiben in deinem Browser. Keine Analyse, keine Werbung, keine Browserhistorie verlässt das Gerät.
 
@@ -42,6 +42,7 @@ Die meisten „Impulskauf"-Tools lassen eine Tür offen: Schlummern, Überspring
 | Fehlblockaden-Feedback | Markiere einen Fehlalarm und schließe dieses Element beim nächsten Mal aus |
 | Badge-Countdown | Das Toolbar-Symbol zeigt verbleibende Stunden oder Minuten |
 | Ledger-Basics | Gesamtzahl blockierter Checkouts und gesperrter Betrag, inklusive des aktuellen Monats |
+| Check-in am Ende | Mit Benachrichtigungen fragt eine Meldung am Ende der Sperre – gekauft oder gelassen – und die Antwort landet im Verlauf |
 
 ### Premium
 
@@ -50,7 +51,7 @@ Die meisten „Impulskauf"-Tools lassen eine Tür offen: Schlummern, Überspring
 | Eigene Bedenkzeiten | Alles von 10 Minuten bis 30 Tage |
 | Artikelbezogene Timer | Eine Sperre pro Produkt statt pro Website |
 | Start bei „In den Warenkorb" | Der Timer startet, sobald ein Artikel in den Warenkorb kommt |
-| Unbegrenzte Nachrichten | Nur begrenzt durch das Sync-Budget über Geräte hinweg (ca. 60 Zeilen) |
+| Höheres Nachrichtenlimit | Nur begrenzt durch das Sync-Budget über Geräte hinweg (ca. 60 Zeilen) |
 | Ruhezeiten | Kein Sound während gewählter Stunden; die Sperre funktioniert trotzdem |
 | Bestätigung nach Ablauf | Ein letzter „Ich will es immer noch"-Klick nach dem Timerende |
 | Geräteübergreifende Synchronisierung | Einstellungen und Timer folgen deinem Chrome-/Edge-/Firefox-Konto |
@@ -68,7 +69,8 @@ Die Premium-Aktivierung ist optional. Alles oberhalb der Premium-Linie funktioni
 2. **Jeder weitere Versuch danach.** Der Checkout bleibt blockiert, und das Overlay zählt die verbleibende Zeit herunter.
 3. **Der Timer ist maßgeblich.** Er lebt im Erweiterungsspeicher, nicht im Tab. Seite schließen, Shop neu öffnen oder Browser neu starten verkürzt ihn nicht.
 4. **Wenn die Zeit um ist.** Die Sperre löst sich still und der Checkout ist wieder erlaubt. Premium-Nutzer können zuerst einen Bestätigungsklick verlangen.
-5. **Nach einem Kauf.** Eine abgeschlossene Bestellung startet eine frische Bedenkzeit, sodass der nächste Kauf dieselbe Pause durchläuft.
+5. **Rückfrage am Ende.** Ist die Systembenachrichtigung aktiv, kommt am Ende der Sperre eine Meldung, ob du es tatsächlich gekauft hast. Ein Klick notiert gekauft oder gelassen.
+6. **Nach einem Kauf.** Eine abgeschlossene Bestellung startet eine frische Bedenkzeit, sodass der nächste Kauf dieselbe Pause durchläuft.
 
 Der Schutz arbeitet nur in der Seite. Er hängt sich nie in Netzwerkanfragen und berührt nie Zahlungs-Iframes oder Zahlungsanbieter-Seiten (Stripe, PayPal, Adyen, checkout.com, Braintree und ähnliche Hosts sind ausgenommen).
 
@@ -80,7 +82,7 @@ Der Schutz arbeitet nur in der Seite. Er hängt sich nie in Netzwerkanfragen und
 |---|---|
 | Chrome Web Store | Demnächst verfügbar 🚧 |
 | Microsoft Edge Add-ons | Demnächst verfügbar 🚧 |
-| Firefox-Add-ons (AMO) | Demnächst verfügbar 🚧 |
+| Firefox-Add-ons (AMO) | [Für Firefox installieren](https://addons.mozilla.org/firefox/addon/vkt-cart-lock/) |
 
 > Die Store-Einträge kommen in Kürze.
 
@@ -93,6 +95,7 @@ Der Schutz arbeitet nur in der Seite. Er hängt sich nie in Netzwerkanfragen und
 - **Regeln hinzufügen.** Setze eine Lebensmittel-Seite auf die Erlaubnisliste, erzwinge die Sperre bei einem kleinen Shop oder befreie Bestellungen unter einem festgelegten Betrag.
 - **Beobachte das Badge.** Der Toolbar-Countdown ist die stille Erinnerung, dass die Sperre noch aktiv ist.
 - **Prüfe das Ledger.** Das Dashboard zeigt, was blockiert wurde, was es gekostet hätte, welche Websites und Stimmungen die meisten Checkouts auslösen, und einen 12-Monats-Trend.
+- **Antwort auf die Rückfrage.** Wenn die Sperre endet und Benachrichtigungen an sind, fragt die Meldung, ob du gekauft hast. Deine Antwort teilt den Verlauf in gekauft und gelassen.
 - **Sichern (Premium).** Nutze den JSON-Export vor einem Gerätewechsel. Sync stellt Einstellungen und Timer wieder her, lokale Statistiken reisen jedoch nicht mit.
 
 Die Deinstallation der Erweiterung löscht ihre lokalen Daten. Wenn Premium-Sync aktiviert ist, kehren Nachrichten und Einstellungen nach der Neuinstallation zurück; Statistiken und der lokale Verlauf nicht.
@@ -122,7 +125,7 @@ Jeder andere Shop wird durch generisches Abgleichen von Checkout-Button-Text und
 
 ## Daten und Datenschutz
 
-- **Lokal gespeichert:** Einstellungen, Timer, Statistiken, Selbsttest-Notizen, die optionale Einstellungs-PIN (nur gesalzener SHA-256-Hash) und der Premium-Lizenzdatensatz.
+- **Lokal gespeichert:** Einstellungen, Timer, Statistiken, Selbsttest-Notizen, Antworten auf die Rückfrage am Ende der Sperre, die optionale Einstellungs-PIN (nur gesalzener SHA-256-Hash) und der Premium-Lizenzdatensatz.
 - **Synchronisiert (Premium, Opt-in):** Einstellungen, eigene Nachrichten und schlanke Timer-Datensätze über `storage.sync`. Die Einstellungs-PIN wird nie synchronisiert.
 - **An den Lizenzserver gesendet:** nur beim Aktivieren, Validieren oder Deaktivieren von Premium — Lizenzschlüssel, eine zufällige Installations-ID, die Plugin-ID und grundlegende Browser-Metadaten (Browser-Version, Sprache, Zeitzone, User-Agent).
 - **Nicht erfasst:** Seiteninhalte, Browserverlauf, Warenkorbinhalte, Zahlungsdaten, Tastatureingaben oder Analysedaten.
@@ -139,7 +142,7 @@ Die vollständige Richtlinie findest du unter [privacy-policy.html](../privacy-p
 |------------|------------------|
 | `storage` | Einstellungen, Timer und Statistiken lokal speichern; für Premium synchronisieren |
 | `alarms` | Den Countdown genau halten und Sperren pünktlich freigeben |
-| `notifications` | Eine lokale Desktop-Benachrichtigung zeigen, wenn eine neue Sperre startet |
+| `notifications` | Eine lokale Desktop-Benachrichtigung beim Start der Sperre zeigen und am Ende eine Frage stellen |
 | `host_permissions: <all_urls>` | Einen Checkout-Button auf jedem Shop erkennen, da Shops beliebige Domains nutzen |
 | `host_permissions: api.annmax1983.com` | Eine optionale Premium-Lizenz aktivieren und validieren |
 
@@ -156,3 +159,9 @@ English, 简体中文, 日本語, Deutsch, Español und Français. Oberfläche, 
 ## Lizenz
 
 VKT Cart Lock ist eine kommerzielle Erweiterung. Die kostenlose Stufe ist ohne Lizenz nutzbar. Premium-Funktionen erfordern einen aktiven Lizenzschlüssel von [annmax1983.com](https://www.annmax1983.com/).
+
+---
+
+## Links
+
+- **☕ Projekt unterstützen (Ko-fi):** https://ko-fi.com/annmax?ref=vkt-cart-lock
