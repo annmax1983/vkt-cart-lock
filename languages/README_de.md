@@ -156,7 +156,17 @@ English, 简体中文, 日本語, Deutsch, Español und Français. Oberfläche, 
 
 ---
 
+## Hinweis zum Quellcode
+
+> ⚠️ **Dieses Repository dient ausschließlich der Projektpräsentation — der vollständige Quellcode wird hier nicht veröffentlicht.** Es enthält nur die Nutzungsdokumentation, die Release-Notizen und Support-Informationen zur Erweiterung.
+
+> 📥 **Installation ausschließlich über die offiziellen Browser-Stores:** Chrome Web Store · Microsoft Edge Add-ons · Firefox-Add-ons (AMO). Von hier werden keine Offline-Installer verteilt.
+
+---
+
 ## Lizenz
+
+Diese Software ist proprietär und quellgeschlossen. Ohne vorherige schriftliche Genehmigung des Autors ist das Dekompilieren, Reverse-Engineering, Knacken, Verändern, Neuverpacken, Weiterverbreiten oder Weiterverkaufen der Software (ganz oder teilweise) streng untersagt.
 
 VKT Cart Lock ist eine kommerzielle Erweiterung. Die kostenlose Stufe ist ohne Lizenz nutzbar. Premium-Funktionen erfordern einen aktiven Lizenzschlüssel von [annmax1983.com](https://www.annmax1983.com/).
 
