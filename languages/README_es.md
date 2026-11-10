@@ -16,7 +16,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 
 - **Sin saltar, sin posponer, sin desbloqueo anticipado.** Desinstalar la extensión es la única forma de evitarlo.
 - **El temporizador sigue corriendo fuera de la página.** Cierra la pestaña, reinicia el navegador, vuelve mañana: el candado sigue ahí.
-- **El vencimiento es silencioso por defecto.** El pago simplemente vuelve a abrirse. Premium puede añadir una confirmación final. Con las notificaciones activadas, el final del bloqueo también hace una pregunta: ¿lo compraste?
+- **El vencimiento es silencioso por defecto.** El pago simplemente vuelve a abrirse. Pro puede añadir una confirmación final. Con las notificaciones activadas, el final del bloqueo también hace una pregunta: ¿lo compraste?
 - **Una compra completada inicia un nuevo candado.** Comprar no reinicia el hábito.
 - **Primero local.** Temporizadores, ajustes, mensajes y estadísticas se quedan en tu navegador. Sin analíticas, sin anuncios, el historial de navegación no sale del dispositivo.
 
@@ -44,7 +44,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 | Libro básico | Total de pagos bloqueados e importe retenido, incluido el mes actual |
 | Consulta al terminar | Con las notificaciones activadas, un aviso pregunta al acabar el bloqueo: ¿comprado o soltado? La respuesta queda en el historial |
 
-### Premium
+### Pro
 
 | Función | Descripción |
 |---------|-------------|
@@ -59,7 +59,7 @@ La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta ab
 | Exportación CSV | Lleva el historial a una hoja de cálculo |
 | Copia de seguridad JSON | Exportación e importación completas de ajustes, mensajes, temporizadores y estadísticas |
 
-La activación de Premium es opcional. Todo lo que está por encima de la línea Premium funciona sin cuenta ni clave de licencia.
+La activación de Pro es opcional. Todo lo que está por encima de la línea Pro funciona sin cuenta ni clave de licencia.
 
 ---
 
@@ -68,7 +68,7 @@ La activación de Premium es opcional. Todo lo que está por encima de la línea
 1. **Primer clic en pagar.** La protección intercepta el clic, inicia el temporizador y muestra la pantalla de bloqueo. El pedido no se envía.
 2. **Cada intento posterior.** El pago permanece bloqueado y la superposición cuenta atrás el tiempo restante.
 3. **El temporizador manda.** Vive en el almacenamiento de la extensión, no en la pestaña. Cerrar la página, reabrir la tienda o reiniciar el navegador no lo acorta.
-4. **Cuando se acaba el tiempo.** El candado se libera en silencio y el pago vuelve a estar permitido. Los usuarios Premium pueden exigir antes un clic de confirmación.
+4. **Cuando se acaba el tiempo.** El candado se libera en silencio y el pago vuelve a estar permitido. Los usuarios Pro pueden exigir antes un clic de confirmación.
 5. **Pregunta al final.** Si las notificaciones del sistema están activadas, al terminar el bloqueo llega un aviso que pregunta si al final lo compraste. Un clic registra comprado o soltado.
 6. **Después de una compra.** Un pedido completado inicia un nuevo enfriamiento, de modo que la siguiente compra pasa por la misma pausa.
 
@@ -90,15 +90,15 @@ La protección solo funciona en la página. Nunca engancha peticiones de red y n
 
 ## Uso
 
-- **Configura un enfriamiento.** Abre las opciones de la extensión y elige un preajuste, o una duración personalizada con Premium.
+- **Configura un enfriamiento.** Abre las opciones de la extensión y elige un preajuste, o una duración personalizada con Pro.
 - **Escribe tu propia frase.** La pantalla de bloqueo puede mostrar tus palabras en lugar de las citas integradas. El modo rotatorio evita que se convierta en papel pintado.
 - **Añade reglas.** Pon un supermercado en la lista de permitidos, fuerza el candado en una tienda pequeña o exime pedidos por debajo de un importe.
 - **Mira el icono.** La cuenta atrás de la barra es el recordatorio silencioso de que el candado sigue activo.
 - **Revisa el libro.** El panel muestra qué se bloqueó, cuánto habría costado, qué sitios y estados de ánimo provocan más pagos, y una tendencia de 12 meses.
 - **Responde a la consulta.** Cuando el bloqueo termina con las notificaciones activadas, el aviso pregunta si lo compraste; la respuesta divide el historial entre comprado y soltado.
-- **Haz copia de seguridad (Premium).** Usa la exportación JSON antes de cambiar de equipo. La sincronización restaura ajustes y temporizadores, pero las estadísticas locales no viajan.
+- **Haz copia de seguridad (Pro).** Usa la exportación JSON antes de cambiar de equipo. La sincronización restaura ajustes y temporizadores, pero las estadísticas locales no viajan.
 
-Desinstalar la extensión borra sus datos locales. Si la sincronización Premium está activada, los mensajes y los ajustes vuelven tras reinstalar; las estadísticas y el historial local, no.
+Desinstalar la extensión borra sus datos locales. Si la sincronización Pro está activada, los mensajes y los ajustes vuelven tras reinstalar; las estadísticas y el historial local, no.
 
 ---
 
@@ -125,9 +125,9 @@ Cualquier otra tienda queda cubierta por la coincidencia genérica de textos y s
 
 ## Datos y privacidad
 
-- **Almacenado localmente:** ajustes, temporizadores, estadísticas, notas de autocomprobación, las respuestas de la consulta al terminar, el PIN opcional de ajustes (solo hash SHA-256 con sal) y el registro de licencia Premium.
-- **Sincronizado (Premium, opcional):** ajustes, mensajes personalizados y registros ligeros de temporizadores mediante `storage.sync`. El PIN de ajustes nunca se sincroniza.
-- **Enviado al servidor de licencias:** solo al activar, validar o desactivar Premium: la clave de licencia, un ID de instalación aleatorio, el ID del plugin y metadatos básicos del navegador (versión, idioma, zona horaria, agente de usuario).
+- **Almacenado localmente:** ajustes, temporizadores, estadísticas, notas de autocomprobación, las respuestas de la consulta al terminar, el PIN opcional de ajustes (solo hash SHA-256 con sal) y el registro de licencia Pro.
+- **Sincronizado (Pro, opcional):** ajustes, mensajes personalizados y registros ligeros de temporizadores mediante `storage.sync`. El PIN de ajustes nunca se sincroniza.
+- **Enviado al servidor de licencias:** solo al activar, validar o desactivar Pro: la clave de licencia, un ID de instalación aleatorio, el ID del plugin y metadatos básicos del navegador (versión, idioma, zona horaria, agente de usuario).
 - **No se recopila:** contenido de páginas, historial de navegación, contenido del carrito, datos de pago, pulsaciones ni analíticas.
 
 No hay cuenta, ni publicidad, ni venta de datos. Desinstalar la extensión elimina los datos locales; los registros de licencia del servidor pueden eliminarse desactivando antes la licencia.
@@ -140,11 +140,11 @@ Consulta la política completa en [privacy-policy.html](../privacy-policy.html).
 
 | Permiso | Por qué es necesario |
 |------------|------------------|
-| `storage` | Guardar ajustes, temporizadores y estadísticas localmente; sincronizarlos para Premium |
+| `storage` | Guardar ajustes, temporizadores y estadísticas localmente; sincronizarlos para Pro |
 | `alarms` | Mantener precisa la cuenta atrás y liberar los candados a tiempo |
 | `notifications` | Mostrar un aviso local de escritorio al empezar un bloqueo y una pregunta al terminar |
 | `host_permissions: <all_urls>` | Detectar un botón de pago en cualquier tienda, ya que usan dominios arbitrarios |
-| `host_permissions: api.annmax1983.com` | Activar y validar una licencia Premium opcional |
+| `host_permissions: api.annmax1983.com` | Activar y validar una licencia Pro opcional |
 
 El script de contenido se ejecuta en todos los marcos para captar botones de pago dentro de los widgets de las tiendas, pero los hosts de proveedores de pago quedan explícitamente excluidos.
 
@@ -168,7 +168,7 @@ English, 简体中文, 日本語, Deutsch, Español y Français. La interfaz, la
 
 Este software es propietario y de código cerrado. Sin autorización previa por escrito del autor, queda estrictamente prohibido descompilar, aplicar ingeniería inversa, crackear, modificar, reempaquetar, redistribuir o revender el programa (total o parcialmente).
 
-VKT Cart Lock es una extensión comercial. El nivel Gratis se puede usar sin licencia. Las funciones Premium requieren una clave de licencia activa de [annmax1983.com](https://www.annmax1983.com/).
+VKT Cart Lock es una extensión comercial. El nivel Gratis se puede usar sin licencia. Las funciones Pro requieren una clave de licencia activa de [annmax1983.com](https://www.annmax1983.com/).
 
 ---
 
