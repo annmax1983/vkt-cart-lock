@@ -14,7 +14,7 @@ También conocido como **冷静锁** en chino.
 
 La mayoría de las herramientas contra la "compra impulsiva" dejan una puerta abierta: posponer, saltar, desbloquear antes de tiempo. VKT Cart Lock no. La idea es proteger la decisión que ya tomaste de la versión de ti que mira fijamente un botón de pago a medianoche.
 
-- **Sin saltar, sin posponer, sin desbloqueo anticipado.** Desinstalar la extensión es la única forma de evitarlo.
+- **Sin saltar, sin posponer, sin desbloqueo anticipado.** Si el bloqueo se activó en la página equivocada, puede deshacerse desde la barra durante los dos primeros minutos. Por lo demás, desinstalar la extensión es la única forma de evitarlo.
 - **El temporizador sigue corriendo fuera de la página.** Cierra la pestaña, reinicia el navegador, vuelve mañana: el candado sigue ahí.
 - **El vencimiento es silencioso por defecto.** El pago simplemente vuelve a abrirse. Pro puede añadir una confirmación final. Con las notificaciones activadas, el final del bloqueo también hace una pregunta: ¿lo compraste?
 - **Una compra completada inicia un nuevo candado.** Comprar no reinicia el hábito.

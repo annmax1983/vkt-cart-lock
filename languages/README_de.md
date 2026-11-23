@@ -14,7 +14,7 @@ Auf Chinesisch auch als **冷静锁** bekannt.
 
 Die meisten „Impulskauf"-Tools lassen eine Tür offen: Schlummern, Überspringen, vorzeitiges Entsperren. VKT Cart Lock nicht. Der Sinn ist, die Entscheidung, die du bereits getroffen hast, vor der Version von dir zu schützen, die um Mitternacht auf einen Checkout-Button starrt.
 
-- **Kein Überspringen, kein Schlummern, kein vorzeitiges Entsperren.** Die Deinstallation der Erweiterung ist der einzige Weg daran vorbei.
+- **Kein Überspringen, kein Schlummern, kein vorzeitiges Entsperren.** Nur wenn die Sperre auf der falschen Seite ausgelöst wurde, lässt sie sich in den ersten zwei Minuten über die Symbolleiste aufheben. Ansonsten ist die Deinstallation der Erweiterung der einzige Weg daran vorbei.
 - **Der Timer läuft auch außerhalb der Seite weiter.** Tab schließen, Browser neu starten, morgen wiederkommen: Die Sperre ist immer noch da.
 - **Ablauf ist standardmäßig still.** Der Checkout öffnet sich einfach wieder. Pro kann eine letzte Bestätigung hinzufügen. Mit aktiven Benachrichtigungen fragt auch das Ende der Sperre: Hast du es gekauft?
 - **Ein abgeschlossener Kauf startet eine neue Sperre.** Kaufen ändert die Gewohnheit nicht.

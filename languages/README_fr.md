@@ -14,7 +14,7 @@
 
 La plupart des outils contre les « achats impulsifs » laissent une porte ouverte : répéter, ignorer, déverrouiller en avance. Pas VKT Cart Lock. Le but est de protéger la décision que vous avez déjà prise de la version de vous qui fixe un bouton de paiement à minuit.
 
-- **Pas de répétition, pas d'ignorance, pas de déverrouillage anticipé.** Désinstaller l'extension est le seul moyen de contourner.
+- **Pas de répétition, pas d'ignorance, pas de déverrouillage anticipé.** Un verrouillage déclenché sur la mauvaise page peut être annulé depuis la barre d'outils dans les deux premières minutes. Sinon, désinstaller l'extension est le seul moyen de contourner.
 - **Le minuteur continue hors de la page.** Fermez l'onglet, redémarrez le navigateur, revenez demain : le verrou est toujours là.
 - **L'expiration est silencieuse par défaut.** Le paiement se rouvre simplement. Pro peut ajouter une dernière confirmation. Avec les notifications activées, la fin du verrou pose aussi une question : tu l'as acheté ?
 - **Un achat terminé démarre un nouveau verrou.** Acheter ne remet pas l'habitude à zéro.

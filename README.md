@@ -14,7 +14,7 @@ Also known as **冷静锁** in Chinese.
 
 Most "impulse buying" tools leave the door open: snooze, skip, unlock early. VKT Cart Lock does not. The point is to protect the decision you already made from the version of you who is staring at a checkout button at midnight.
 
-- **No skip, no snooze, no early unlock.** Uninstalling the extension is the only way around it.
+- **No skip, no snooze, no early unlock.** A lock that fired on the wrong page can be undone from the toolbar within two minutes; otherwise uninstalling the extension is the only way around it.
 - **The timer keeps running off the page.** Close the tab, restart the browser, come back tomorrow: the lock is still there.
 - **Expiry is silent by default.** Checkout simply opens again. Pro can add one final confirmation. With notifications on, the end of a lock also asks one question: did you buy it?
 - **A completed purchase starts a new lock.** Buying does not reset the habit.
